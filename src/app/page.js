@@ -16,6 +16,7 @@ import SliderImage from "@/components/SliderImage"
 export default function Home() {
   return (
     <>
+    
       <Header />
       <div className="snap-section">
         <HeroSec />
