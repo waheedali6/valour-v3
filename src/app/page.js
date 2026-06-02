@@ -50,9 +50,9 @@ export default function Home() {
         <TestimonialSec />
       </div>
 
-      <div className="snap-section">
+      {/* <div className="snap-section">
         <FormSec />
-      </div>
+      </div> */}
 
       <div className="snap-section">
         <VideoSec />

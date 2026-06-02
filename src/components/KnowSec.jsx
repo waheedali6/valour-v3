@@ -82,26 +82,26 @@ export default function KnowSec() {
     }
 
     // ── 1. BG parallax ─────────────────────────────────────────────
-const bgEl = document.createElement('div')
-bgEl.className = 'know-bg-layer'
-section.prepend(bgEl)
+// const bgEl = document.createElement('div')
+// bgEl.className = 'know-bg-layer'
+// section.prepend(bgEl)
 
-const bg = gsap.fromTo(bgEl,
-  { yPercent: -15 },
-  {
-    yPercent: 15,
-    ease: 'none',
-    scrollTrigger: {
-          scroller: '#main-scroller',
-      trigger: section,
-      start: 'top bottom',
-      end: 'bottom top',
-      scrub: 1.5,
-      invalidateOnRefresh: true,
-    },
-  }
-)
-triggers.push(bg.scrollTrigger)
+// const bg = gsap.fromTo(bgEl,
+//   { yPercent: -15 },
+//   {
+//     yPercent: 15,
+//     ease: 'none',
+//     scrollTrigger: {
+//           scroller: '#main-scroller',
+//       trigger: section,
+//       start: 'top bottom',
+//       end: 'bottom top',
+//       scrub: 1.5,
+//       invalidateOnRefresh: true,
+//     },
+//   }
+// )
+// triggers.push(bg.scrollTrigger)
 
     // ── 3. Sticky left panel — fade in ─────────────────────────────
     const leftItems = section.querySelectorAll('.know-left-item')

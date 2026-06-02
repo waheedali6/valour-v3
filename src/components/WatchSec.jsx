@@ -27,22 +27,22 @@ const WatchSec = () => {
         // INITIAL STATES
         // =========================
         const parallax  = section.querySelector('.watch-parallax')
-        const bgZoom    = section.querySelector('.watch-bg-zoom')
+        // const bgZoom    = section.querySelector('.watch-bg-zoom')
         const paragraph = section.querySelector('.watch-text p')
 
         // Image
-        Object.assign(parallax.style, {
-            transform:  'translateY(120px) rotate(-10deg) scale(1.2)',
-            opacity:    '0',
-            transition: 'none',
-            willChange: 'transform, opacity',
-        })
+        // Object.assign(parallax.style, {
+        //     transform:  'translateY(120px) rotate(-10deg) scale(1.2)',
+        //     opacity:    '0',
+        //     transition: 'none',
+        //     willChange: 'transform, opacity',
+        // })
 
         // BG
-        Object.assign(bgZoom.style, {
-            transform:  'scale(1.15)',
-            willChange: 'transform',
-        })
+        // Object.assign(bgZoom.style, {
+        //     transform:  'scale(1.15)',
+        //     willChange: 'transform',
+        // })
 
         // Badge chars
         badge.chars?.forEach((char) => {
@@ -98,9 +98,9 @@ const WatchSec = () => {
       )
 
       // bg parallax movement (smoother with px instead of %)
-      const bgY = progress * 80 // tweak intensity
+    //   const bgY = progress * 80 // tweak intensity
 
-      bgZoom.style.transform = `scale(1) translateY(${bgY}px)`
+    //   bgZoom.style.transform = `scale(1) translateY(${bgY}px)`
 
       ticking = false
     })
@@ -114,31 +114,31 @@ const WatchSec = () => {
         // =========================
         // IMAGE REVEAL (scroll-scrub via rAF)
         // =========================
-        let imgAnimated = false
+        // let imgAnimated = false
 
-        const imgObserver = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting && !imgAnimated) {
-                        imgAnimated = true
+        // const imgObserver = new IntersectionObserver(
+        //     (entries) => {
+        //         entries.forEach((entry) => {
+        //             if (entry.isIntersecting && !imgAnimated) {
+        //                 imgAnimated = true
 
-                        Object.assign(parallax.style, {
-                            transition: 'transform 1.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.2s ease',
-                            transform:  'translateY(0px) rotate(0deg) scale(1)',
-                            opacity:    '1',
-                        })
+        //                 Object.assign(parallax.style, {
+        //                     transition: 'transform 1.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.2s ease',
+        //                     transform:  'translateY(0px) rotate(0deg) scale(1)',
+        //                     opacity:    '1',
+        //                 })
 
-                        Object.assign(bgZoom.style, {
-                            transition: 'transform 1.6s cubic-bezier(0.16, 1, 0.3, 1)',
-                            transform:  'scale(1) translateY(0%)',
-                        })
-                    }
-                })
-            },
-            { threshold: 0.2, rootMargin: '0px 0px -10% 0px' }
-        )
+        //                 Object.assign(bgZoom.style, {
+        //                     transition: 'transform 1.6s cubic-bezier(0.16, 1, 0.3, 1)',
+        //                     transform:  'scale(1) translateY(0%)',
+        //                 })
+        //             }
+        //         })
+        //     },
+        //     { threshold: 0.2, rootMargin: '0px 0px -10% 0px' }
+        // )
 
-        imgObserver.observe(section)
+        // imgObserver.observe(section)
 
         // =========================
         // TEXT REVEAL

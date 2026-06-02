@@ -92,8 +92,8 @@ const Header = () => {
           </a>
           <div className="side-box">
             <a href="#" className='theme-btn'>English</a>
-            <IoSearchOutline />
-            <IoBagHandleOutline />
+            <a href="#"><IoSearchOutline /></a>
+            <a href="#"><IoBagHandleOutline /></a>
           </div>
         </div>
       </nav>

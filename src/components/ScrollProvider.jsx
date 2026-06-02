@@ -17,7 +17,7 @@ export default function ScrollProvider({ children }) {
     ScrollTrigger.refresh()
 
     // ── Config ───────────────────────────────────────────────────────────
-    const SNAP_DURATION  = 0.85        // seconds for the snap animation
+    const SNAP_DURATION  = 1        // seconds for the snap animation
     const SNAP_EASE      = 'power3.inOut'
     const SCROLL_THRESHOLD = 40        // px scrolled before snap triggers
     const IDLE_DELAY     = 60          // ms of no-scroll before snap fires

@@ -70,9 +70,9 @@ const Footer = () => {
                             </div>
                         </div>
                     </div>
-                        <div class="container">
-                            <div class="inner-footer">
-                                <p>Copyrigh @ 2026 Valour Watchs-All Right Reserved</p>
+                        <div clasNames="container">
+                            <div className="inner-footer">
+                                <p>Copyright @ 2026 Valour Watches-All Right Reserved</p>
                                 <div>
                                     <a href="/">Privacy Policy</a>&nbsp;-&nbsp;<a href="/">Terms &amp; Conditions</a>&nbsp;-&nbsp;<a href="/">Warranty Policy</a>
                                 </div>

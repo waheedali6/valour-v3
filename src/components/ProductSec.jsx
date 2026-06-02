@@ -39,25 +39,25 @@ const ProductSec = () => {
       const cardListeners = []
 
       // ── 1. Initial hidden state ────────────────────────────────────
-      gsap.set(cards, { y: 80, opacity: 0, scale: 0.94 })
+      // gsap.set(cards, { y: 80, opacity: 0, scale: 0.94 })
 
       // ── 2. Staggered reveal on scroll ─────────────────────────────
-      const reveal = gsap.to(cards, {
-        y: 0,
-        opacity: 1,
-        scale: 1,
-        stagger: 0.14,
-        duration: 1.1,
-        ease: 'back.out(1.4)',
-        scrollTrigger: {
-          scroller: '#main-scroller',
-          trigger: section,
-          start: 'top 65%',
-          toggleActions: 'play none none reverse',
-          invalidateOnRefresh: true,
-        },
-      })
-      triggers.push(reveal.scrollTrigger)
+      // const reveal = gsap.to(cards, {
+      //   y: 0,
+      //   opacity: 1,
+      //   scale: 1,
+      //   stagger: 0.14,
+      //   duration: 1.1,
+      //   ease: 'back.out(1.4)',
+      //   scrollTrigger: {
+      //     scroller: '#main-scroller',
+      //     trigger: section,
+      //     start: 'top 65%',
+      //     toggleActions: 'play none none reverse',
+      //     invalidateOnRefresh: true,
+      //   },
+      // })
+      // triggers.push(reveal.scrollTrigger)
 
       // ── 4. Card hover: image levitate + shine sweep ───────────────
       cards.forEach((card) => {
@@ -163,7 +163,6 @@ const ProductSec = () => {
           >
             <SwiperSlide>
               <div className="pro-card yellow-shadow">
-                <div className="card-shine" />
                 <img src="/images/watch-1.png" alt="watch" />
                 <div className="details">
                   <div>
@@ -177,7 +176,7 @@ const ProductSec = () => {
 
             <SwiperSlide>
               <div className="pro-card blue-shadow">
-                <div className="card-shine" />
+              
                 <img src="/images/watch-2.png" alt="watch" />
                 <div className="details">
                   <div>
@@ -191,7 +190,7 @@ const ProductSec = () => {
 
             <SwiperSlide>
               <div className="pro-card green-shadow">
-                <div className="card-shine" />
+              
                 <img src="/images/watch-3.png" alt="watch" />
                 <div className="details">
                   <div>
@@ -204,7 +203,7 @@ const ProductSec = () => {
             </SwiperSlide>
             <SwiperSlide>
               <div className="pro-card yellow-shadow">
-                <div className="card-shine" />
+              
                 <img src="/images/watch-1.png" alt="watch" />
                 <div className="details">
                   <div>
@@ -218,7 +217,7 @@ const ProductSec = () => {
 
             <SwiperSlide>
               <div className="pro-card blue-shadow">
-                <div className="card-shine" />
+              
                 <img src="/images/watch-2.png" alt="watch" />
                 <div className="details">
                   <div>
@@ -232,7 +231,7 @@ const ProductSec = () => {
 
             <SwiperSlide>
               <div className="pro-card green-shadow">
-                <div className="card-shine" />
+              
                 <img src="/images/watch-3.png" alt="watch" />
                 <div className="details">
                   <div>

@@ -154,18 +154,13 @@ nav .side-box svg {
   /* ← strip bg from section */
   position: relative;
   overflow: hidden;
-}
-
-.know-bg-layer {
-  position: absolute;
-  inset: -20% 0;
-  background-image: url(/images/know-bg.jpg);
+    background-image: url(/images/know-bg.jpg);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  z-index: 0;
-  will-change: transform;
 }
+
+
 
 .know-sec h2 {
   color: #fff;
