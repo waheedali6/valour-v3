@@ -116,15 +116,15 @@ export default function KnowSec() {
     })
 
     // ── 4. Horizontal ticker line scrub ───────────────────────────
-    const ticker = section.querySelector('.know-ticker-inner')
-    if (ticker) {
-      const a = gsap.to(ticker, {
-        x: '-60%', ease: 'none',
-        scrollTrigger: {
-          scroller: '#main-scroller', trigger: section, start: 'top bottom', end: 'bottom top', scrub: 1,invalidateOnRefresh: true, }
-      })
-      triggers.push(a.scrollTrigger)
-    }
+    // const ticker = section.querySelector('.know-ticker-inner')
+    // if (ticker) {
+    //   const a = gsap.to(ticker, {
+    //     x: '-60%', ease: 'none',
+    //     scrollTrigger: {
+    //       scroller: '#main-scroller', trigger: section, start: 'top bottom', end: 'bottom top', scrub: 1,invalidateOnRefresh: true, }
+    //   })
+    //   triggers.push(a.scrollTrigger)
+    // }
 
     // =========================
     // TEXT REVEAL
@@ -196,7 +196,7 @@ export default function KnowSec() {
     }
   }, [])
 
-  const tickerText = Array(6).fill('VALOUR · FINE WATCHMAKING · LUCENT COLLECTION · BOLD FOR EVERYONE · ').join('')
+  // const tickerText = Array(6).fill('VALOUR · FINE WATCHMAKING · LUCENT COLLECTION · BOLD FOR EVERYONE · ').join('')
 
   return (
     <section className='know-sec know-split-sec' ref={sectionRef}>
@@ -227,9 +227,9 @@ export default function KnowSec() {
       </div>
 
       {/* Horizontal scrolling ticker */}
-      <div className='know-ticker-wrap'>
+      {/* <div className='know-ticker-wrap'>
         <div className='know-ticker-inner'>{tickerText}</div>
-      </div>
+      </div> */}
     </section>
   )
 }

@@ -70,7 +70,7 @@ const Footer = () => {
                             </div>
                         </div>
                     </div>
-                        <div clasNames="container">
+                        <div className="container">
                             <div className="inner-footer">
                                 <p>Copyright @ 2026 Valour Watches-All Right Reserved</p>
                                 <div>

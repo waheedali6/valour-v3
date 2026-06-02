@@ -54,7 +54,7 @@ export default function CreativeVideoSection() {
 
       tl.to(videoContainer, {
         width: '100%',
-        height: '100%',
+        height: '100vh',
         ease: 'none',
       })
         .to('.main-video', { scale: 1.05, ease: 'none' }, 0)

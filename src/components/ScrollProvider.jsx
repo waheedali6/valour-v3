@@ -14,100 +14,79 @@ export default function ScrollProvider({ children }) {
     if (!scroller) return
 
     ScrollTrigger.defaults({ scroller })
-    ScrollTrigger.refresh()
 
-    // ── Config ───────────────────────────────────────────────────────────
-    const SNAP_DURATION  = 1        // seconds for the snap animation
-    const SNAP_EASE      = 'power3.inOut'
-    const SCROLL_THRESHOLD = 40        // px scrolled before snap triggers
-    const IDLE_DELAY     = 60          // ms of no-scroll before snap fires
-
-    let isSnapping   = false
-    let idleTimer    = null
-    let snapOrigin   = scroller.scrollTop   // scrollTop when user started scrolling
-    let lastScrollTop = scroller.scrollTop
+    let isSnapping = false
+    let wheelLocked = false
 
     const getSections = () =>
       Array.from(scroller.querySelectorAll('.snap-section'))
 
     const getCurrentSectionIndex = (sections) => {
-      // Which section's top is closest to current scrollTop
       const scrollTop = scroller.scrollTop
+
       let idx = 0
       let minDist = Infinity
+
       sections.forEach((sec, i) => {
         const dist = Math.abs(sec.offsetTop - scrollTop)
-        if (dist < minDist) { minDist = dist; idx = i }
+        if (dist < minDist) {
+          minDist = dist
+          idx = i
+        }
       })
+
       return idx
     }
 
-    const snapTo = (targetScrollTop) => {
-      if (isSnapping) return
-      isSnapping = true
-
-      gsap.to(scroller, {
-        scrollTop: targetScrollTop,
-        duration: SNAP_DURATION,
-        ease: SNAP_EASE,
-        onComplete: () => {
-          isSnapping = false
-          snapOrigin = scroller.scrollTop
-          lastScrollTop = scroller.scrollTop
-          ScrollTrigger.refresh()
-        },
-      })
-    }
-
-    const trySnap = () => {
+    const snapToSection = (direction) => {
       if (isSnapping) return
 
       const sections = getSections()
       if (!sections.length) return
 
-      const delta = scroller.scrollTop - snapOrigin
-
-      // Only snap if user has scrolled past the threshold
-      if (Math.abs(delta) < SCROLL_THRESHOLD) return
-
       const currentIdx = getCurrentSectionIndex(sections)
-      const direction  = delta > 0 ? 1 : -1
-      const targetIdx  = Math.max(0, Math.min(sections.length - 1, currentIdx + direction))
-      const target     = sections[targetIdx].offsetTop
 
-      snapTo(target)
+      const targetIdx = Math.max(
+        0,
+        Math.min(sections.length - 1, currentIdx + direction)
+      )
+
+      if (targetIdx === currentIdx) return
+
+      isSnapping = true
+
+      gsap.to(scroller, {
+        scrollTop: sections[targetIdx].offsetTop,
+        duration: 1,
+        ease: 'power3.inOut',
+        onComplete: () => {
+          isSnapping = false
+        },
+      })
     }
 
-    const onScroll = () => {
-      if (isSnapping) return
+    const onWheel = (e) => {
+      e.preventDefault()
 
-      lastScrollTop = scroller.scrollTop
+      if (isSnapping || wheelLocked) return
 
-      clearTimeout(idleTimer)
-      idleTimer = setTimeout(trySnap, IDLE_DELAY)
+      wheelLocked = true
+
+      const direction = e.deltaY > 0 ? 1 : -1
+      snapToSection(direction)
+
+      // prevents multi-trigger from fast mouse wheels
+      setTimeout(() => {
+        wheelLocked = false
+      }, 800)
     }
 
-    // Reset origin whenever user starts a fresh scroll gesture
-    const onScrollStart = () => {
-      if (!isSnapping) snapOrigin = scroller.scrollTop
-    }
-
-    // Wheel: capture scroll origin at the start of each wheel burst
-    const onWheel = () => {
-      if (!isSnapping) snapOrigin = scroller.scrollTop
-    }
-
-    scroller.addEventListener('scroll',     onScroll,      { passive: true })
-    scroller.addEventListener('wheel',      onWheel,       { passive: true })
-    scroller.addEventListener('touchstart', onScrollStart, { passive: true })
+    scroller.addEventListener('wheel', onWheel, { passive: false })
 
     return () => {
-      scroller.removeEventListener('scroll',     onScroll)
-      scroller.removeEventListener('wheel',      onWheel)
-      scroller.removeEventListener('touchstart', onScrollStart)
-      clearTimeout(idleTimer)
+      scroller.removeEventListener('wheel', onWheel)
       ScrollTrigger.defaults({ scroller: window })
-      ScrollTrigger.getAll().forEach(t => t.kill())
+      ScrollTrigger.getAll().forEach((t) => t.kill())
     }
   }, [])
 

@@ -16,19 +16,21 @@ const WatchSec = () => {
         // SPLIT TEXT
         // =========================
         const heading = new SplitType('.watch-text h2', { types: 'lines,words,chars' })
-        const badge   = new SplitType('.watch-text span', { types: 'chars' })
+        const badge = new SplitType('.watch-text span', { types: 'chars' })
 
         heading.lines?.forEach((line) => {
             line.style.overflow = 'hidden'
-            line.style.display  = 'block'
+            line.style.display = 'block'
         })
 
         // =========================
         // INITIAL STATES
         // =========================
-        const parallax  = section.querySelector('.watch-parallax')
+        const parallax = section.querySelector('.watch-parallax')
         // const bgZoom    = section.querySelector('.watch-bg-zoom')
         const paragraph = section.querySelector('.watch-text p')
+        const buttonEl2 = section.querySelector('.know-btn')
+        const imgEl = section.querySelector('.watch-img')
 
         // Image
         // Object.assign(parallax.style, {
@@ -47,9 +49,9 @@ const WatchSec = () => {
         // Badge chars
         badge.chars?.forEach((char) => {
             Object.assign(char.style, {
-                opacity:    '0',
-                transform:  'translateY(14px) rotateX(-60deg)',
-                display:    'inline-block',
+                opacity: '0',
+                transform: 'translateY(14px) rotateX(-60deg)',
+                display: 'inline-block',
                 transition: 'none',
                 willChange: 'transform, opacity',
             })
@@ -58,9 +60,9 @@ const WatchSec = () => {
         // Heading chars
         heading.chars?.forEach((char) => {
             Object.assign(char.style, {
-                opacity:    '0',
-                transform:  'translateY(110%) rotateZ(4deg)',
-                display:    'inline-block',
+                opacity: '0',
+                transform: 'translateY(110%) rotateZ(4deg)',
+                display: 'inline-block',
                 transition: 'none',
                 willChange: 'transform, opacity',
             })
@@ -68,12 +70,30 @@ const WatchSec = () => {
 
         // Paragraph
         Object.assign(paragraph.style, {
-            opacity:    '0',
-            transform:  'translateY(30px)',
-            filter:     'blur(6px)',
+            opacity: '0',
+            transform: 'translateY(30px)',
+            filter: 'blur(6px)',
             transition: 'none',
             willChange: 'transform, opacity',
         })
+
+        // Button
+        if (buttonEl2) {
+            Object.assign(buttonEl2.style, {
+                opacity: '0',
+                transform: 'translateY(30px)',
+                transition: 'none',
+                willChange: 'transform, opacity',
+            })
+        }
+        if (imgEl) {
+            Object.assign(imgEl.style, {
+                opacity: '0',
+                transform: 'translateX(-170px)',
+                transition: 'none',
+                willChange: 'transform,',
+            })
+        }
 
         // =========================
         // SCROLL PARALLAX (rAF)
@@ -81,33 +101,33 @@ const WatchSec = () => {
         let ticking = false
 
         const onScroll = () => {
-  if (!ticking) {
-    requestAnimationFrame(() => {
-      const rect = section.getBoundingClientRect()
-      const winH = window.innerHeight
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    const rect = section.getBoundingClientRect()
+                    const winH = window.innerHeight
 
-      // 👇 start animation earlier (adjust 100–300 as needed)
-      const offset = 200
+                    // 👇 start animation earlier (adjust 100–300 as needed)
+                    const offset = 200
 
-      const progress = Math.max(
-        0,
-        Math.min(
-          1,
-          (-rect.top + offset) / (rect.height - winH || 1)
-        )
-      )
+                    const progress = Math.max(
+                        0,
+                        Math.min(
+                            1,
+                            (-rect.top + offset) / (rect.height - winH || 1)
+                        )
+                    )
 
-      // bg parallax movement (smoother with px instead of %)
-    //   const bgY = progress * 80 // tweak intensity
+                    // bg parallax movement (smoother with px instead of %)
+                    //   const bgY = progress * 80 // tweak intensity
 
-    //   bgZoom.style.transform = `scale(1) translateY(${bgY}px)`
+                    //   bgZoom.style.transform = `scale(1) translateY(${bgY}px)`
 
-      ticking = false
-    })
+                    ticking = false
+                })
 
-    ticking = true
-  }
-}
+                ticking = true
+            }
+        }
 
         document.getElementById('main-scroller')?.addEventListener('scroll', onScroll, { passive: true })
 
@@ -156,8 +176,8 @@ const WatchSec = () => {
                             setTimeout(() => {
                                 Object.assign(char.style, {
                                     transition: 'transform 1.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.6s ease',
-                                    transform:  'translateY(0px) rotateX(0deg)',
-                                    opacity:    '1',
+                                    transform: 'translateY(0px) rotateX(0deg)',
+                                    opacity: '1',
                                 })
                             }, i * 40)
                         })
@@ -167,8 +187,8 @@ const WatchSec = () => {
                             setTimeout(() => {
                                 Object.assign(char.style, {
                                     transition: 'transform 1.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.8s ease',
-                                    transform:  'translateY(0%) rotateZ(0deg)',
-                                    opacity:    '1',
+                                    transform: 'translateY(0%) rotateZ(0deg)',
+                                    opacity: '1',
                                 })
                             }, 150 + i * 25)
                         })
@@ -177,11 +197,30 @@ const WatchSec = () => {
                         setTimeout(() => {
                             Object.assign(paragraph.style, {
                                 transition: 'transform 1s cubic-bezier(0.16, 1, 0.3, 1), opacity 1s ease, filter 1s ease',
-                                transform:  'translateY(0px)',
-                                opacity:    '1',
-                                filter:     'blur(0px)',
+                                transform: 'translateY(0px)',
+                                opacity: '1',
+                                filter: 'blur(0px)',
                             })
                         }, 550)
+
+
+                        // Button
+                        if (buttonEl2) {
+                            setTimeout(() => {
+                                Object.assign(buttonEl2.style, {
+                                    transition: 'transform 1s cubic-bezier(0.16, 1, 0.3, 1), opacity 1s ease',
+                                    transform: 'translateY(0px)',
+                                    opacity: '1',
+                                })
+                            }, 750)
+                        }
+                            setTimeout(() => {
+                                Object.assign(imgEl.style, {
+                                    transition: 'transform 1s cubic-bezier(0.16, 1, 0.3, 1), opacity 1s ease',
+                                    transform: 'translateX(0px)',
+                                    opacity: '1',
+                                })
+                            }, 1 * 40)
                     }
                 })
             },
@@ -227,7 +266,7 @@ const WatchSec = () => {
                         <div className="watch-text">
                             <span>NEW GENERATION</span>
                             <h2>
-                                Vibrant Colors Inspired
+                                Vibrant Colors Inspired<br/>
                                 By Light And Nature
                             </h2>
                             <p>

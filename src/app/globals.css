@@ -202,28 +202,29 @@ nav .side-box svg {
 }
 
 .product-sec h2 {
-  color: #fff;
-  font-size: 60px;
-  margin-bottom: 20px;
-  text-align: center;
-  font-family: Times New Roman, Times, serif;
+    color: #fff;
+    font-size: 55px;
+    text-align: center;
+    font-family: Times New Roman, Times, serif;
+    margin: 51px 0 0;
 }
 
 .product-sec .pro-card {
-  border: 1px solid gray;
-  border-radius: 20px;
-  margin: 15px;
-  flex-direction: column;
-  align-items: center;
-  padding: 70px 35px 35px 35px;
-  display: flex;
-  background-color: #000000c9;
-  overflow: hidden;
-  transition: all 0.5s ease-in-out;
+    border: 1px solid gray;
+    border-radius: 20px;
+    margin: 50px 15px 15px;
+    flex-direction: column;
+    align-items: center;
+    padding: 70px 35px 35px 35px;
+    display: flex;
+    background-color: #000000c9;
+    overflow: hidden;
+    transition: all 0.5s ease-in-out;
 }
 
 .product-sec .pro-card img {
-  margin-bottom: 30px;
+    width: 65%;
+    margin-bottom: 30px;
 }
 
 .product-sec .pro-card .details {
@@ -717,23 +718,24 @@ RESPONSIVE
 
 /* ////////////////Testi Start/////////// */
 .testi-sec {
-  background-color: #000;
-  padding: 6% 0;
-  position: relative;
-  overflow: hidden;
+    background-color: #000;
+    padding: 9% 0 3%;
+    position: relative;
+    overflow: hidden;
 }
 
 .testi-sec .side {
-  gap: 10rem;
+  gap: 5rem;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: 100%;
 }
 
 .testi-sec h2 {
   color: #fff;
-  font-size: 70px;
+  font-size: 65px;
   font-family: Times New Roman, Times, serif;
 }
 
@@ -794,16 +796,22 @@ RESPONSIVE
 }
 
 .testi-sec .center-img {
-  position: absolute;
-  margin: 0 auto;
-  left: 0;
-  right: 0;
-  bottom: -100px;
+    position: absolute;
+    width: 24%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    bottom: -100px;
 }
 
 .testi-sec .side.side-2 {
-  padding-top: 73px;
-  padding-left: 120px;
+    padding-top: 25px;
+    padding-left: 90px;
+}
+
+.testi-sec .colon {
+  width: 15%;
+  height: 15%;
 }
 
 

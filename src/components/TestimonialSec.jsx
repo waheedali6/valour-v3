@@ -230,7 +230,7 @@ const TestimonialSec = () => {
                       <h6 className="desig">Client</h6>
                     </div>
                   </div>
-                  <img src="/images/colons.png" alt="" />
+                  <img className='colon' src="/images/colons.png" alt="" />
                 </div>
               </div>
             </div>
@@ -253,7 +253,7 @@ const TestimonialSec = () => {
                       <h6 className="desig">Client</h6>
                     </div>
                   </div>
-                  <img src="/images/colons.png" alt="" />
+                  <img className='colon' src="/images/colons.png" alt="" />
                 </div>
               </div>
               <div className="testi-box testi-box3">
@@ -267,7 +267,7 @@ const TestimonialSec = () => {
                       <h6 className="desig">Client</h6>
                     </div>
                   </div>
-                  <img src="/images/colons.png" alt="" />
+                  <img className='colon' src="/images/colons.png" alt="" />
                 </div>
               </div>
             </div>
