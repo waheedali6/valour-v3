@@ -1,9 +1,19 @@
+/* ============================================================
+   VALOUR — RESPONSIVE STYLES
+   Only add responsive overrides here. No layout/structure changes.
+   Breakpoints: 1400px | 1200px | 992px | 768px | 576px | 480px
+   ============================================================ */
+
+/* ── Container max width override for XL screens ── */
 @media (min-width: 1400px) {
-    .container {
-        max-width: 1641px;
-    }
+  .container {
+    max-width: 1641px;
+  }
 }
 
+/* ============================================================
+   1400px — Large desktops
+   ============================================================ */
 @media (max-width: 1400px) {
     /* .know-sec h2 {
         font-size: 55px;
@@ -59,4 +69,775 @@
     .product-sec h2 {
         font-size: 45px;
     }
+}
+
+/* ============================================================
+   1200px — Regular desktops
+   ============================================================ */
+@media (max-width: 1200px) {
+  /* --- Header --- */
+  nav .side-box {
+    padding-left: 20px;
+    gap: 20px;
+  }
+
+  .navbar-expand-lg .navbar-nav {
+    gap: 25px;
+  }
+
+  /* --- Hero --- */
+  .animated-text {
+    font-size: 90px;
+  }
+
+  /* --- Know Section --- */
+  .know-big-h {
+    font-size: 65px;
+  }
+
+  .know-left-sticky {
+    padding-top: 100px;
+  }
+
+  /* --- Watch Section --- */
+  .watch-text h2 {
+    font-size: 42px;
+  }
+
+  .watch-text p {
+    font-size: 15px;
+  }
+
+  /* --- Testimonials --- */
+  .testi-sec h2 {
+    font-size: 48px;
+  }
+
+  .testi-sec .side.side-2 {
+    padding-left: 50px;
+  }
+
+  .testi-sec .testi-box1 {
+    padding-right: 40px;
+  }
+
+  /* --- Form Section --- */
+  .form-sec h2 {
+    font-size: 46px;
+  }
+
+  /* --- Footer --- */
+  .footer-desc {
+    padding-right: 20%;
+  }
+}
+
+/* ============================================================
+   992px — Tablets landscape / small desktops
+   ============================================================ */
+@media (max-width: 992px) {
+  /* --- Global --- */
+  .hero-canvas-sec,
+  .know-split-sec,
+  .product-sec,
+  .luxury-main,
+  .creative-sec,
+  .watch-sec,
+  .testi-sec,
+  .form-sec {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  /* --- Header --- */
+  header {
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.4);
+    margin-left: auto;
+  }
+
+  .navbar-toggler-icon {
+    filter: invert(1);
+  }
+
+  .navbar-collapse {
+    background: rgba(0, 0, 0, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 20px 15px;
+    border-radius: 12px;
+    margin-top: 10px;
+  }
+
+  .navbar-collapse .navbar-nav {
+    gap: 5px;
+    flex-direction: column;
+  }
+
+  .navbar-collapse .nav-link {
+    padding: 10px 5px;
+    font-size: 16px;
+  }
+
+  nav .side-box {
+    padding-left: 15px;
+    gap: 15px;
+  }
+
+  .navbar .container {
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+
+  .navbar-brand {
+    margin: 0 auto 0 0;
+  }
+
+  /* --- Hero --- */
+  .animated-text {
+    font-size: 70px;
+  }
+
+  .hero-sec h1 {
+    font-size: 70px;
+    letter-spacing: 30px;
+  }
+
+  /* --- Know Section --- */
+  .know-split-sec {
+    padding-top: 80px;
+    padding-bottom: 60px;
+  }
+
+  .know-left-sticky {
+    position: static;
+    padding-top: 60px;
+  }
+
+  .know-big-h {
+    font-size: 55px;
+  }
+
+  .know-para-text {
+    font-size: 15px;
+  }
+
+  /* --- Product Section --- */
+  .product-sec {
+    padding: 60px 0 40px;
+  }
+
+  .product-sec h2 {
+    font-size: 38px;
+    margin: 30px 0 0;
+  }
+
+  .product-sec .pro-card {
+    margin: 30px 10px 10px;
+    padding: 50px 25px 25px;
+  }
+
+  /* --- Watch Section (already handled in globals.css at 991px) --- */
+  .watch-text {
+    padding-bottom: 0;
+    text-align: center;
+    align-items: center;
+    padding-top: 40px;
+  }
+
+  .watch-img-wrap {
+    margin-bottom: 30px;
+  }
+
+  .watch-text h2 {
+    font-size: 40px;
+  }
+
+  /* --- Testimonials --- */
+  .testi-sec {
+    padding: 60px 0 40px;
+  }
+
+  .testi-sec h2 {
+    font-size: 40px;
+  }
+
+  .testi-sec .side.side-2 {
+    padding-left: 15px;
+    padding-top: 0;
+  }
+
+  .testi-sec .testi-box1 {
+    padding-right: 15px;
+  }
+
+  .testi-sec .center-img {
+    display: none;
+  }
+
+  .testi-sec .side {
+    gap: 2rem;
+  }
+
+  /* --- Form Section --- */
+  .form-sec {
+    padding: 60px 0;
+  }
+
+  .form-sec h2 {
+    font-size: 40px;
+  }
+
+  .form-sec .img-col {
+    display: none;
+  }
+
+  .form-sec button {
+    width: 70% !important;
+  }
+
+  /* --- Footer --- */
+  footer {
+    padding: 40px 0 20px;
+  }
+
+  .footer-desc {
+    padding-right: 5%;
+    font-size: 15px;
+  }
+
+  .mid-footer .footer-link {
+    font-size: 22px;
+  }
+
+  .mid-footer .border-row.two {
+    padding: 3% 0;
+  }
+
+  .inner-footer {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  /* --- Slider Image --- */
+  .slider-image {
+    height: 60vh;
+  }
+
+  .before-after-slider img {
+    height: 60vh;
+  }
+
+  /* --- Creative Video --- */
+  .creative-sec {
+    min-height: 100vh;
+  }
+}
+
+/* ============================================================
+   768px — Tablets portrait
+   ============================================================ */
+@media (max-width: 768px) {
+  /* --- Hero --- */
+  .animated-text {
+    font-size: 52px;
+  }
+
+  .hero-sec h1 {
+    font-size: 52px;
+    letter-spacing: 15px;
+  }
+
+  /* --- Know Section --- */
+  .know-big-h {
+    font-size: 44px;
+  }
+
+  .know-para-text {
+    font-size: 14px;
+  }
+
+  .know-ticker-wrap {
+    margin-top: 60px;
+  }
+
+  /* --- Product Section --- */
+  .product-sec h2 {
+    font-size: 32px;
+  }
+
+  .product-sec .pro-card {
+    margin: 20px 5px 5px;
+    padding: 40px 20px 20px;
+  }
+
+  .product-sec .pro-card img {
+    width: 75%;
+  }
+
+  .product-sec .pro-card .details h5 {
+    font-size: 18px;
+  }
+
+  /* --- Watch Section --- */
+  .watch-sec {
+    padding: 70px 0;
+    min-height: auto;
+  }
+
+  .watch-text h2 {
+    font-size: 36px;
+  }
+
+  .watch-text p {
+    font-size: 14px;
+  }
+
+  .watch-text span {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
+  .watch-glow {
+    width: 280px;
+    height: 280px;
+  }
+
+  /* --- Testimonials --- */
+  .testi-sec h2 {
+    font-size: 34px;
+  }
+
+  .testi-sec .main-para {
+    font-size: 14px;
+    padding-right: 0;
+  }
+
+  .testi-sec .testi-desc {
+    font-size: 13px;
+    line-height: 28px;
+  }
+
+  .testi-sec .side {
+    gap: 1.5rem;
+  }
+
+  /* --- Form --- */
+  .form-sec h2 {
+    font-size: 34px;
+  }
+
+  .form-sec p {
+    font-size: 14px;
+  }
+
+  .form-sec button {
+    width: 80% !important;
+  }
+
+  /* --- Footer --- */
+  .mid-footer .footer-link {
+    font-size: 18px;
+  }
+
+  .footer-upper {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* --- Slider Image --- */
+  .slider-image {
+    height: 50vh;
+  }
+
+  .before-after-slider img {
+    height: 50vh;
+  }
+
+  /* --- Img Section panels --- */
+  .is-text {
+    left: 7%;
+    bottom: 11%;
+  }
+
+  .is-num {
+    right: 6%;
+  }
+
+  .is-slat {
+    transition-duration: 0.7s;
+  }
+}
+
+/* ============================================================
+   576px — Mobile landscape / large phones
+   ============================================================ */
+@media (max-width: 576px) {
+  /* --- Global Sections --- */
+  .hero-canvas-sec,
+  .know-split-sec,
+  .product-sec,
+  .luxury-main,
+  .creative-sec,
+  .watch-sec,
+  .testi-sec,
+  .form-sec {
+    min-height: auto;
+  }
+
+  /* --- Header --- */
+  nav .side-box {
+    gap: 12px;
+    padding-left: 10px;
+  }
+
+  nav .side-box svg {
+    font-size: 20px;
+  }
+
+  .theme-btn {
+    padding: 5px 14px;
+    font-size: 12px;
+  }
+
+  /* --- Hero --- */
+  .animated-text {
+    font-size: 38px;
+  }
+
+  .hero-sec h1 {
+    font-size: 38px;
+    letter-spacing: 8px;
+  }
+
+  .hero-canvas-sec {
+    height: 100vh;
+  }
+
+  /* --- Know Section --- */
+  .know-split-sec {
+    padding-top: 60px;
+    padding-bottom: 50px;
+  }
+
+  .know-big-h {
+    font-size: 36px;
+  }
+
+  .know-para-text {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .know-btn {
+    padding: 10px 22px;
+    font-size: 13px;
+  }
+
+  /* --- Product Section --- */
+  .product-sec {
+    padding: 50px 0 30px;
+  }
+
+  .product-sec h2 {
+    font-size: 26px;
+    margin: 20px 0 0;
+  }
+
+  .product-sec .pro-card {
+    margin: 15px 5px 5px;
+    padding: 35px 18px 18px;
+    border-radius: 16px;
+  }
+
+  .product-sec .pro-card img {
+    width: 80%;
+  }
+
+  .product-sec .pro-card .details {
+    padding: 18px 14px;
+  }
+
+  .product-sec .pro-card .details h5 {
+    font-size: 16px;
+  }
+
+  .product-sec .pro-card .details h6 {
+    font-size: 13px;
+  }
+
+  .product-sec .pro-card .details svg {
+    height: 42px;
+    width: 42px;
+    padding: 11px;
+  }
+
+  /* --- Video / Luxury Sections --- */
+  .luxury-section,
+  .luxury-section2 {
+    height: 70vh;
+  }
+
+  .luxury-main,
+  .luxury-main2 {
+    min-height: 70vh;
+  }
+
+  /* --- Watch Section --- */
+  .watch-sec {
+    padding: 60px 0 50px;
+  }
+
+  .watch-text h2 {
+    font-size: 30px;
+  }
+
+  .watch-text p {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .watch-text span {
+    font-size: 10px;
+    margin-bottom: 12px;
+  }
+
+  .watch-img {
+    max-width: 320px;
+    width: 85%;
+    margin-bottom: 30px;
+  }
+
+  .watch-glow {
+    width: 220px;
+    height: 220px;
+  }
+
+  .watch-glitch-wrap {
+    margin-top: -20px;
+    margin-bottom: -40px;
+  }
+
+  /* --- Testimonials --- */
+  .testi-sec {
+    padding: 50px 0 30px;
+  }
+
+  .testi-sec h2 {
+    font-size: 28px;
+  }
+
+  .testi-sec .main-para {
+    font-size: 13px;
+    padding-right: 0;
+    line-height: 1.8;
+  }
+
+  .testi-sec .testi-desc {
+    font-size: 12px;
+    line-height: 24px;
+  }
+
+  .testi-sec .name {
+    font-size: 18px;
+  }
+
+  .testi-sec .desig {
+    font-size: 14px;
+  }
+
+  .testi-sec .side {
+    gap: 1.2rem;
+  }
+
+  .testi-sec .colon {
+    width: 30px;
+    height: 30px;
+  }
+
+  /* --- Form --- */
+  .form-sec {
+    padding: 50px 0;
+  }
+
+  .form-sec h2 {
+    font-size: 28px;
+  }
+
+  .form-sec p {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .form-sec .input {
+    padding: 12px 14px;
+    font-size: 13px;
+  }
+
+  .form-sec button {
+    width: 90% !important;
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  /* --- Footer --- */
+  footer {
+    padding: 35px 0 20px;
+  }
+
+  .footer-desc {
+    padding-right: 0;
+    font-size: 14px;
+    margin-top: 15px;
+  }
+
+  .mid-footer .footer-link {
+    font-size: 16px;
+  }
+
+  .mid-footer .footer-link2 {
+    font-size: 14px;
+  }
+
+  .mid-footer .footer-p {
+    font-size: 14px;
+  }
+
+  .mid-footer .border-row.two {
+    padding: 4% 0;
+  }
+
+  .inner-footer {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+
+  .inner-footer p,
+  .inner-footer a {
+    font-size: 11px;
+  }
+
+  /* --- Slider Image --- */
+  .slider-image {
+    height: 45vh;
+  }
+
+  .before-after-slider img {
+    height: 45vh;
+  }
+
+  /* --- Creative Video --- */
+  .video-content h2 {
+    font-size: 36px;
+  }
+
+  .video-content p {
+    font-size: 14px;
+  }
+}
+
+/* ============================================================
+   480px — Small phones
+   ============================================================ */
+@media (max-width: 480px) {
+  /* --- Hero --- */
+  .animated-text {
+    font-size: 30px;
+  }
+
+  .hero-sec h1 {
+    font-size: 30px;
+    letter-spacing: 5px;
+  }
+
+  /* --- Know Section --- */
+  .know-big-h {
+    font-size: 30px;
+  }
+
+  .know-split-sec {
+    padding-top: 50px;
+    padding-bottom: 40px;
+  }
+
+  /* --- Watch Section --- */
+  .watch-text h2 {
+    font-size: 26px;
+  }
+
+  .watch-img {
+    max-width: 270px;
+    width: 90%;
+  }
+
+  /* --- Testimonials --- */
+  .testi-sec h2 {
+    font-size: 24px;
+  }
+
+  /* --- Form --- */
+  .form-sec h2 {
+    font-size: 24px;
+  }
+
+  /* --- Product --- */
+  .product-sec h2 {
+    font-size: 22px;
+  }
+
+  /* --- Footer --- */
+  .mid-footer .footer-link {
+    font-size: 14px;
+  }
+
+  /* --- Slider Image --- */
+  .slider-image {
+    height: 40vh;
+  }
+
+  .before-after-slider img {
+    height: 40vh;
+  }
+
+  /* --- Video Box (scroll section) --- */
+  .video-box {
+    width: 260px;
+    height: 260px;
+  }
+}
+
+/* ============================================================
+   Navbar toggler — Mobile open state centering fix
+   ============================================================ */
+@media (max-width: 992px) {
+  .navbar > .container {
+    position: relative;
+    flex-wrap: wrap;
+  }
+
+  .navbar-toggler {
+    order: 3;
+  }
+
+  .navbar-brand {
+    order: 2;
+    margin: 0 auto;
+  }
+
+  .side-box {
+    order: 4;
+    margin-left: auto;
+  }
+
+  .navbar-collapse {
+    order: 5;
+    width: 100%;
+  }
 }
