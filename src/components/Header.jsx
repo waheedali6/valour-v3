@@ -40,17 +40,6 @@ const Header = () => {
     }
     window.addEventListener('scroll', onScroll, { passive: true })
 
-    // Hover underline animation for nav links - improved
-    const anchors = header.querySelectorAll('.nav-link')
-    anchors.forEach((a) => {
-      a.addEventListener('mouseenter', () => {
-        gsap.to(a, { letterSpacing: '0.09em', duration: 0.35, ease: 'power2.out' })
-      })
-      a.addEventListener('mouseleave', () => {
-        gsap.to(a, { letterSpacing: '0em', duration: 0.35, ease: 'power2.out' })
-      })
-    })
-
     return () => {
       window.removeEventListener('scroll', onScroll)
     }

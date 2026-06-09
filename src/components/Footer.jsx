@@ -10,7 +10,7 @@ const Footer = () => {
                     <div className="mid-footer">
                         <div className="row">
                             <div className="col-md-4">
-                                <img src="/images/logo.png" alt="Footer Logo" />
+                                <a href="/"><img src="/images/logo.png" alt="Footer Logo" /></a>
                                 <p className='footer-desc'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, voluptates? Iusto optio temporibus perspiciatis eligendi ipsam error aspernatur velit quos.</p>
                             </div>
                             <div className="col-md-4">

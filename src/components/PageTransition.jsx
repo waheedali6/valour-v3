@@ -25,7 +25,7 @@ export default function PageTransition() {
     tl.set(overlayRef.current, { display: 'none' })
   }, [])
 
-  const colors = ['#0a0a0a', '#111111', '#1a1a1a', '#0d0d0d', '#080808']
+  const colors = ['#000', '#000', '#000', '#000', '#000']
 
   return (
     <div
