@@ -226,6 +226,50 @@ nav .side-box svg:hover {
   background-repeat: no-repeat; */
 }
 
+.product-sec .cards-link {
+  text-decoration: none;
+}
+
+.product-sec .pro-card.mg img {
+    margin-bottom: 40px;
+}
+
+/* .product-sec .swiper-pagination-bullet-active {
+  background-color: var(--bg-white);
+}
+
+.product-sec .swiper-pagination-bullet {
+  background-color: var(--bg-white);
+  height: 11px;
+  width: 11px;
+} */
+
+
+.product-sec  .swiper-pagination  {
+  text-align: center;
+  margin-top: 50px;
+}
+.product-sec  .swiper-pagination  .swiper-pagination-bullet {
+  width: 13px;
+  height: 10px;
+  display: inline-block;
+  background: #fff;
+  opacity: 0.2;
+  margin: 0 5px;
+  border-radius: 20px;
+  transition: opacity 0.5s, background-color 0.5s, width 0.5s;
+  transition-delay: 0.5s, 0.5s, 0s;
+}
+.product-sec  .swiper-pagination-clickable .swiper-pagination-bullet {
+  cursor: pointer;
+}
+.product-sec  .swiper-pagination .swiper-pagination-bullet-active {
+  opacity: 1;
+  background: #ffffff;
+  width: 100px;
+  transition-delay: 0s;
+}
+
 .product-sec .swiper-slide {
   margin-bottom: 40px;
 }

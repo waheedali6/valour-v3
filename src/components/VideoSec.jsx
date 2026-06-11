@@ -24,10 +24,10 @@ export default function PremiumParallax() {
             const scrollProgress = Math.max(0, Math.min(1, (windowHeight - rect.top) / (windowHeight + sectionHeight)))
             
             // Smooth parallax movement - increased for more effect
-            const move = (scrollProgress - 0.5) * 250
+            const move = (scrollProgress - 0.5) * 450
             
             // Dynamic scale - zoom in as it comes into view
-            let scale = 1 + (0.5 - Math.abs(scrollProgress - 0.5)) * 0.25
+            let scale = 1 + (0.5 - Math.abs(scrollProgress - 0.5)) * 0.45
             scale = Math.max(1, Math.min(scale, 1.25))
 
             image.style.transform = `translateY(${move}px) scale(${scale})`

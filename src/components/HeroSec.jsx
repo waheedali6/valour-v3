@@ -94,13 +94,7 @@ export default function HeroSec() {
         // Slight drop-in: characters slide down into position
         const offsetY = (1 - alpha) * 18
 
-        const grad = ctx.createLinearGradient(0, cy - fontSize * 0.5, 0, cy + fontSize * 0.5)
-        grad.addColorStop(0, `rgba(224,224,224,${alpha})`)
-        grad.addColorStop(0.4, `rgba(255,255,255,${alpha})`)
-        grad.addColorStop(0.7, `rgba(160,160,160,${alpha})`)
-        grad.addColorStop(1, `rgba(224,224,224,${alpha})`)
-
-        ctx.fillStyle = grad
+        ctx.fillStyle = `rgba(255,255,255,${alpha})`
         ctx.fillText(char, x, cy + offsetY)
 
         x += ctx.measureText(char).width

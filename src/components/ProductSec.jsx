@@ -4,10 +4,11 @@ import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import { FiPlus } from 'react-icons/fi'
-import { getImagePath } from '@/lib/paths'
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import { Autoplay } from 'swiper/modules'
+import { Autoplay, Pagination } from 'swiper/modules'
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
 
 
 gsap.registerPlugin(ScrollTrigger)
@@ -134,117 +135,128 @@ const ProductSec = () => {
         {/* perspective wrapper — wraps the row for 3D tilt */}
         <div ref={perspRef} style={{ transformStyle: 'preserve-3d' }}>
           <Swiper
-            modules={[Autoplay]}
-            spaceBetween={40}
+            modules={[Autoplay, Pagination]}
+            spaceBetween={80}
             slidesPerView={1}
             loop={true}
             autoplay={{
-              delay: 2000000,
+              delay: 2000,
               disableOnInteraction: true,
             }}
+            pagination={{ clickable: true }}
             breakpoints={{
               640: {
                 slidesPerView: 1,
-                spaceBetween: 5,
+                spaceBetween: 10,
               },
               768: {
                 slidesPerView: 2,
-                spaceBetween: 5,
+                spaceBetween: 20,
               },
               1024: {
                 slidesPerView: 3,
-                spaceBetween: 5,  // below 1400 = 20
+                spaceBetween: 40,  // below 1400 = 20
               },
               1400: {
                 slidesPerView: 3,
-                spaceBetween: 40,  // above 1400 = 40
+                spaceBetween: 80,  // above 1400 = 40
               },
             }}
           >
             <SwiperSlide>
-              <div className="pro-card yellow-shadow">
-                <img src="/images/watch-1.png" alt="watch" />
-                <div className="details">
-                  <div>
-                    <h6>Lucent Collection</h6>
-                    <h5>Sunseeker Yellow</h5>
+              <a href="javascript:void()" className='cards-link'>
+                <div className="pro-card">
+                  <img src="/images/watch-1.png" alt="watch" />
+                  <div className="details">
+                    <div>
+                      <h6>Lucent Collection</h6>
+                      <h5>Sunseeker Yellow</h5>
+                    </div>
+                    <FiPlus />
                   </div>
-                  <FiPlus />
                 </div>
-              </div>
+              </a>
             </SwiperSlide>
 
             <SwiperSlide>
-              <div className="pro-card blue-shadow">
-              
-                <img src="/images/watch-2.png" alt="watch" />
-                <div className="details">
-                  <div>
-                    <h6>Lucent Collection</h6>
-                    <h5>Midnight Blue</h5>
+              <a href="javascript:void()" className='cards-link'>
+                <div className="pro-card">
+
+                  <img src="/images/watch-2.png" alt="watch" />
+                  <div className="details">
+                    <div>
+                      <h6>Lucent Collection</h6>
+                      <h5>Midnight Blue</h5>
+                    </div>
+                    <FiPlus />
                   </div>
-                  <FiPlus />
                 </div>
-              </div>
+              </a>
             </SwiperSlide>
 
             <SwiperSlide>
-              <div className="pro-card green-shadow">
-              
-                <img src="/images/watch-3.png" alt="watch" />
-                <div className="details">
-                  <div>
-                    <h6>Lucent Collection</h6>
-                    <h5>Forest Green</h5>
+              <a href="javascript:void()" className='cards-link'>
+                <div className="pro-card">
+
+                  <img src="/images/watch-3.png" alt="watch" />
+                  <div className="details">
+                    <div>
+                      <h6>Lucent Collection</h6>
+                      <h5>Forest Green</h5>
+                    </div>
+                    <FiPlus />
                   </div>
-                  <FiPlus />
                 </div>
-              </div>
+              </a>
             </SwiperSlide>
             <SwiperSlide>
-              <div className="pro-card yellow-shadow">
-              
-                <img src="/images/watch-1.png" alt="watch" />
-                <div className="details">
-                  <div>
-                    <h6>Lucent Collection</h6>
-                    <h5>Sunseeker Yellow</h5>
+              <a href="javascript:void()" className='cards-link'>
+                <div className="pro-card mg">
+                  <img src="/images/watch-4.png" alt="watch" />
+                  <div className="details">
+                    <div>
+                      <h6>Lucent Collection</h6>
+                      <h5>Nova Red</h5>
+                    </div>
+                    <FiPlus />
                   </div>
-                  <FiPlus />
                 </div>
-              </div>
+              </a>
             </SwiperSlide>
 
             <SwiperSlide>
-              <div className="pro-card blue-shadow">
-              
-                <img src="/images/watch-2.png" alt="watch" />
-                <div className="details">
-                  <div>
-                    <h6>Lucent Collection</h6>
-                    <h5>Midnight Blue</h5>
+              <a href="javascript:void()" className='cards-link'>
+                <div className="pro-card mg">
+
+                  <img src="/images/watch-5.png" alt="watch" />
+                  <div className="details">
+                    <div>
+                      <h6>Lucent Collection</h6>
+                      <h5>Frost Silver</h5>
+                    </div>
+                    <FiPlus />
                   </div>
-                  <FiPlus />
                 </div>
-              </div>
+              </a>
             </SwiperSlide>
 
             <SwiperSlide>
-              <div className="pro-card green-shadow">
-              
-                <img src="/images/watch-3.png" alt="watch" />
-                <div className="details">
-                  <div>
-                    <h6>Lucent Collection</h6>
-                    <h5>Forest Green</h5>
+              <a href="javascript:void()" className='cards-link'>
+                <div className="pro-card mg">
+
+                  <img src="/images/watch-6.png" alt="watch" />
+                  <div className="details">
+                    <div>
+                      <h6>Lucent Collection</h6>
+                      <h5>Eclipse Black</h5>
+                    </div>
+                    <FiPlus />
                   </div>
-                  <FiPlus />
                 </div>
-              </div>
+              </a>
             </SwiperSlide>
           </Swiper>
         </div>
-
       </div>
     </section>
   )
