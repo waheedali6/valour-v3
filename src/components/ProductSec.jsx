@@ -136,7 +136,7 @@ const ProductSec = () => {
         <div ref={perspRef} style={{ transformStyle: 'preserve-3d' }}>
           <Swiper
             modules={[Autoplay, Pagination]}
-            spaceBetween={80}
+            spaceBetween={20}
             slidesPerView={1}
             loop={true}
             autoplay={{
@@ -151,15 +151,15 @@ const ProductSec = () => {
               },
               768: {
                 slidesPerView: 2,
-                spaceBetween: 20,
+                spaceBetween: 10,
               },
               1024: {
                 slidesPerView: 3,
-                spaceBetween: 40,  // below 1400 = 20
+                spaceBetween: 20,  // below 1400 = 20
               },
               1400: {
                 slidesPerView: 3,
-                spaceBetween: 80,  // above 1400 = 40
+                spaceBetween: 20,  // above 1400 = 40
               },
             }}
           >
