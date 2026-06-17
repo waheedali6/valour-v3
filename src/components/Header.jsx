@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { IoBagHandleOutline, IoSearchOutline } from 'react-icons/io5'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
+import Link from 'next/link'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -69,16 +70,16 @@ const Header = () => {
                 <a className="nav-link" href="#">About</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">Our Shop</a>
+                <Link className="nav-link" href="/our-shop">Our Shop</Link>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#">Blog</a>
               </li>
             </ul>
           </div>
-          <a className="navbar-brand" href="/">
+          <Link className="navbar-brand" href="/">
             <img src="/images/logo.png" alt="" />
-          </a>
+          </Link>
           <div className="side-box">
             <a href="#" className='theme-btn'>English</a>
             <a href="#"><IoSearchOutline /></a>

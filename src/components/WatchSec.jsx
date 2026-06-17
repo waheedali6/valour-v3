@@ -233,7 +233,6 @@ const WatchSec = () => {
         // CLEANUP
         // =========================
         return () => {
-            imgObserver.disconnect()
             textObserver.disconnect()
             document.getElementById('main-scroller')?.removeEventListener('scroll', onScroll)
             heading.revert()

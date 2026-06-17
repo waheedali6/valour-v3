@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 import { BsInstagram, BsTwitter, BsYoutube } from 'react-icons/bs'
 import { FaFacebook } from 'react-icons/fa6'
@@ -15,10 +16,10 @@ const Footer = () => {
                             </div>
                             <div className="col-md-4">
                                 <ul>
-                                    <li><a className='footer-link' href="/">Home</a></li>
-                                    <li><a className='footer-link' href="/">About</a></li>
-                                    <li><a className='footer-link' href="/">Our Shop</a></li>
-                                    <li><a className='footer-link' href="/">Blog</a></li>
+                                    <li><Link className='footer-link' href="/">Home</Link></li>
+                                    <li><Link className='footer-link' href="/">About</Link></li>
+                                    <li><Link className='footer-link' href="/our-shop">Our Shop</Link></li>
+                                    <li><Link className='footer-link' href="/">Blog</Link></li>
                                 </ul>
                             </div>
                             <div className="col-md-4">

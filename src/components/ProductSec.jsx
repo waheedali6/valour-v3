@@ -9,6 +9,7 @@ import { Autoplay, Pagination } from 'swiper/modules'
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
+import Link from 'next/link'
 
 
 gsap.registerPlugin(ScrollTrigger)
@@ -16,6 +17,53 @@ gsap.registerPlugin(ScrollTrigger)
 const ProductSec = () => {
   const sectionRef = useRef(null)
   const perspRef = useRef(null)
+
+
+  // ---Products--------------
+  const products = [
+    {
+      id: 1,
+      name: "Sunseeker Yellow",
+      detail: "Lucent Collection",
+      link: "/",
+      img: "/images/watch-1.png"
+    },
+    {
+      id: 2,
+      name: "Midnight Blue",
+      detail: "Lucent Collection",
+      link: "/",
+      img: "/images/watch-2.png"
+    },
+    {
+      id: 3,
+      name: "Forest Green",
+      detail: "Lucent Collection",
+      link: "/",
+      img: "/images/watch-3.png"
+    },
+    {
+      id: 4,
+      name: "Nova Red",
+      detail: "Lucent Collection",
+      link: "/",
+      img: "/images/watch-4.png"
+    },
+    {
+      id: 5,
+      name: "Frost Silver",
+      detail: "Lucent Collection",
+      link: "/",
+      img: "/images/watch-5.png"
+    },
+    {
+      id: 6,
+      name: "Eclipse Black",
+      detail: "Lucent Collection",
+      link: "/",
+      img: "/images/watch-6.png"
+    },
+  ]
 
   useEffect(() => {
     const section = sectionRef.current
@@ -39,26 +87,6 @@ const ProductSec = () => {
       const cards = section.querySelectorAll('.pro-card')
       const cardListeners = []
 
-      // ── 1. Initial hidden state ────────────────────────────────────
-      // gsap.set(cards, { y: 80, opacity: 0, scale: 0.94 })
-
-      // ── 2. Staggered reveal on scroll ─────────────────────────────
-      // const reveal = gsap.to(cards, {
-      //   y: 0,
-      //   opacity: 1,
-      //   scale: 1,
-      //   stagger: 0.14,
-      //   duration: 1.1,
-      //   ease: 'back.out(1.4)',
-      //   scrollTrigger: {
-      //     scroller: '#main-scroller',
-      //     trigger: section,
-      //     start: 'top 65%',
-      //     toggleActions: 'play none none reverse',
-      //     invalidateOnRefresh: true,
-      //   },
-      // })
-      // triggers.push(reveal.scrollTrigger)
 
       // ── 4. Card hover: image levitate + shine sweep ───────────────
       cards.forEach((card) => {
@@ -163,98 +191,22 @@ const ProductSec = () => {
               },
             }}
           >
-            <SwiperSlide>
-              <a href="javascript:void()" className='cards-link'>
-                <div className="pro-card">
-                  <img src="/images/watch-1.png" alt="watch" />
-                  <div className="details">
-                    <div>
-                      <h6>Lucent Collection</h6>
-                      <h5>Sunseeker Yellow</h5>
+            {products.map((item) => (
+              <SwiperSlide>
+                <Link href={item.link} className='cards-link'>
+                  <div className="pro-card">
+                    <img src={item.img} alt="watch" />
+                    <div className="details">
+                      <div>
+                        <h6>{item.detail}</h6>
+                        <h5>{item.name}</h5>
+                      </div>
+                      <FiPlus />
                     </div>
-                    <FiPlus />
                   </div>
-                </div>
-              </a>
-            </SwiperSlide>
-
-            <SwiperSlide>
-              <a href="javascript:void()" className='cards-link'>
-                <div className="pro-card">
-
-                  <img src="/images/watch-2.png" alt="watch" />
-                  <div className="details">
-                    <div>
-                      <h6>Lucent Collection</h6>
-                      <h5>Midnight Blue</h5>
-                    </div>
-                    <FiPlus />
-                  </div>
-                </div>
-              </a>
-            </SwiperSlide>
-
-            <SwiperSlide>
-              <a href="javascript:void()" className='cards-link'>
-                <div className="pro-card">
-
-                  <img src="/images/watch-3.png" alt="watch" />
-                  <div className="details">
-                    <div>
-                      <h6>Lucent Collection</h6>
-                      <h5>Forest Green</h5>
-                    </div>
-                    <FiPlus />
-                  </div>
-                </div>
-              </a>
-            </SwiperSlide>
-            <SwiperSlide>
-              <a href="javascript:void()" className='cards-link'>
-                <div className="pro-card mg">
-                  <img src="/images/watch-4.png" alt="watch" />
-                  <div className="details">
-                    <div>
-                      <h6>Lucent Collection</h6>
-                      <h5>Nova Red</h5>
-                    </div>
-                    <FiPlus />
-                  </div>
-                </div>
-              </a>
-            </SwiperSlide>
-
-            <SwiperSlide>
-              <a href="javascript:void()" className='cards-link'>
-                <div className="pro-card mg">
-
-                  <img src="/images/watch-5.png" alt="watch" />
-                  <div className="details">
-                    <div>
-                      <h6>Lucent Collection</h6>
-                      <h5>Frost Silver</h5>
-                    </div>
-                    <FiPlus />
-                  </div>
-                </div>
-              </a>
-            </SwiperSlide>
-
-            <SwiperSlide>
-              <a href="javascript:void()" className='cards-link'>
-                <div className="pro-card mg">
-
-                  <img src="/images/watch-6.png" alt="watch" />
-                  <div className="details">
-                    <div>
-                      <h6>Lucent Collection</h6>
-                      <h5>Eclipse Black</h5>
-                    </div>
-                    <FiPlus />
-                  </div>
-                </div>
-              </a>
-            </SwiperSlide>
+                </Link>
+              </SwiperSlide>
+            ))}
           </Swiper>
         </div>
       </div>

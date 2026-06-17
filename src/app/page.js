@@ -12,55 +12,61 @@ import TestimonialSec from "@/components/TestimonialSec"
 import FormSec from "@/components/FormSec"
 import Footer from "@/components/Footer"
 import SliderImage from "@/components/SliderImage"
+import PageTransition from "@/components/PageTransition"
+import ScrollProvider from "@/components/ScrollProvider"
 
 export default function Home() {
   return (
-    <>
-    
-      <Header />
-      <div className="snap-section">
-        <HeroSec />
-      </div>
+    <div className="min-h-full flex flex-col" style={{ overflow: 'hidden', height: '100vh' }}>
+      <PageTransition />
+      <ScrollProvider>
 
-      <div className="snap-section">
-        <KnowSec />
-      </div>
+        <Header />
+        <div className="snap-section">
+          <HeroSec />
+        </div>
 
-      <div className="snap-section">
-        <ProductSec />
-      </div>
+        <div className="snap-section">
+          <KnowSec />
+        </div>
 
-      <div className="snap-section">
-        <VideoSec />
-      </div>
+        <div className="snap-section">
+          <ProductSec />
+        </div>
 
-      <div className="snap-section">
-         <SliderImage />
-      </div>
+        <div className="snap-section">
+          <VideoSec />
+        </div>
 
-      <div className="snap-section">
-        <CreativeVideoSection />
-      </div>
+        <div className="snap-section">
+          <SliderImage />
+        </div>
 
-      <div className="snap-section">
-        <WatchSec />
-      </div>
+        <div className="snap-section">
+          <CreativeVideoSection />
+        </div>
 
-      <div className="snap-section">
-        <TestimonialSec />
-      </div>
+        <div className="snap-section">
+          <WatchSec />
+        </div>
 
-      {/* <div className="snap-section">
+        <div className="snap-section">
+          <TestimonialSec />
+        </div>
+
+        {/* <div className="snap-section">
         <FormSec />
       </div> */}
 
-      <div className="snap-section">
-        <VideoSec />
-      </div>
+        <div className="snap-section">
+          <VideoSec />
+        </div>
 
-      <div className="snap-section">
-        <Footer />
-      </div>
-    </>
+        <div className="snap-section">
+          <Footer />
+        </div>
+
+      </ScrollProvider>
+    </div>
   )
 }
