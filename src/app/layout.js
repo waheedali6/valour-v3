@@ -3,18 +3,16 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import "./globals.css"
 import "./responsive.css"
-
-import PageTransition from "@/components/PageTransition"
-import ScrollProvider from "@/components/ScrollProvider"
+import { Provider } from 'react-redux'
+import { store } from './store'
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="h-full antialiased">
       <body >
-        {/* <PageTransition />
-        <ScrollProvider> */}
+        <Provider store={store}>
           {children}
-        {/* </ScrollProvider> */}
+        </Provider>
       </body>
     </html>
   )

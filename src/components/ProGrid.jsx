@@ -4,6 +4,10 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import toast, { Toaster } from 'react-hot-toast';
+import SplitType from "split-type";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "@/app/features/cart/cartSlice";
 
 // ─── Watch Data ─────────────────────────────────────────────────────────────
 const watches = [
@@ -20,6 +24,9 @@ const watches = [
     image: "/images/watch-1.png",
     accent: "#00d4ff",
     limited: false,
+    price: 499,
+    edition: '17/100',
+    quantity: 1,
   },
   {
     id: 2,
@@ -34,6 +41,9 @@ const watches = [
     image: "/images/watch-4.png",
     accent: "#ef4444",
     limited: true,
+    price: 499,
+    edition: '17/100',
+    quantity: 1,
   },
   {
     id: 3,
@@ -48,6 +58,9 @@ const watches = [
     image: "/images/watch-5.png",
     accent: "#ef4444",
     limited: false,
+    price: 499,
+    edition: '17/100',
+    quantity: 1,
   },
   {
     id: 4,
@@ -62,6 +75,9 @@ const watches = [
     image: "/images/watch-6.png",
     accent: "#ef4444",
     limited: false,
+    price: 499,
+    edition: '17/100',
+    quantity: 1,
   },
   {
     id: 5,
@@ -76,6 +92,9 @@ const watches = [
     image: "/images/watch-3.png",
     accent: "#10b981",
     limited: false,
+    price: 499,
+    edition: '17/100',
+    quantity: 1,
   },
   {
     id: 6,
@@ -90,6 +109,9 @@ const watches = [
     image: "/images/watch-2.png",
     accent: "#3b82f6",
     limited: false,
+    price: 499,
+    edition: '17/100',
+    quantity: 1,
   },
   {
     id: 7,
@@ -104,6 +126,9 @@ const watches = [
     image: "/images/watch-1.png",
     accent: "#00d4ff",
     limited: false,
+    price: 499,
+    edition: '17/100',
+    quantity: 1,
   },
   {
     id: 8,
@@ -118,6 +143,9 @@ const watches = [
     image: "/images/watch-2.png",
     accent: "#0891b2",
     limited: false,
+    price: 499,
+    edition: '17/100',
+    quantity: 1,
   },
   {
     id: 9,
@@ -132,6 +160,9 @@ const watches = [
     image: "/images/watch-3.png",
     accent: "#7c3aed",
     limited: true,
+    price: 499,
+    edition: '17/100',
+    quantity: 1,
   },
   {
     id: 10,
@@ -146,6 +177,9 @@ const watches = [
     image: "/images/watch-4.png",
     accent: "#dc2626",
     limited: false,
+    price: 499,
+    edition: '17/100',
+    quantity: 1,
   },
   {
     id: 11,
@@ -160,6 +194,9 @@ const watches = [
     image: "/images/watch-5.png",
     accent: "#fbbf24",
     limited: true,
+    price: 499,
+    edition: '17/100',
+    quantity: 1,
   },
   {
     id: 12,
@@ -174,6 +211,9 @@ const watches = [
     image: "/images/watch-6.png",
     accent: "#06b6d4",
     limited: false,
+    price: 499,
+    edition: '17/100',
+    quantity: 1,
   },
   {
     id: 13,
@@ -188,6 +228,9 @@ const watches = [
     image: "/images/watch-1.png",
     accent: "#059669",
     limited: false,
+    price: 499,
+    edition: '17/100',
+    quantity: 1,
   },
   {
     id: 14,
@@ -202,6 +245,9 @@ const watches = [
     image: "/images/watch-2.png",
     accent: "#7c3aed",
     limited: true,
+    price: 499,
+    edition: '17/100',
+    quantity: 1,
   },
   {
     id: 15,
@@ -216,6 +262,9 @@ const watches = [
     image: "/images/watch-3.png",
     accent: "#3b82f6",
     limited: false,
+    price: 499,
+    edition: '17/100',
+    quantity: 1,
   },
   {
     id: 16,
@@ -230,6 +279,9 @@ const watches = [
     image: "/images/watch-4.png",
     accent: "#ef4444",
     limited: false,
+    price: 499,
+    edition: '17/100',
+    quantity: 1,
   },
   {
     id: 17,
@@ -244,6 +296,9 @@ const watches = [
     image: "/images/watch-5.png",
     accent: "#a1a5b4",
     limited: false,
+    price: 499,
+    edition: '17/100',
+    quantity: 1,
   },
   {
     id: 18,
@@ -258,8 +313,13 @@ const watches = [
     image: "/images/watch-6.png",
     accent: "#dc2626",
     limited: true,
+    price: 499,
+    edition: '17/100',
+    quantity: 1,
   },
 ];
+
+
 
 // ─── Filter Options ─────────────────────────────────────────────────────────
 const filterOptions = {
@@ -305,6 +365,68 @@ const filterOptions = {
 
 // ─── Component ──────────────────────────────────────────────────────────────
 export default function HorizonTimepieces() {
+
+  const dispatch = useDispatch()
+
+  const sectionRef = useRef(null)
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+
+    const section = sectionRef.current
+    if (!section) return
+
+    // ===========================
+    // SPLIT TEXT SETUP (BANNER)
+    // ===========================
+    const bannerTitle = new SplitType('.ht-header h1', { types: 'chars' })
+
+    // ===========================
+    // INITIAL STATES
+    // ===========================
+    // Banner title chars - staggered from bottom
+    bannerTitle.chars?.forEach((char, i) => {
+      char.style.display = 'inline-block'
+      char.style.opacity = '0'
+      char.style.transform = 'translateY(40px) rotateX(90deg)'
+      char.style.transformOrigin = 'center bottom'
+    })
+
+
+    // ===========================
+    // INTERSECTION OBSERVER
+    // ===========================
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px',
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // Banner title - split reveal from bottom
+          bannerTitle.chars?.forEach((char, i) => {
+            setTimeout(() => {
+              char.style.transition = 'all 0.7s cubic-bezier(0.16, 1, 0.3, 1)'
+              char.style.opacity = '1'
+              char.style.transform = 'translateY(0) rotateX(0deg)'
+            }, i * 35)
+          })
+
+          // Unobserve after animation completes
+          observer.unobserve(section)
+        }
+      })
+    }, observerOptions)
+
+    observer.observe(section)
+
+    // Cleanup
+    return () => {
+      observer.disconnect()
+      bannerTitle.revert?.()
+    }
+  }, [])
   const [activeFilters, setActiveFilters] = useState({
     concept: "all",
     range: "all",
@@ -333,7 +455,7 @@ export default function HorizonTimepieces() {
     );
   });
 
-// -------AOS init----------------
+  // -------AOS init----------------
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -414,11 +536,19 @@ export default function HorizonTimepieces() {
   };
 
 
+  const handleCart = (w) => {
+    try {
+      dispatch(addToCart(w))
+    } catch (error) {
+      toast.error("Something went wrong.", error)
+    }
 
-
+  }
 
   return (
-    <section className="ht-section">
+    <section className="ht-section" ref={sectionRef}>
+      <div><Toaster position="bottom-right"
+        reverseOrder={false} /></div>
       <div className="ht-glow-1" />
       <div className="ht-glow-2" />
       <div className="ht-noise" />
@@ -426,7 +556,7 @@ export default function HorizonTimepieces() {
       <div
         className="container"
       >
-        <header className="ht-header"  data-aos="fade-up">
+        <header className="ht-header" data-aos="fade-up">
           <h1>
             <span>Valour</span> Watches
           </h1>
@@ -569,6 +699,7 @@ export default function HorizonTimepieces() {
                 data-id={watch.id}
                 className={`ht-card ${animatedCards.has(watch.id) ? "animated" : ""}`}
                 style={{ animationDelay: `${index * 80}ms` }}
+                onClick={() => handleCart(watch)}
               >
                 <div className="ht-card-inner">
                   <div className="ht-card-glow" />

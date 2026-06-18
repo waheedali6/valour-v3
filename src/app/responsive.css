@@ -13,6 +13,10 @@
       .product-sec .container {
         max-width: 1321px;
     }
+
+    .authors-sec .container {
+        max-width: 1871px;
+    }
 }
 
 /* ============================================================

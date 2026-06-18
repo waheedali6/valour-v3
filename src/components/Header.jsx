@@ -67,13 +67,13 @@ const Header = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link" href="#">About</a>
+                <Link className="nav-link" href="/about">About</Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" href="/our-shop">Our Shop</Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">Blog</a>
+                <Link className="nav-link" href="/blog">Blog</Link>
               </li>
             </ul>
           </div>
@@ -83,7 +83,7 @@ const Header = () => {
           <div className="side-box">
             <a href="#" className='theme-btn'>English</a>
             <a href="#"><IoSearchOutline /></a>
-            <a href="#"><IoBagHandleOutline /></a>
+            <Link href="/cart"><IoBagHandleOutline /></Link>
           </div>
         </div>
       </nav>
