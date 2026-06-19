@@ -204,7 +204,12 @@ body {
         .valour-cart .theme-btn {
             width: 100%;
             text-align: center;
+            transition: all .5s ease-in-out ;
         }
+
+          .valour-cart .theme-btn:hover {
+            background-color: #fff;
+          }
 
         .we-accept {
           font-size: 12px;

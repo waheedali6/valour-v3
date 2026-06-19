@@ -25,42 +25,42 @@ const ProductSec = () => {
       id: 1,
       name: "Sunseeker Yellow",
       detail: "Lucent Collection",
-      link: "/",
+      link: "/product-details",
       img: "/images/watch-1.png"
     },
     {
       id: 2,
       name: "Midnight Blue",
       detail: "Lucent Collection",
-      link: "/",
+      link: "/product-details",
       img: "/images/watch-2.png"
     },
     {
       id: 3,
       name: "Forest Green",
       detail: "Lucent Collection",
-      link: "/",
+      link: "/product-details",
       img: "/images/watch-3.png"
     },
     {
       id: 4,
       name: "Nova Red",
       detail: "Lucent Collection",
-      link: "/",
+      link: "/product-details",
       img: "/images/watch-4.png"
     },
     {
       id: 5,
       name: "Frost Silver",
       detail: "Lucent Collection",
-      link: "/",
+      link: "/product-details",
       img: "/images/watch-5.png"
     },
     {
       id: 6,
       name: "Eclipse Black",
       detail: "Lucent Collection",
-      link: "/",
+      link: "/product-details",
       img: "/images/watch-6.png"
     },
   ]

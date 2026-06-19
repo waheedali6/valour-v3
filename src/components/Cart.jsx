@@ -1,9 +1,12 @@
 "use client"
 import { removeItemInCart, updateQuantity } from '@/app/features/cart/cartSlice';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
+import SplitType from 'split-type';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 
 
@@ -13,7 +16,99 @@ export default function Cart() {
   const cart = useSelector((state) => state.cart.value)
   const [note, setNote] = useState('');
 
+  // Animation refs
+  const sectionRef = useRef(null);
+  const titleRef = useRef(null);
+  const contentRef = useRef(null);
 
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    // Initialize AOS
+    AOS.init({
+      duration: 800,
+      easing: 'ease-out-cubic',
+      once: false,
+      mirror: false,
+    });
+
+    const section = sectionRef.current;
+    if (!section) return;
+
+    // ===========================
+    // SPLIT TEXT SETUP
+    // ===========================
+    const cartTitle = new SplitType('.cart-title', { types: 'words,chars' });
+
+    // Wrap words for title
+    const titleWords = section.querySelectorAll('.cart-title .word');
+    titleWords.forEach(word => {
+      word.style.overflow = 'hidden';
+      word.style.display = 'inline-block';
+    });
+
+    // ===========================
+    // INITIAL STATES
+    // ===========================
+    // Title chars - staggered from bottom
+    cartTitle.chars?.forEach((char, i) => {
+      char.style.display = 'inline-block';
+      char.style.opacity = '0';
+      char.style.transform = 'translateY(40px) rotateX(90deg)';
+      char.style.transformOrigin = 'center bottom';
+    });
+
+    // Content - fade + blur
+    if (contentRef.current) {
+      contentRef.current.style.opacity = '0';
+      contentRef.current.style.transform = 'translateY(30px)';
+      contentRef.current.style.filter = 'blur(8px)';
+    }
+
+    // ===========================
+    // INTERSECTION OBSERVER
+    // ===========================
+    const observerOptions = {
+      threshold: 0.15,
+      rootMargin: '0px 0px -50px 0px',
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // Title - split reveal from bottom with stagger
+          cartTitle.chars?.forEach((char, i) => {
+            setTimeout(() => {
+              char.style.transition = 'all 0.7s cubic-bezier(0.16, 1, 0.3, 1)';
+              char.style.opacity = '1';
+              char.style.transform = 'translateY(0) rotateX(0deg)';
+            }, i * 35);
+          });
+
+          // Content - fade up with blur removal
+          if (contentRef.current) {
+            setTimeout(() => {
+              contentRef.current.style.transition = 'all 0.9s cubic-bezier(0.16, 1, 0.3, 1)';
+              contentRef.current.style.opacity = '1';
+              contentRef.current.style.transform = 'translateY(0)';
+              contentRef.current.style.filter = 'blur(0px)';
+            }, 200);
+          }
+
+          // Unobserve after animation completes
+          observer.unobserve(section);
+        }
+      });
+    }, observerOptions);
+
+    observer.observe(section);
+
+    // Cleanup
+    return () => {
+      observer.disconnect();
+      cartTitle.revert?.();
+    };
+  }, []);
 
   const updateQty = (id, qty) => {
       dispatch(updateQuantity({
@@ -36,7 +131,7 @@ export default function Cart() {
 
   return (
     <>
-      <section className="valour-cart">
+      <section className="valour-cart" ref={sectionRef}>
         <div><Toaster position="bottom-right"
           reverseOrder={false} /></div>
         <div className="container">
@@ -48,7 +143,7 @@ export default function Cart() {
               <Link href="/our-shop"><p className="continue-link">CONTINUE SHOPPING</p></Link>
             </div>
           ) : (
-            <div className="row g-5">
+            <div className="row g-5" ref={contentRef}>
               {/* ===== CART ITEMS ===== */}
               <div className="col-12 col-lg-8">
                 <div className="cart-table">
@@ -130,7 +225,7 @@ export default function Cart() {
                     onChange={(e) => setNote(e.target.value)}
                   />
 
-                  <a href='#' className='theme-btn know-btn'>Get Know More</a>
+                  <a href='#' className='theme-btn know-btn'>Checkout</a>
                 </div>
 
                 <div className="payment-section text-center">

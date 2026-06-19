@@ -5,10 +5,13 @@ import { IoBagHandleOutline, IoSearchOutline } from 'react-icons/io5'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import Link from 'next/link'
+import { useDispatch } from 'react-redux'
+import { toggleCartSidebar } from '@/app/features/cart/cSidebarSlice'
 
 gsap.registerPlugin(ScrollTrigger)
 
 const Header = () => {
+  const dispatch = useDispatch();
   const headerRef = useRef(null)
   const [scrolled, setScrolled] = useState(false)
 
@@ -83,7 +86,7 @@ const Header = () => {
           <div className="side-box">
             <a href="#" className='theme-btn'>English</a>
             <a href="#"><IoSearchOutline /></a>
-            <Link href="/cart"><IoBagHandleOutline /></Link>
+            <p onClick={() => dispatch(toggleCartSidebar(true))}><IoBagHandleOutline /></p>
           </div>
         </div>
       </nav>
