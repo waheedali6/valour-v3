@@ -154,7 +154,7 @@ const AboutSec = () => {
           </div>
           <div className="col-md-6">
             <div className="img-box">
-              <img ref={imgRef} src="/images/about-img.png" alt="" className="abt-img" data-aos="fade-up" data-aos-delay="400" />
+              <img ref={imgRef} src="/images/about-img.webp" alt="" className="abt-img" data-aos="fade-up" data-aos-delay="400" />
             </div>
           </div>
         </div>

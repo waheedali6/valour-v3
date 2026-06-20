@@ -76,8 +76,8 @@ const CartSidebar = () => {
                 </div>
                 <p>Taxes and shipping calculated at checkout</p>
                 <div className="btns">
-                    <Link href='/cart' className='theme-btn'><FaCartArrowDown /> View cart</Link>
-                    <Link href='/checkout' className='theme-btn'><FaLock /> Checkout</Link>
+                    <Link href='/cart' className='theme-btn' onClick={() => dispatch(toggleCartSidebar(false))}><FaCartArrowDown /> View cart</Link>
+                    <Link href='/checkout' className='theme-btn' onClick={() => dispatch(toggleCartSidebar(false))}><FaLock /> Checkout</Link>
                 </div>
             </div>
         </div>

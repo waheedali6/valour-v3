@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import toast from 'react-hot-toast';
-localStorage.setItem("cart", JSON.stringify([  {
+if (typeof window !== "undefined") {
+  localStorage.setItem("cart", JSON.stringify([  {
     id: 1,
     ref: "P-01",
     name: "Sunseeker Yellow",
@@ -17,6 +18,8 @@ localStorage.setItem("cart", JSON.stringify([  {
     edition: '17/100',
     quantity: 1,
   },]))
+}
+
 const initialState = {
   value: typeof window !== "undefined" ? JSON.parse(localStorage.getItem("cart")) || [] : [],
 }

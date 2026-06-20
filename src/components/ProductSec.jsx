@@ -10,60 +10,25 @@ import { Autoplay, Pagination } from 'swiper/modules'
 import 'swiper/css';
 import 'swiper/css/pagination';
 import Link from 'next/link'
+import { useSelector } from 'react-redux'
 
 
 gsap.registerPlugin(ScrollTrigger)
 
 const ProductSec = () => {
+  const products = useSelector((state) => state.product.value)
+
   const sectionRef = useRef(null)
   const perspRef = useRef(null)
 
 
-  // ---Products--------------
-  const products = [
-    {
-      id: 1,
-      name: "Sunseeker Yellow",
-      detail: "Lucent Collection",
-      link: "/product-details",
-      img: "/images/watch-1.png"
-    },
-    {
-      id: 2,
-      name: "Midnight Blue",
-      detail: "Lucent Collection",
-      link: "/product-details",
-      img: "/images/watch-2.png"
-    },
-    {
-      id: 3,
-      name: "Forest Green",
-      detail: "Lucent Collection",
-      link: "/product-details",
-      img: "/images/watch-3.png"
-    },
-    {
-      id: 4,
-      name: "Nova Red",
-      detail: "Lucent Collection",
-      link: "/product-details",
-      img: "/images/watch-4.png"
-    },
-    {
-      id: 5,
-      name: "Frost Silver",
-      detail: "Lucent Collection",
-      link: "/product-details",
-      img: "/images/watch-5.png"
-    },
-    {
-      id: 6,
-      name: "Eclipse Black",
-      detail: "Lucent Collection",
-      link: "/product-details",
-      img: "/images/watch-6.png"
-    },
-  ]
+function createSlug(name) {
+  return name
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/\s+/g, "-");
+}
 
   useEffect(() => {
     const section = sectionRef.current
@@ -195,7 +160,7 @@ const ProductSec = () => {
               <SwiperSlide>
                 <Link href={item.link} className='cards-link'>
                   <div className="pro-card">
-                    <img src={item.img} alt="watch" />
+                    <img src={item.image} alt="watch" />
                     <div className="details">
                       <div>
                         <h6>{item.detail}</h6>

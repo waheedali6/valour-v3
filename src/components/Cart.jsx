@@ -18,7 +18,6 @@ export default function Cart() {
 
   // Animation refs
   const sectionRef = useRef(null);
-  const titleRef = useRef(null);
   const contentRef = useRef(null);
 
   useEffect(() => {
@@ -225,7 +224,7 @@ export default function Cart() {
                     onChange={(e) => setNote(e.target.value)}
                   />
 
-                  <a href='#' className='theme-btn know-btn'>Checkout</a>
+                  <Link href='/checkout' className='theme-btn know-btn'>Checkout</Link>
                 </div>
 
                 <div className="payment-section text-center">

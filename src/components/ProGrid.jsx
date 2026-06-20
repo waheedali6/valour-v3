@@ -151,9 +151,9 @@ const filterOptions = {
 // ─── Component ──────────────────────────────────────────────────────────────
 export default function HorizonTimepieces() {
 const router = useRouter();
+const sectionRef = useRef(null)
   const dispatch = useDispatch()
-
-  const sectionRef = useRef(null)
+  const products = useSelector((state) => state.product.value)
 
   useEffect(() => {
     if (typeof window === 'undefined') return
@@ -229,7 +229,7 @@ const router = useRouter();
     setIsFilterOpen(!isFilterOpen);
   }
   // ─── Filter Logic ───────────────────────────────────────────────────────
-  const filteredWatches = watches.filter((watch) => {
+  const filteredWatches = products.filter((watch) => {
     return (
       (activeFilters.collection === "all" || watch.collection === activeFilters.collection) &&
       (activeFilters.type === "all" || watch.type === activeFilters.type) &&

@@ -104,7 +104,7 @@ opacity: .8;
 /* //////////////belief-sec////////// */
 .belief-sec {
         height: 100vh;
-        background: #00000094 url("/images/belief-bg.png");
+        background: #00000094 url("/images/belief-bg.webp");
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;

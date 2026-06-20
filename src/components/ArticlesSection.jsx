@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef } from "react";
 import SplitType from "split-type";
 
@@ -13,7 +14,7 @@ const blogPosts = [
     date: "JUNE 10, 2026",
     readTime: "4 MIN READ",
     image:
-      "/images/blog-1.png",
+      "/images/blog-1.webp",
   },
   {
     id: 2,
@@ -24,7 +25,7 @@ const blogPosts = [
     date: "JUNE 2, 2026",
     readTime: "3 MIN READ",
     image:
-      "/images/blog-2.png",
+      "/images/blog-2.webp",
   },
   {
     id: 3,
@@ -35,7 +36,7 @@ const blogPosts = [
     date: "MAY 24, 2026",
     readTime: "6 MIN READ",
     image:
-      "/images/blog-3.png",
+      "/images/blog-3.webp",
   },
   {
     id: 4,
@@ -46,7 +47,7 @@ const blogPosts = [
     date: "MAY 15, 2026",
     readTime: "5 MIN READ",
     image:
-      "/images/blog-4.png",
+      "/images/blog-4.webp",
   },
   {
     id: 5,
@@ -57,7 +58,7 @@ const blogPosts = [
     date: "MAY 4, 2026",
     readTime: "4 MIN READ",
     image:
-      "/images/blog-5.png",
+      "/images/blog-5.webp",
   },
   {
     id: 6,
@@ -68,7 +69,7 @@ const blogPosts = [
     date: "APRIL 28, 2026",
     readTime: "5 MIN READ",
     image:
-      "/images/blog-6.png",
+      "/images/blog-6.webp",
   },
 ];
 
@@ -268,14 +269,12 @@ export default function ArticleSection() {
 
   return (
     <section className="valour-blog" ref={sectionRef}>
-      {/* ===== SIMPLE BANNER ===== */}
       <section className="blog-banner">
         <div className="container text-center">
           <h1 className="banner-title">The Journal</h1>
         </div>
       </section>
 
-      {/* ===== LUXURY BLOG GRID ===== */}
       <section className="blog-grid-section">
         <div className="container">
           <div className="row g-4 g-lg-5">
@@ -296,9 +295,9 @@ export default function ArticleSection() {
                     <h3 className="card-title">{post.title}</h3>
                     <span className="title-divider" />
                     <p className="card-excerpt">{post.excerpt}</p>
-                    <a href="#" className="read-more">
+                    <Link href="/blog-details" className="read-more">
                       READ ARTICLE
-                    </a>
+                    </Link>
                   </div>
                 </article>
               </div>

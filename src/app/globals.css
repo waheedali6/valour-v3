@@ -277,12 +277,12 @@ nav .side-box svg:hover {
 } */
 
 
-.product-sec .swiper-pagination {
+ .swiper-pagination {
   text-align: center;
   margin-top: 50px;
 }
 
-.product-sec .swiper-pagination .swiper-pagination-bullet {
+ .swiper-pagination .swiper-pagination-bullet {
   width: 13px;
   height: 10px;
   display: inline-block;
@@ -294,18 +294,18 @@ nav .side-box svg:hover {
   transition-delay: 0.5s, 0.5s, 0s;
 }
 
-.product-sec .swiper-pagination-clickable .swiper-pagination-bullet {
+ .swiper-pagination-clickable .swiper-pagination-bullet {
   cursor: pointer;
 }
 
-.product-sec .swiper-pagination .swiper-pagination-bullet-active {
+.swiper-pagination .swiper-pagination-bullet-active {
   opacity: 1;
   background: #ffffff;
   width: 100px;
   transition-delay: 0s;
 }
 
-.product-sec .swiper-slide {
+ .swiper-slide {
   margin-bottom: 40px;
 }
 
@@ -1023,6 +1023,7 @@ footer {
 .footer-upper p,
 .footer-upper a {
   font-size: 12px;
+  text-decoration: none !important;
 }
 
 .mid-footer {
@@ -1032,7 +1033,7 @@ footer {
 .footer-desc {
   color: #fff;
   font-size: 17px;
-  padding-right: 40%;
+  padding-right: 22%;
   margin-top: 30px;
   line-height: 30px;
 }
@@ -1043,7 +1044,7 @@ footer {
 }
 
 .mid-footer .footer-link {
-  font-size: 29px;
+  font-size: 25px;
   font-weight: 500;
   text-transform: uppercase;
   color: #fff;
@@ -2423,12 +2424,14 @@ right: 0;
   font-size: 25px;
   font-family: 'Times New Roman', Times, serif;
   margin: 0;
+  color: #fff;
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
 .cart-sidebar .close-btn {
+  color: #fff;
   font-size: 20px;
   cursor: pointer;
 }
@@ -2443,6 +2446,7 @@ right: 0;
 .cart-sidebar .item h5 {
   font-size: 25px;
   font-family: 'Times New Roman', Times, serif;
+  color: #fff;
 }
 
 .cart-sidebar .item .price {
@@ -2491,6 +2495,7 @@ right: 0;
 
 .cart-sidebar .total h3 {
   font-size: 25px;
+  color: #fff;
 }
 
 .cart-sidebar .bottom {

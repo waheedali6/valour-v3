@@ -25,11 +25,9 @@ body {
     height: 100%;
     overflow: auto !important;
 }
-
-/* header {
-    position: static !important;
-} */
-
+.mid-footer .footer-link {
+    text-decoration: none !important;
+}
 .checkout-dark .row {
     justify-content: center;
 }
