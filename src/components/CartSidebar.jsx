@@ -8,7 +8,6 @@ const CartSidebar = () => {
     const ref = useRef();
     const dispatch = useDispatch();
     const isCartSideOpen = useSelector((state) => state.cSidebar.value);
-    console.log(isCartSideOpen)
 
     useEffect(() => {
         const handleClickOutside = (e) => {

@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import SplitType from 'split-type'
+import Link from 'next/link'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -218,7 +219,7 @@ export default function KnowSec() {
                 </p>
               </div>
               <div className='know-left-item'>
-                <a href='#' className='theme-btn know-btn'>Get Know More</a>
+                <Link href='/about' className='theme-btn know-btn'>Get Know More</Link>
               </div>
             </div>
           </div>

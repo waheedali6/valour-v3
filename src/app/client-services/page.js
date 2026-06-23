@@ -21,10 +21,12 @@ import Footer from '@/components/Footer';
 import Link from 'next/link';
 import PageTransition from '@/components/PageTransition';
 import ScrollProvider from '@/components/ScrollProvider';
+import AppointmentModal from '@/components/AppointmentModal';
 
 const ClientServices = () => {
     const [activeService, setActiveService] = useState(0);
     const [openFaq, setOpenFaq] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
         if (typeof window === 'undefined') return;
@@ -372,144 +374,146 @@ const ClientServices = () => {
             <Header />
             <PageTransition />
             <ScrollProvider>
-                <div className="snap-section" style={{height: "100vh"}}>
+                <div className="snap-section" style={{ height: "100vh" }}>
                     <section className="services-hero">
                         <div className="container">
-                        <h1 className="hero-title">Client Services</h1>
-                        <div className="service-tabs">
-                            {services.map((service, index) => (
-                                <button
-                                    key={index}
-                                    className={`service-tab ${activeService === index ? 'active' : ''}`}
-                                    onClick={() => setActiveService(index)}
-                                >
-                                    {service.icon}
-                                    {service.title}
-                                </button>
-                            ))}
-                        </div>
+                            <h1 className="hero-title">Client Services</h1>
+                            <div className="service-tabs">
+                                {services.map((service, index) => (
+                                    <button
+                                        key={index}
+                                        className={`service-tab ${activeService === index ? 'active' : ''}`}
+                                        onClick={() => setActiveService(index)}
+                                    >
+                                        {service.icon}
+                                        {service.title}
+                                    </button>
+                                ))}
+                            </div>
                         </div>
                     </section>
 
                     <section className="service-detail">
                         <div className="container">
-                        <div className="detail-grid">
-                            <div className="detail-image-wrapper">
-                                <img
-                                    src={services[activeService].image}
-                                    alt={services[activeService].title}
-                                    className="detail-image"
-                                />
-                            </div>
-                            <div className="detail-content">
-                                <div className="detail-icon">
-                                    {services[activeService].icon}
+                            <div className="detail-grid">
+                                <div className="detail-image-wrapper">
+                                    <img
+                                        src={services[activeService].image}
+                                        alt={services[activeService].title}
+                                        className="detail-image"
+                                    />
                                 </div>
-                                <h2 className="detail-title">{services[activeService].title}</h2>
-                                <p className="detail-description">{services[activeService].description}</p>
+                                <div className="detail-content">
+                                    <div className="detail-icon">
+                                        {services[activeService].icon}
+                                    </div>
+                                    <h2 className="detail-title">{services[activeService].title}</h2>
+                                    <p className="detail-description">{services[activeService].description}</p>
 
-                                <ul className="detail-features">
-                                    {services[activeService].features.map((feature, idx) => (
-                                        <li key={idx} className="detail-feature">
-                                            <span className="feature-check">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                                                    <polyline points="20 6 9 17 4 12" />
-                                                </svg>
-                                            </span>
-                                            {feature}
-                                        </li>
-                                    ))}
-                                </ul>
+                                    <ul className="detail-features">
+                                        {services[activeService].features.map((feature, idx) => (
+                                            <li key={idx} className="detail-feature">
+                                                <span className="feature-check">
+                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                                                        <polyline points="20 6 9 17 4 12" />
+                                                    </svg>
+                                                </span>
+                                                {feature}
+                                            </li>
+                                        ))}
+                                    </ul>
 
-                                <div className="detail-meta">
-                                    <Clock size={16} color="#888888" />
-                                    <span className="meta-label">Typical turnaround:</span>
-                                    <span className="meta-value">{services[activeService].turnaround}</span>
+                                    <div className="detail-meta">
+                                        <Clock size={16} color="#888888" />
+                                        <span className="meta-label">Typical turnaround:</span>
+                                        <span className="meta-value">{services[activeService].turnaround}</span>
+                                    </div>
+
+                                    <p className="detail-cta" style={{cursor: "pointer"}} onClick={() => setIsModalOpen(!isModalOpen)}>
+                                        Book an appointment
+                                        <ArrowRight size={16} />
+                                    </p>
+
                                 </div>
-
-                                <Link href="/" className="detail-cta">
-                                    Book an appointment
-                                    <ArrowRight size={16} />
-                                </Link>
                             </div>
-                        </div>
+                             <AppointmentModal isModalOpen={isModalOpen} onClose={() => setIsModalOpen(!isModalOpen)}/>
                         </div>
                     </section>
                 </div>
                 <div className="snap-section">
                     <section className="contact-section">
                         <div className="container">
-                        <div className="row">
-                            {/* Contact Info */}
-                            <div className="col-md-6 contact-info">
-                                <h2>Direct Concierge Access</h2>
-                                <p>
-                                    Our client services team is available around the clock to assist with
-                                    inquiries, arrange services, or provide guidance on care and maintenance.
-                                </p>
+                            <div className="row">
+                                {/* Contact Info */}
+                                <div className="col-md-6 contact-info">
+                                    <h2>Direct Concierge Access</h2>
+                                    <p>
+                                        Our client services team is available around the clock to assist with
+                                        inquiries, arrange services, or provide guidance on care and maintenance.
+                                    </p>
 
-                                <div className="contact-methods">
-                                    <a href="mailto:info@valourwatches.com" className="contact-method">
-                                        <div className="contact-icon">
-                                            <Mail size={18} color="white" />
-                                        </div>
-                                        <div className="contact-method-content">
-                                            <div className="contact-method-label">Email</div>
-                                            <div className="contact-method-value">info@valourwatches.com</div>
-                                        </div>
-                                        <ChevronRight size={16} className="contact-method-arrow" />
-                                    </a>
+                                    <div className="contact-methods">
+                                        <a href="mailto:info@valourwatches.com" className="contact-method">
+                                            <div className="contact-icon">
+                                                <Mail size={18} color="white" />
+                                            </div>
+                                            <div className="contact-method-content">
+                                                <div className="contact-method-label">Email</div>
+                                                <div className="contact-method-value">info@valourwatches.com</div>
+                                            </div>
+                                            <ChevronRight size={16} className="contact-method-arrow" />
+                                        </a>
 
-                                    <a href="tel:+12365989866" className="contact-method">
-                                        <div className="contact-icon">
-                                            <Phone size={18} color="white" />
-                                        </div>
-                                        <div className="contact-method-content">
-                                            <div className="contact-method-label">Phone</div>
-                                            <div className="contact-method-value">+1 236 598 9866</div>
-                                        </div>
-                                        <ChevronRight size={16} className="contact-method-arrow" />
-                                    </a>
+                                        <a href="tel:+12365989866" className="contact-method">
+                                            <div className="contact-icon">
+                                                <Phone size={18} color="white" />
+                                            </div>
+                                            <div className="contact-method-content">
+                                                <div className="contact-method-label">Phone</div>
+                                                <div className="contact-method-value">+1 236 598 9866</div>
+                                            </div>
+                                            <ChevronRight size={16} className="contact-method-arrow" />
+                                        </a>
 
-                                    <div className="contact-method" style={{ cursor: 'default' }}>
-                                        <div className="contact-icon">
-                                            <MapPin size={18} color="white" />
-                                        </div>
-                                        <div className="contact-method-content">
-                                            <div className="contact-method-label">Flagship Atelier</div>
-                                            <div className="contact-method-value">USA • Canada</div>
+                                        <div className="contact-method" style={{ cursor: 'default' }}>
+                                            <div className="contact-icon">
+                                                <MapPin size={18} color="white" />
+                                            </div>
+                                            <div className="contact-method-content">
+                                                <div className="contact-method-label">Flagship Atelier</div>
+                                                <div className="contact-method-value">USA • Canada</div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            {/* FAQ */}
-                            <div className="col-md-6 faq-section">
-                                <h2>Frequently Asked</h2>
-                                <div className="faq-list">
-                                    {faqs.map((faq, index) => (
-                                        <div
-                                            key={index}
-                                            className={`faq-item ${openFaq === index ? 'open' : ''}`}
-                                        >
+                                {/* FAQ */}
+                                <div className="col-md-6 faq-section">
+                                    <h2>Frequently Asked</h2>
+                                    <div className="faq-list">
+                                        {faqs.map((faq, index) => (
                                             <div
-                                                className="faq-question"
-                                                onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                                                key={index}
+                                                className={`faq-item ${openFaq === index ? 'open' : ''}`}
                                             >
-                                                <span className="faq-question-text">{faq.question}</span>
-                                                <ChevronRight
-                                                    size={16}
-                                                    className="faq-chevron"
-                                                />
+                                                <div
+                                                    className="faq-question"
+                                                    onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                                                >
+                                                    <span className="faq-question-text">{faq.question}</span>
+                                                    <ChevronRight
+                                                        size={16}
+                                                        className="faq-chevron"
+                                                    />
+                                                </div>
+                                                <div className="faq-answer">
+                                                    <p className="faq-answer-text">{faq.answer}</p>
+                                                </div>
                                             </div>
-                                            <div className="faq-answer">
-                                                <p className="faq-answer-text">{faq.answer}</p>
-                                            </div>
-                                        </div>
-                                    ))}
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         </div>
                     </section>
 

@@ -1,9 +1,12 @@
+"use client"
 import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
 import { BsInstagram, BsTwitter, BsYoutube } from 'react-icons/bs'
 import { FaFacebook } from 'react-icons/fa6'
+import AppointmentModal from './AppointmentModal'
 
 const Footer = () => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
     return (
         <section className='footer'>
             <footer>
@@ -11,7 +14,7 @@ const Footer = () => {
                     <div className="mid-footer">
                         <div className="row">
                             <div className="col-md-4">
-                                <a href="/"><img src="/images/logo.png" alt="Footer Logo" /></a>
+                                <Link href="/"><img src="/images/logo.png" alt="Footer Logo" /></Link>
                                 <p className='footer-desc'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, voluptates? Iusto optio temporibus perspiciatis eligendi ipsam error aspernatur velit quos. Iusto optio temporibus perspiciatis eligendi ipsam error aspernatur velit quos.</p>
                             </div>
                             <div className="col-md-4">
@@ -29,13 +32,14 @@ const Footer = () => {
                                     <div className="col-md-6">
                                         <div className="link-box">
                                             <Link className='footer-link2' href="/our-shop">Historical models</Link>
-                                            <a className='footer-link2' href="/">Pre-Owned</a>
+                                            <Link className='footer-link2' href="#">Pre-Owned</Link>
                                         </div>
                                     </div>
                                     <div className="col-md-6">
                                         <div className="link-box">
-                                            <a className='footer-link2' href="/">Servicing</a>
-                                            <a className='footer-link2' href="/">Book an appointment</a>
+                                            <Link className='footer-link2' href="/servicing">Servicing</Link>
+                                            <p className='footer-link2' style={{cursor: "pointer"}} onClick={() => setIsModalOpen(!isModalOpen)}>Book an appointment</p>
+                                            <AppointmentModal isModalOpen={isModalOpen} onClose={() => setIsModalOpen(!isModalOpen)}/>
                                         </div>
                                     </div>
                                 </div>
@@ -47,26 +51,26 @@ const Footer = () => {
                                     </div>
                                     <div className="col-md-6">
                                         <div className="icon-box">
-                                            <a href="/"><FaFacebook /></a>
-                                            <a href="/"><BsTwitter /></a>
-                                            <a href="/"><BsInstagram /></a>
-                                            <a href="/"><BsYoutube /></a>
+                                            <Link href="#"><FaFacebook /></Link>
+                                            <Link href="#"><BsTwitter /></Link>
+                                            <Link href="#"><BsInstagram /></Link>
+                                            <Link href="#"><BsYoutube /></Link>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="row border-row two border-0">
                                     <div className="col-md-6">
                                         <div className="link-box">
-                                            <a className='footer-link2' href="mailto:info@valourwatches.com">info@valourwatches.com</a>
-                                            <a className='footer-link2' href="tel:+1 236 598 9866">+1 236 598 9866</a>
-                                            <a className='footer-link2' href="/">24/7 Customer Care</a>
+                                            <Link className='footer-link2' href="mailto:info@valourwatches.com">info@valourwatches.com</Link>
+                                            <Link className='footer-link2' href="tel:+1 236 598 9866">+1 236 598 9866</Link>
+                                            <p className='footer-link2'>24/7 Customer Care</p>
                                         </div>
                                     </div>
                                     <div className="col-md-6">
                                         <div className="link-box">
                                             <Link className='footer-link2' href="/client-services">Client Services</Link>
                                             <Link className='footer-link2' href="/purchase-policies">Purchase Policies</Link>
-                                            <Link className='footer-link2' href="/">Watch Warranty</Link>
+                                            <Link className='footer-link2' href="/watch-warranty">Watch Warranty</Link>
                                         </div>
                                     </div>
                                 </div>
@@ -77,7 +81,7 @@ const Footer = () => {
                             <div className="inner-footer">
                                 <p>Copyright @ 2026 Valour Watches-All Right Reserved</p>
                                 <div>
-                                    <a href="/">Privacy Policy</a>&nbsp;-&nbsp;<a href="/">Terms &amp; Conditions</a>&nbsp;-&nbsp;<a href="/">Warranty Policy</a>
+                                    <Link href="/privacy-policy">Privacy Policy</Link>&nbsp;-&nbsp;<Link href="/terms-and-conditions">Terms &amp; Conditions</Link>&nbsp;-&nbsp;<Link href="/warranty-policy">Warranty Policy</Link>
                                 </div>
                             </div>
                         </div>

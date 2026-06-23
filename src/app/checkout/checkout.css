@@ -191,6 +191,7 @@ body {
     background-position: right 1rem center;
     cursor: pointer;
     color: var(--white);
+       border: 1px solid #ffffff91;
 }
 
 .form-select option {

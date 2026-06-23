@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useEffect, useRef } from 'react'
 import SplitType from 'split-type'
 
@@ -274,7 +275,7 @@ const WatchSec = () => {
                                 delivers elegance through refined materials,
                                 immersive color depth, and timeless engineering.
                             </p>
-                            <a href='#' className='theme-btn know-btn'>Get Customize</a>
+                            <Link href='/customizer' className='theme-btn know-btn'>Get Customize</Link>
                         </div>
                     </div>
                 </div>

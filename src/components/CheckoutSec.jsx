@@ -9,6 +9,7 @@ import {
   Minus,
   Plus
 } from 'lucide-react';
+import Link from 'next/link';
 
 const CheckoutSec = () => {
   const [formData, setFormData] = useState({
@@ -90,7 +91,6 @@ const CheckoutSec = () => {
               <div style={{ marginBottom: '2rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
                   <h2 className="section-title" style={{ margin: 0 }}>Contact</h2>
-                  <a href="#" className="sign-in-link">Sign in</a>
                 </div>
                 <div className="form-group">
                   <input
@@ -162,7 +162,6 @@ const CheckoutSec = () => {
                       value={formData.address}
                       onChange={handleInputChange}
                     />
-                    <Search size={18} className="input-icon" color="#888888" />
                   </div>
                 </div>
                 <div className="form-group">
@@ -218,7 +217,6 @@ const CheckoutSec = () => {
                       value={formData.phone}
                       onChange={handleInputChange}
                     />
-                    <HelpCircle size={18} className="input-icon clickable" color="#888888" />
                   </div>
                 </div>
               </div>
@@ -270,7 +268,6 @@ const CheckoutSec = () => {
                             value={formData.cardNumber}
                             onChange={handleInputChange}
                           />
-                          <Lock size={16} className="input-icon" color="#888888" />
                         </div>
                       </div>
                       <div className="card-inputs">
@@ -294,7 +291,6 @@ const CheckoutSec = () => {
                               value={formData.cvc}
                               onChange={handleInputChange}
                             />
-                            <HelpCircle size={16} className="input-icon clickable" color="#888888" />
                           </div>
                         </div>
                       </div>
@@ -463,24 +459,14 @@ const CheckoutSec = () => {
                   <div>
                     <div className="save-info-title">Save my information for a faster checkout</div>
                     <div className="save-info-text">
-                      By paying, you agree to create a Shop account subject to Shop's <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.
+                      By paying, you agree to create a Shop account subject to Shop's <Link href="/terms-and-conditions">Terms</Link> and <Link href="/privacy-policy">Privacy Policy</Link>.
                     </div>
                   </div>
-                  <a href="#" className="not-now-link">Not now</a>
                 </div>
               </div>
 
               {/* Pay Button */}
               <button className="pay-btn">Pay now</button>
-
-              {/* Footer */}
-              <div className="checkout-footer">
-                <a href="#" className="footer-link">Refund policy</a>
-                <a href="#" className="footer-link">Shipping</a>
-                <a href="#" className="footer-link">Privacy policy</a>
-                <a href="#" className="footer-link">Terms of service</a>
-                <a href="#" className="footer-link">Contact</a>
-              </div>
             </div>
 
             {/* Sidebar - Order Summary */}
