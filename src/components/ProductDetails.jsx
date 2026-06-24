@@ -1,90 +1,92 @@
 "use client"
 import React, { useEffect, useState, useRef } from 'react';
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
-import 'aos/dist/aos.css';
-import { ChevronDown, FileText } from 'lucide-react';
 import { Fancybox } from '@fancyapps/ui';
 import SplitType from 'split-type';
-import AOS from 'aos';
 import Link from 'next/link';
+import { useSelector } from 'react-redux';
+// Import Swiper styles
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import "../app/our-shop/shop.css"
 
 const ProductDetails = () => {
     const [activeImage, setActiveImage] = useState(1);
     const [selectedImage, setSelectedImage] = useState();
     const [selectedEdition, setSelectedEdition] = useState('17/100');
-    const [specsOpen, setSpecsOpen] = useState(false);
+    const allProducts = useSelector((state) => state.product.value)
 
     // Animation refs
     const sectionRef = useRef(null);
     const titleRef = useRef(null);
+    const taglineRef = useRef(null);
     const descriptionRef = useRef(null);
     const mainImageRef = useRef(null);
+    const editionSectionRef = useRef(null);
+    const buttonRef = useRef(null);
+    const descriptionSectionRef = useRef(null);
+    const specsTableRef = useRef(null);
+    const sliderRef = useRef(null);
 
     // Product data
-const product = {
-    name: 'Sunseeker Yellow',
-    subtitle: 'P-01 • Automatic Collection',
-    tagline: 'Engineered for Everyday Adventure',
-    price: 3200,
-    description: [
-        {
-            text: 'The ',
-            bold: 'Sunseeker Yellow',
-            suffix: ' embodies the spirit of exploration and optimism, combining contemporary design with dependable Swiss-inspired craftsmanship.'
-        },
-        {
-            text: 'Built with a lightweight ',
-            bold: 'titanium case',
-            suffix: ' and powered by a precision ',
-            bold2: 'automatic movement',
-            suffix2: ', it delivers exceptional reliability and smooth performance for every occasion.',
-            bold3: 'Designed for modern lifestyles',
-            suffix3: ', Sunseeker Yellow balances bold aesthetics with everyday practicality.'
-        },
-        {
-            text: 'Distinctive, versatile, and unmistakably Valour—',
-            bold: 'Sunseeker Yellow is made for those who move forward with confidence.'
-        }
-    ],
+    const product = {
+        name: 'Sunseeker Yellow',
+        subtitle: 'P-01 • Automatic Collection',
+        tagline: 'Engineered for Everyday Adventure',
+        price: 3200,
+        description: [
+            {
+                text: 'The ',
+                bold: 'Sunseeker Yellow',
+                suffix: ' embodies the spirit of exploration and optimism, combining contemporary design with dependable Swiss-inspired craftsmanship.'
+            },
+            {
+                text: 'Built with a lightweight ',
+                bold: 'titanium case',
+                suffix: ' and powered by a precision ',
+                bold2: 'automatic movement',
+                suffix2: ', it delivers exceptional reliability and smooth performance for every occasion.',
+                bold3: 'Designed for modern lifestyles',
+                suffix3: ', Sunseeker Yellow balances bold aesthetics with everyday practicality.'
+            },
+            {
+                text: 'Distinctive, versatile, and unmistakably Valour—',
+                bold: 'Sunseeker Yellow is made for those who move forward with confidence.'
+            }
+        ],
 
-    thumbnails: [
-        { id: 1, img: '/images/watch-1.png' },
-        { id: 2, img: '/images/watch-2.png' },
-        { id: 3, img: '/images/watch-3.png' },
-        { id: 4, img: '/images/watch-4.png' },
-        { id: 5, img: '/images/watch-5.png' },
-        { id: 6, img: '/images/watch-6.png' }
-    ],
+        thumbnails: [
+            { id: 1, img: '/images/watch-1.png' },
+            { id: 2, img: '/images/watch-2.png' },
+            { id: 3, img: '/images/watch-3.png' },
+            { id: 4, img: '/images/watch-4.png' },
+            { id: 5, img: '/images/watch-5.png' },
+            { id: 6, img: '/images/watch-6.png' }
+        ],
 
-    mainImage: '/images/watch-1.png',
+        mainImage: '/images/watch-1.png',
 
-    editions: ['P-01', 'P-02', 'P-03', 'P-04', 'P-05'],
+        editions: ['P-01', 'P-02', 'P-03', 'P-04', 'P-05'],
 
-    specs: [
-        { label: 'Case Material', value: 'Titanium' },
-        { label: 'Case Diameter', value: '40mm' },
-        { label: 'Case Thickness', value: '11.2mm' },
-        { label: 'Movement', value: 'Automatic Mechanical' },
-        { label: 'Power Reserve', value: '72 Hours' },
-        { label: 'Water Resistance', value: '100m / 10 ATM' },
-        { label: 'Strap Material', value: 'Premium Textile Strap' },
-        { label: 'Crystal', value: 'Scratch-Resistant Sapphire' },
-        { label: 'Dial Finish', value: 'Sunburst Yellow' },
-        { label: 'Weight', value: '78g' },
-        { label: 'Warranty', value: '5 Years International' }
-    ]
-};
+        specs: [
+            { label: 'Case Material', value: 'Titanium' },
+            { label: 'Case Diameter', value: '40mm' },
+            { label: 'Case Thickness', value: '11.2mm' },
+            { label: 'Movement', value: 'Automatic Mechanical' },
+            { label: 'Power Reserve', value: '72 Hours' },
+            { label: 'Water Resistance', value: '100m / 10 ATM' },
+            { label: 'Strap Material', value: 'Premium Textile Strap' },
+            { label: 'Crystal', value: 'Scratch-Resistant Sapphire' },
+            { label: 'Dial Finish', value: 'Sunburst Yellow' },
+            { label: 'Weight', value: '78g' },
+            { label: 'Warranty', value: '5 Years International' }
+        ]
+    };
 
     useEffect(() => {
         if (typeof window === 'undefined') return;
-
-        // Initialize AOS
-        AOS.init({
-            duration: 800,
-            easing: 'ease-out-cubic',
-            once: false,
-            mirror: false,
-        });
 
         const section = sectionRef.current;
         if (!section) return;
@@ -112,6 +114,13 @@ const product = {
             char.style.transformOrigin = 'center bottom';
         });
 
+        // Tagline - fade + blur
+        if (taglineRef.current) {
+            taglineRef.current.style.opacity = '0';
+            taglineRef.current.style.transform = 'translateY(30px)';
+            taglineRef.current.style.filter = 'blur(8px)';
+        }
+
         // Description - fade + blur
         if (descriptionRef.current) {
             descriptionRef.current.style.opacity = '0';
@@ -124,6 +133,37 @@ const product = {
             mainImageRef.current.style.opacity = '0';
             mainImageRef.current.style.transform = 'scale(0.7) rotateY(-15deg) rotateX(10deg) translateZ(0)';
             mainImageRef.current.style.filter = 'blur(12px) brightness(0.8)';
+        }
+
+        // Edition section - fade + blur
+        if (editionSectionRef.current) {
+            editionSectionRef.current.style.opacity = '0';
+            editionSectionRef.current.style.transform = 'translateY(20px)';
+            editionSectionRef.current.style.filter = 'blur(6px)';
+        }
+
+        // Button - fade + scale
+        if (buttonRef.current) {
+            buttonRef.current.style.opacity = '0';
+            buttonRef.current.style.transform = 'scale(0.95) translateY(20px)';
+        }
+
+        // Description section - fade
+        if (descriptionSectionRef.current) {
+            descriptionSectionRef.current.style.opacity = '0';
+            descriptionSectionRef.current.style.transform = 'translateY(40px)';
+        }
+
+        // Specs table - scale + fade
+        if (specsTableRef.current) {
+            specsTableRef.current.style.opacity = '0';
+            specsTableRef.current.style.transform = 'scale(0.95) translateY(30px)';
+        }
+
+        // Slider - fade + translateY
+        if (sliderRef.current) {
+            sliderRef.current.style.opacity = '0';
+            sliderRef.current.style.transform = 'translateY(40px)';
         }
 
         // ===========================
@@ -146,6 +186,16 @@ const product = {
                         }, i * 35);
                     });
 
+                    // Tagline - fade up with blur removal
+                    if (taglineRef.current) {
+                        setTimeout(() => {
+                            taglineRef.current.style.transition = 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+                            taglineRef.current.style.opacity = '1';
+                            taglineRef.current.style.transform = 'translateY(0)';
+                            taglineRef.current.style.filter = 'blur(0px)';
+                        }, 150);
+                    }
+
                     // Description - fade up with blur removal
                     if (descriptionRef.current) {
                         setTimeout(() => {
@@ -153,7 +203,26 @@ const product = {
                             descriptionRef.current.style.opacity = '1';
                             descriptionRef.current.style.transform = 'translateY(0)';
                             descriptionRef.current.style.filter = 'blur(0px)';
-                        }, 200);
+                        }, 250);
+                    }
+
+                    // Edition section - fade up with blur removal
+                    if (editionSectionRef.current) {
+                        setTimeout(() => {
+                            editionSectionRef.current.style.transition = 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+                            editionSectionRef.current.style.opacity = '1';
+                            editionSectionRef.current.style.transform = 'translateY(0)';
+                            editionSectionRef.current.style.filter = 'blur(0px)';
+                        }, 350);
+                    }
+
+                    // Button - scale and fade up
+                    if (buttonRef.current) {
+                        setTimeout(() => {
+                            buttonRef.current.style.transition = 'all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                            buttonRef.current.style.opacity = '1';
+                            buttonRef.current.style.transform = 'scale(1) translateY(0)';
+                        }, 450);
                     }
 
                     // Main Image - premium entrance
@@ -174,9 +243,63 @@ const product = {
 
         observer.observe(section);
 
+        // Second observer for description section
+        const descriptionObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    // Description section content
+                    if (descriptionSectionRef.current) {
+                        setTimeout(() => {
+                            descriptionSectionRef.current.style.transition = 'all 0.9s cubic-bezier(0.16, 1, 0.3, 1)';
+                            descriptionSectionRef.current.style.opacity = '1';
+                            descriptionSectionRef.current.style.transform = 'translateY(0)';
+                        }, 100);
+                    }
+
+                    // Specs table
+                    if (specsTableRef.current) {
+                        setTimeout(() => {
+                            specsTableRef.current.style.transition = 'all 1s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                            specsTableRef.current.style.opacity = '1';
+                            specsTableRef.current.style.transform = 'scale(1) translateY(0)';
+                        }, 250);
+                    }
+
+                    descriptionObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        if (descriptionSectionRef.current) {
+            descriptionObserver.observe(descriptionSectionRef.current);
+        }
+
+        // Third observer for slider
+        const sliderObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    if (sliderRef.current) {
+                        setTimeout(() => {
+                            sliderRef.current.style.transition = 'all 0.9s cubic-bezier(0.16, 1, 0.3, 1)';
+                            sliderRef.current.style.opacity = '1';
+                            sliderRef.current.style.transform = 'translateY(0)';
+                        }, 150);
+                    }
+
+                    sliderObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        if (sliderRef.current) {
+            sliderObserver.observe(sliderRef.current);
+        }
+
         // Cleanup
         return () => {
             observer.disconnect();
+            descriptionObserver.disconnect();
+            sliderObserver.disconnect();
             productTitle.revert?.();
         };
     }, []);
@@ -187,7 +310,7 @@ const product = {
 
     }, [activeImage])
 
-    
+
 
     const formatPrice = (price) => {
         return new Intl.NumberFormat('en-US', {
@@ -277,7 +400,7 @@ const product = {
                                     {product.name}<br />{product.subtitle}
                                 </h1>
 
-                                <p className="tagline" data-aos="fade-up">{product.tagline}</p>
+                                <p className="tagline" ref={taglineRef}>{product.tagline}</p>
 
                                 <div className="product-description" ref={descriptionRef}>
                                     {product.description.map((block, index) => (
@@ -293,36 +416,8 @@ const product = {
                                     ))}
                                 </div>
 
-                                {/* Technical Specs Accordion */}
-                                <div className="specs-accordion" data-aos="fade-up">
-                                    <div
-                                        className="specs-header"
-                                        onClick={() => setSpecsOpen(!specsOpen)}
-                                        
-                                    >
-                                        <div className="specs-title">
-                                            <FileText size={18} className="specs-icon" />
-                                            Technical Specifications
-                                        </div>
-                                        <ChevronDown
-                                            size={20}
-                                            className={`chevron-icon ${specsOpen ? 'rotate' : ''}`}
-                                            style={{ color: 'var(--text-muted)' }}
-                                        />
-                                    </div>
-
-                                    <div className={`specs-content ${specsOpen ? 'open' : ''}`}>
-                                        {product.specs.map((spec, index) => (
-                                            <div key={index} className="spec-row">
-                                                <span className="spec-label">{spec.label}</span>
-                                                <span className="spec-value">{spec.value}</span>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-
                                 {/* Edition Selector */}
-                                <div className="edition-section" data-aos="fade-up">
+                                <div className="edition-section" ref={editionSectionRef}>
                                     <p className="edition-label">
                                         Watch Number: <span>{selectedEdition}</span>
                                     </p>
@@ -340,7 +435,7 @@ const product = {
                                 </div>
 
                                 {/* Add to Cart Button */}
-                                <Link href="/cart" className="add-to-cart-btn">
+                                <Link href="/cart" className="add-to-cart-btn" ref={buttonRef}>
                                     <span>Add to cart</span>
                                     <span style={{ display: 'flex', alignItems: 'center' }}>
                                         <span className="btn-divider"></span>
@@ -351,6 +446,134 @@ const product = {
                                 <div className="mobile-spacer d-block d-md-none"></div>
                             </div>
                         </div>
+                    </div>
+
+                    <div className="product-description-section" ref={descriptionSectionRef}>
+                        <div className="container">
+                            <div className="row justify-content-center">
+                                <div className="col-lg-8">
+                                    <div className="description-content" style={{ marginBottom: '3rem' }}>
+                                        <p className="description-text">
+                                            The sun powers our solar system with it's unwavering energy. Wear that vitality on your wrist and proclaim your active lifestyle with wrist.
+                                        </p>
+                                    </div>
+
+                                    <div className="specs-table-wrapper" ref={specsTableRef}>
+                                        <table className="specs-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Feature</th>
+                                                    <th>Specification</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {product.specs.map((row, index) => (
+                                                    <tr key={index}>
+                                                        <td>{row.label}</td>
+                                                        <td>{row.value}</td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="slider" ref={sliderRef}>
+                        <Swiper
+                            modules={[Autoplay, Pagination]}
+                            spaceBetween={20}
+                            slidesPerView={4}
+                            loop={true}
+                            autoplay={{
+                                delay: 2000,
+                                disableOnInteraction: true,
+                            }}
+                            pagination={{ clickable: true }}
+                            breakpoints={{
+                                640: {
+                                    slidesPerView: 1,
+                                    spaceBetween: 10,
+                                },
+                                768: {
+                                    slidesPerView: 2,
+                                    spaceBetween: 10,
+                                },
+                                1024: {
+                                    slidesPerView: 3,
+                                    spaceBetween: 20,  // below 1400 = 20
+                                },
+                                1400: {
+                                    slidesPerView: 4,
+                                    spaceBetween: 20,  // above 1400 = 40
+                                },
+                            }}
+                        >
+                            {allProducts.map((watch, index) => (
+                                <SwiperSlide key={watch.id}>
+                                    <div
+                                        className="ht-card"
+                                        // onClick={() => handleCart(watch)}
+                                        onClick={() => router.push("/product-details")}
+                                    >
+                                        <div className="ht-card-inner">
+                                            <div className="ht-card-glow" />
+
+                                            {watch.limited && (
+                                                <div className="ht-limited-badge">
+                                                    <span>Limited</span>
+                                                </div>
+                                            )}
+
+                                            <div className="ht-image-wrap">
+                                                <div className="ht-shimmer" />
+                                                <img
+                                                    src={watch.image}
+                                                    alt={watch.name}
+                                                    className="ht-card-img"
+                                                    loading="lazy"
+                                                />
+                                                <div className="ht-hover-overlay">
+                                                    <div className="ht-hover-content">
+                                                        <div className="ht-hover-line">
+                                                            <div className="line" />
+                                                            <span>Explore</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div className="ht-card-info">
+                                                <div className="ht-card-header">
+                                                    <div>
+                                                        <p className="ht-card-ref">{watch.ref}</p>
+                                                        <h3 className="ht-card-name">{watch.name}</h3>
+                                                    </div>
+                                                    <div className="ht-card-arrow">
+                                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path
+                                                                strokeLinecap="round"
+                                                                strokeLinejoin="round"
+                                                                strokeWidth={2}
+                                                                d="M9 5l7 7-7 7"
+                                                            />
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                                <p className="ht-card-subtitle">{watch.subtitle}</p>
+                                                <div className="ht-card-specs">
+                                                    <span>{watch.material}</span>
+                                                    <div className="dot" />
+                                                    <span>{watch.type}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </SwiperSlide>
+                            ))}
+                        </Swiper>
                     </div>
                 </div>
             </section>

@@ -8,6 +8,7 @@ import "../blog/blog.css"
 const blogDetailsPage = () => {
   return (
     <>
+
       <Header />
       <BlogDetails />
       <Footer />

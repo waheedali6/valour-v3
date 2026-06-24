@@ -2,12 +2,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ArrowLeft, ArrowRight, Clock, Calendar, Share2, Bookmark, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination } from 'swiper/modules';
 import SplitType from 'split-type';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 // Import Swiper styles
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
@@ -280,72 +280,72 @@ const BlogDetails = () => {
   };
 
   const latestArticles = [
-   {
-    id: 1,
-    category: "CRAFTSMANSHIP",
-    title: "The Art of Mechanical Movement",
-    excerpt:
-      "Inside the meticulous process of hand-assembling every Valour caliber, from raw components to finished rotor.",
-    date: "JUNE 10, 2026",
-    readTime: "4 MIN READ",
-    image:
-      "/images/blog-1.webp",
-  },
-  {
-    id: 2,
-    category: "DESIGN",
-    title: "Why Dial Texture Matters",
-    excerpt:
-      "A look at sunburst finishing, guilloché patterns, and how light interacts with a well-engineered dial.",
-    date: "JUNE 2, 2026",
-    readTime: "3 MIN READ",
-    image:
-      "/images/blog-2.webp",
-  },
-  {
-    id: 3,
-    category: "BRAND",
-    title: "Two Founders, One Vision",
-    excerpt:
-      "How a physician and a watch reviewer joined forces to challenge what an accessible luxury watch could be.",
-    date: "MAY 24, 2026",
-    readTime: "6 MIN READ",
-    image:
-      "/images/blog-3.webp",
-  },
-  {
-    id: 4,
-    category: "COLLECTION",
-    title: "Introducing Lucent: Red Edition",
-    excerpt:
-      "A deep dive into the dimensionality and presence behind our most striking release yet.",
-    date: "MAY 15, 2026",
-    readTime: "5 MIN READ",
-    image:
-      "/images/blog-4.webp",
-  },
-  {
-    id: 5,
-    category: "CARE",
-    title: "Servicing Your Mechanical Watch",
-    excerpt:
-      "What every owner should know about maintenance intervals, water resistance, and long-term care.",
-    date: "MAY 4, 2026",
-    readTime: "4 MIN READ",
-    image:
-      "/images/blog-5.webp",
-  },
-  {
-    id: 6,
-    category: "HERITAGE",
-    title: "Pre-Owned: A Second Life",
-    excerpt:
-      "Why we believe in giving historical models a renewed presence on the wrist of a new collector.",
-    date: "APRIL 28, 2026",
-    readTime: "5 MIN READ",
-    image:
-      "/images/blog-6.webp",
-  },
+    {
+      id: 1,
+      category: "CRAFTSMANSHIP",
+      title: "The Art of Mechanical Movement",
+      excerpt:
+        "Inside the meticulous process of hand-assembling every Valour caliber, from raw components to finished rotor.",
+      date: "JUNE 10, 2026",
+      readTime: "4 MIN READ",
+      image:
+        "/images/blog-1.webp",
+    },
+    {
+      id: 2,
+      category: "DESIGN",
+      title: "Why Dial Texture Matters",
+      excerpt:
+        "A look at sunburst finishing, guilloché patterns, and how light interacts with a well-engineered dial.",
+      date: "JUNE 2, 2026",
+      readTime: "3 MIN READ",
+      image:
+        "/images/blog-2.webp",
+    },
+    {
+      id: 3,
+      category: "BRAND",
+      title: "Two Founders, One Vision",
+      excerpt:
+        "How a physician and a watch reviewer joined forces to challenge what an accessible luxury watch could be.",
+      date: "MAY 24, 2026",
+      readTime: "6 MIN READ",
+      image:
+        "/images/blog-3.webp",
+    },
+    {
+      id: 4,
+      category: "COLLECTION",
+      title: "Introducing Lucent: Red Edition",
+      excerpt:
+        "A deep dive into the dimensionality and presence behind our most striking release yet.",
+      date: "MAY 15, 2026",
+      readTime: "5 MIN READ",
+      image:
+        "/images/blog-4.webp",
+    },
+    {
+      id: 5,
+      category: "CARE",
+      title: "Servicing Your Mechanical Watch",
+      excerpt:
+        "What every owner should know about maintenance intervals, water resistance, and long-term care.",
+      date: "MAY 4, 2026",
+      readTime: "4 MIN READ",
+      image:
+        "/images/blog-5.webp",
+    },
+    {
+      id: 6,
+      category: "HERITAGE",
+      title: "Pre-Owned: A Second Life",
+      excerpt:
+        "Why we believe in giving historical models a renewed presence on the wrist of a new collector.",
+      date: "APRIL 28, 2026",
+      readTime: "5 MIN READ",
+      image:
+        "/images/blog-6.webp",
+    },
   ];
 
   return (
@@ -353,10 +353,10 @@ const BlogDetails = () => {
       <div className="blog-page">
         <section className="blog-detail-section">
           <div className="blog-hero">
-            <img 
+            <img
               ref={heroImageRef}
-              src={article.heroImage} 
-              alt={article.title} 
+              src={article.heroImage}
+              alt={article.title}
               className="blog-hero-image"
             />
             <div className="blog-hero-overlay" />
@@ -384,8 +384,8 @@ const BlogDetails = () => {
             </Link>
 
             <div className="article-author" ref={authorRef}>
-              <img 
-                src={article.author.avatar} 
+              <img
+                src={article.author.avatar}
                 alt={article.author.name}
                 className="author-avatar"
               />
@@ -397,7 +397,7 @@ const BlogDetails = () => {
                 <button className="action-btn">
                   <Share2 size={18} />
                 </button>
-                <button 
+                <button
                   className={`action-btn ${isBookmarked ? 'active' : ''}`}
                   onClick={() => setIsBookmarked(!isBookmarked)}
                 >
@@ -431,8 +431,8 @@ const BlogDetails = () => {
                   case 'image':
                     return (
                       <figure key={index} className="article-image-block">
-                        <img 
-                          src={block.src} 
+                        <img
+                          src={block.src}
                           alt={block.caption}
                           className="article-image"
                         />
@@ -456,59 +456,59 @@ const BlogDetails = () => {
 
           <div className="swiper-container">
             <Swiper
-            modules={[Autoplay, Pagination]}
-            spaceBetween={20}
-            slidesPerView={4}
-            loop={true}
-            autoplay={{
-              delay: 2000,
-              disableOnInteraction: true,
-            }}
-            pagination={{ clickable: true }}
-            breakpoints={{
-              640: {
-                slidesPerView: 1,
-                spaceBetween: 10,
-              },
-              768: {
-                slidesPerView: 2,
-                spaceBetween: 10,
-              },
-              1024: {
-                slidesPerView: 3,
-                spaceBetween: 20,  // below 1400 = 20
-              },
-              1400: {
-                slidesPerView: 4,
-                spaceBetween: 20,  // above 1400 = 40
-              },
-            }}
-          >
-            {latestArticles.map((post, idx) => (
-              <SwiperSlide>
-                <article className={`blog-card ${idx === 0 ? "featured" : ""}`}>
-                  <div className="card-img-wrap">
-                    <img src={post.image} alt={post.title} />
-                    <div className="img-overlay" />
-                    <span className="category-tag">{post.category}</span>
-                    <span className="bottom-rule" />
-                  </div>
-                  <div className="card-body">
-                    <p className="card-meta">
-                      {post.date} <span className="meta-dot">—</span>{" "}
-                      {post.readTime}
-                    </p>
-                    <h3 className="card-title">{post.title}</h3>
-                    <span className="title-divider" />
-                    <p className="card-excerpt">{post.excerpt}</p>
-                    <Link href="/blog-details" className="read-more">
-                      READ ARTICLE
-                    </Link>
-                  </div>
-                </article>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+              modules={[Autoplay, Pagination]}
+              spaceBetween={20}
+              slidesPerView={4}
+              loop={true}
+              autoplay={{
+                delay: 2000,
+                disableOnInteraction: true,
+              }}
+              pagination={{ clickable: true }}
+              breakpoints={{
+                640: {
+                  slidesPerView: 1,
+                  spaceBetween: 10,
+                },
+                768: {
+                  slidesPerView: 2,
+                  spaceBetween: 10,
+                },
+                1024: {
+                  slidesPerView: 3,
+                  spaceBetween: 20,  // below 1400 = 20
+                },
+                1400: {
+                  slidesPerView: 4,
+                  spaceBetween: 20,  // above 1400 = 40
+                },
+              }}
+            >
+              {latestArticles.map((post, idx) => (
+                <SwiperSlide>
+                  <article className={`blog-card ${idx === 0 ? "featured" : ""}`}>
+                    <div className="card-img-wrap">
+                      <img src={post.image} alt={post.title} />
+                      <div className="img-overlay" />
+                      <span className="category-tag">{post.category}</span>
+                      <span className="bottom-rule" />
+                    </div>
+                    <div className="card-body">
+                      <p className="card-meta">
+                        {post.date} <span className="meta-dot">—</span>{" "}
+                        {post.readTime}
+                      </p>
+                      <h3 className="card-title">{post.title}</h3>
+                      <span className="title-divider" />
+                      <p className="card-excerpt">{post.excerpt}</p>
+                      <Link href="/blog-details" className="read-more">
+                        READ ARTICLE
+                      </Link>
+                    </div>
+                  </article>
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
         </section>
       </div>

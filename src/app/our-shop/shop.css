@@ -470,14 +470,9 @@ overflow: hidden;
     }
 }
 
-/* .ht-grid.ht-list-view {
-    grid-template-columns: 1fr;
-} */
-
 .ht-card {
     position: relative;
     cursor: pointer;
-    opacity: 0;
     transform: translateY(30px) scale(0.95);
 }
 

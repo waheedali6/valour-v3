@@ -7,6 +7,7 @@ import "./checkout.css"
 const page = () => {
   return (
     <>
+
       <Header />
       <CheckoutSec />
       <Footer />

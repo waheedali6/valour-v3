@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 html,
 body {
     height: 100%;
@@ -84,7 +85,7 @@ body {
     margin: 0 auto;
 }
 
-.main-image-container a{
+.main-image-container a {
     width: 100%;
 }
 
@@ -117,71 +118,6 @@ body {
     font-weight: 600;
 }
 
-.specs-accordion {
-    border-top: 1px solid var(--border-color);
-    border-bottom: 1px solid var(--border-color);
-    margin: 2rem 0;
-}
-
-.specs-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.25rem 0;
-    cursor: pointer;
-    transition: color 0.2s;
-}
-
-.specs-header:hover .chevron-icon {
-            background: #fff;
-}
-
-
-.specs-title {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    font-size: 0.875rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-.specs-icon {
-    color: #fff;
-}
-
-.specs-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease, padding 0.4s ease;
-}
-
-.specs-content.open {
-    max-height: 600px;
-    padding-bottom: 1.5rem;
-}
-
-.spec-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid var(--border-color);
-    font-size: 0.875rem;
-}
-
-.spec-row:last-child {
-    border-bottom: none;
-}
-
-.spec-label {
-    color: #fff;
-}
-
-.spec-value {
-    color: var(--text-primary);
-    font-weight: 500;
-}
 
 .edition-section {
     margin-bottom: 1.5rem;
@@ -195,7 +131,7 @@ body {
 
 .edition-label span {
     color: var(--text-primary);
-    font-weight: 600;
+    font-weight: 600; 
 }
 
 .edition-select {
@@ -346,4 +282,53 @@ body {
     100% {
         background-position: -200% 0;
     }
+}
+
+
+
+
+.product-description-section {
+    background-color: #0a0a0a;
+    color: #ffffff;
+    padding: 4rem 0;
+}
+
+.description-text {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: #a0a0a0;
+    margin-bottom: 2rem;
+}
+
+.specs-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.specs-table thead th {
+    text-align: left;
+    padding: 1rem 0;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #ffffff;
+    width: 50%;
+    border-bottom: 1px solid #2a2a2a;
+}
+
+.specs-table tbody td {
+    padding: 0.875rem 0;
+    font-size: 0.9375rem;
+    width: 50%;
+    border-bottom: 1px solid #2a2a2a;
+}
+
+.specs-table tbody td:first-child {
+    color: #a0a0a0;
+}
+
+.specs-table tbody td:last-child {
+    color: #ffffff;
+    font-weight: 500;
 }

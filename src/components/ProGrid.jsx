@@ -338,11 +338,11 @@ const sectionRef = useRef(null)
       <div
         className="container"
       >
-        <header className="ht-header" data-aos="fade-up">
+        <div className="ht-header" data-aos="fade-up">
           <h1>
             <span>Valour</span> Watches
           </h1>
-        </header>
+        </div>
 
         <div className="ht-filters-bar" data-aos="fade-down">
           <div className="ht-filters-inner">

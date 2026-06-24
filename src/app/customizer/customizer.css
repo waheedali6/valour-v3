@@ -312,8 +312,11 @@ font-family: 'Times New Roman', Times, serif;
 }
 
 .big_img {
+    -webkit-filter: drop-shadow(0px 0px 83px #ffffff85);
+    filter: drop-shadow(0px 0px 83px #ffffff85);
     display: flex;
     justify-content: center;
+    color: #ffffff85;
     height: 100%;
     align-items: center;
     position: relative;
@@ -323,8 +326,6 @@ font-family: 'Times New Roman', Times, serif;
     width: 50%;
 }
 
-
-#imgStrap {}
 
 img#imgCase {
     position: absolute;
