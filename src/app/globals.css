@@ -46,10 +46,6 @@ body {
   padding-top: 10px;
 }
 
-.navbar .container-fluid {
-  justify-content: space-evenly;
-}
-
 .navbar-collapse {
   flex-grow: 0;
 }
@@ -129,9 +125,10 @@ body {
 
 nav .side-box {
   gap: 30px;
-  padding-left: 50px;
   display: flex;
   align-items: center;
+  justify-content: end;
+  width: 20%;
 }
 
 nav .side-box p {
@@ -780,6 +777,14 @@ footer {
   border-top: 1px solid hsla(0, 0%, 59%, .3);
 }
 
+.footer {
+  height: 100vh;
+  padding-top: 9%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .footer-upper {
   padding: 20px 0 30px;
   gap: 20px;
@@ -835,12 +840,12 @@ footer {
   font-family: Poppins, sans-serif;
 }
 
-.mid-footer .icon-box {
+.icon-box {
   display: flex;
   gap: 15px;
 }
 
-.mid-footer .icon-box svg {
+.icon-box svg {
   color: #fff;
   font-size: 18px;
 }
@@ -946,12 +951,230 @@ header {
   left: 0;
   right: 0;
   z-index: 4000;
-  background: #000000b3;
+  background: transparent;
   transition: background 0.5s ease, backdrop-filter 0.5s ease;
 }
 
 .navbar-brand {
   margin: 0;
+}
+
+.navbar-brand img {
+  width: 150px;
+}
+
+header .menu {
+  cursor: pointer;
+  transition: opacity .2s ease;
+  align-items: center;
+  display: flex;
+  gap: 18px;
+}
+
+header .r-head .search-icon svg {
+  color: #fff;
+  font-size: 25px;
+  transition: all .5s ease-in-out;
+}
+
+header .r-head .search-icon svg:hover {
+  opacity: .5;
+}
+
+header .r-head {
+  width: 20%;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+header .menu .burger-btn {
+  animation: recross .5s ease;
+  display: block;
+  font-size: .75rem;
+  height: 12px;
+  margin-bottom: 0;
+  padding: 0 0 0 2px;
+  position: relative;
+  transition: .2s ease;
+  width: 26px;
+  will-change: height;
+  z-index: 10000
+}
+
+[dir=ltr] header .menu .burger-btn {
+  margin-right: 18px
+}
+
+[dir=rtl] header .menu .burger-btn {
+  margin-left: 18px
+}
+
+header .menu .burger-btn span {
+  background: #fff;
+  display: inline-block;
+  height: 2px;
+  left: 2px;
+  position: absolute;
+  top: 0;
+  transform-origin: left center;
+  transition: transform .5s ease;
+  width: 26px
+}
+
+header .menu .burger-btn span:nth-child(2) {
+  bottom: 0;
+  top: inherit
+}
+
+header .menu .label {
+  color: #fff;
+  overflow: hidden;
+  padding: 6px 0 5px;
+  position: relative
+}
+
+header .menu .label:after {
+  background: #fff;
+  bottom: 0;
+  content: "";
+  height: 1px;
+  left: 0;
+  position: absolute;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform .5s ease;
+  width: 100%
+}
+
+@media(min-width: 992px) {
+  header .menu:hover .burger-btn {
+    height: 20px;
+    margin-top: 4px
+  }
+}
+
+header .menu:hover .label:after {
+  transform: scale(1);
+  transform-origin: left;
+  transition: transform .5s ease
+}
+
+header.sidebar-opened .burger-btn {
+  animation: cross .5s ease;
+  height: 20px;
+  margin-top: 0 !important
+}
+
+header.sidebar-opened .burger-btn span {
+  transform: rotate(45deg)
+}
+
+header.sidebar-opened .burger-btn span:nth-child(2) {
+  transform: rotate(-45deg)
+}
+
+
+@keyframes cross {
+
+  0%,
+  to {
+    opacity: 1
+  }
+
+  50% {
+    opacity: 0
+  }
+}
+
+@keyframes recross {
+
+  0%,
+  to {
+    opacity: 1
+  }
+
+  50% {
+    opacity: 0
+  }
+}
+
+
+
+@media screen and (max-width: 1100px) {
+  header .menu .label {
+    display: none
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  header {
+    height: 66px;
+    padding: 34px 0
+  }
+
+  header .menu .burger-btn {
+    font-size: 1.125rem;
+    margin-left: 0;
+    margin-top: -2px;
+    padding: 0
+  }
+
+  header.sidebar-opened .menu .burger-btn {
+    height: 19px
+  }
+
+  header.sidebar-opened .menu .burger-btn span {
+    height: 2px;
+    width: 24px
+  }
+
+
+  header .label {
+    display: none
+  }
+
+}
+
+.sidebar-menu {
+  padding: 9rem 62px 30px 9.5rem;
+  width: 100%;
+  max-width: 50rem;
+  background-color: #000;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: -50rem;
+  z-index: 5000;
+  border-right: 1px solid #2a2a2a;
+  display: flex;
+  flex-direction: column;
+  transition: all .9s ease-out;
+  overflow-y: auto;
+}
+
+.sidebar-menu.active {
+  left: 0;
+}
+
+.side-overlay {
+  position: fixed;
+  top: 1110rem;
+  right: 0;
+  width: 0;
+  height: 0;
+  background: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  z-index: -999;
+  transition: all .9s;
+}
+
+.side-overlay.active {
+  top: 0;
+  opacity: 1;
+  z-index: 1;
+  width: calc(100vw - 50rem);
+  height: 100vh;
 }
 
 header.header-scrolled {
@@ -960,6 +1183,91 @@ header.header-scrolled {
   -webkit-backdrop-filter: blur(18px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
+
+.sidebar-menu .link-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-bottom: 50px;
+  border-bottom: 1px solid hsl(0deg 0% 59% / 30%);
+}
+
+.sidebar-menu .link-list li a {
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 38px;
+  color: #fff;
+  font-family: 'Times New Roman', Times, serif;
+  text-transform: uppercase;
+  text-decoration: none;
+  position: relative;
+  transition: opacity .5s ease-in-out;
+}
+
+.sidebar-menu .link-list li a::after {
+  height: 2px;
+  bottom: 5px;
+  background: #fff;
+}
+
+.sidebar-menu .link-list li a:hover {
+  opacity: .5;
+}
+
+.sidebar-menu .link-sec {
+  padding: 40px 0;
+  border-bottom: 1px solid hsl(0deg 0% 59% / 30%);
+}
+
+.sidebar-menu .link-sec ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.sidebar-menu .link-sec ul a {
+  font-family: Poppins, sans-serif;
+  font-size: 19px;
+  font-weight: 200;
+  line-height: 28px;
+  color: #fff;
+  text-decoration: none;
+  transition: all .5s ease-in-out;
+}
+
+.sidebar-menu .link-sec.two {
+  border: none;
+}
+
+.sidebar-menu .link-sec.two ul a {
+  font-size: 17px;
+}
+
+.sidebar-menu .link-sec ul a:hover {
+  opacity: .5;
+}
+
+.sidebar-menu .icon-box svg {
+  opacity: .5;
+}
+
+.sidebar-menu .icon-box svg:hover {
+  opacity: 1;
+}
+
+.sidebar-menu .icon-box {
+  justify-content: space-around;
+  gap: 60px;
+  margin-top: 40px;
+}
+
+
 
 /* ══════════════════════════════════════
    HERO — Canvas particles + blob morph
@@ -972,9 +1280,6 @@ header.header-scrolled {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* background-image: url(/images/hero-bg.jpg);
-  background-position: center;
-  background-size: cover; */
 }
 
 .hero-canvas {
@@ -2007,7 +2312,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: all .5s ease-in-out;
+  transition: all .9s ease-out;
 }
 
 .cart-sidebar.active {
@@ -2436,4 +2741,1096 @@ body {
     grid-template-columns: 1fr;
   }
 
+}
+
+
+/* ///////////cta-sec///////// */
+.cta-sec {
+  padding-bottom: 4%;
+}
+
+.cta-sec .row {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cta-sec h2 {
+  font-size: 50px;
+  color: #fff;
+  font-family: 'Times New Roman', Times, serif;
+  margin-bottom: 30px;
+}
+
+.cta-sec p {
+  font-size: 17px;
+  color: #fff;
+  margin: 0;
+  font-family: Poppins, sans-serif;
+  font-weight: 200;
+  line-height: 2;
+}
+
+.cta-sec .input-box {
+  border-radius: 15px;
+  border: 1px solid #ffffff91;
+  overflow: hidden;
+  background-color: #000;
+  width: 90%;
+  margin: 0 auto;
+  transition: all .3s ease-in-out;
+  display: flex;
+  align-items: center;
+  padding-right: 3px;
+}
+
+.cta-sec .input-box:hover {
+  border-color: #fff;
+}
+
+.cta-sec .input-box input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  width: 70%;
+  padding: 20px 20px;
+  font-size: 18px;
+}
+
+
+.cta-sec .input-box input::placeholder {
+  font-size: 18px;
+  color: #ffffff6e;
+}
+
+.cta-sec .input-box button {
+  border-radius: 10px;
+  width: 30%;
+  padding: 15px 21px;
+  font-family: Poppins, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  border: 1px solid #fff;
+  transition: all .3s ease-in-out;
+}
+
+.cta-sec .input-box button:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+
+
+
+
+
+/* ============================================================
+   VALOUR — RESPONSIVE STYLES
+   Only add responsive overrides here. No layout/structure changes.
+   Breakpoints: 1400px | 1200px | 992px | 768px | 576px | 480px
+   ============================================================ */
+
+@media (min-width: 1600px) {
+  .container {
+    max-width: 1641px;
+  }
+}
+
+@media (max-width: 1599px) {
+  .watch-text h2 {
+    font-size: 65px;
+  }
+
+  .cta-sec h2 {
+    font-size: 35px;
+    margin-bottom: 20px;
+
+  }
+
+  .testi-sec h2 {
+    font-size: 55px;
+  }
+
+  .cta-sec .input-box input {
+    font-size: 16px;
+    padding: 16px 16px;
+  }
+
+  .cta-sec .input-box button {
+    font-size: 16px;
+    padding: 13px 17px;
+  }
+
+}
+
+/* ── Container max width override for XL screens ── */
+@media (min-width: 1400px) {
+  /* .container {
+    max-width: 1641px;
+  } */
+
+  /* .product-sec .container {
+        max-width: 1321px;
+    } */
+
+  .authors-sec .container {
+    max-width: 1871px;
+  }
+}
+
+/* ============================================================
+   1400px — Large desktops
+   ============================================================ */
+@media (max-width: 1399px) {
+
+  .sidebar-menu {
+    padding: 6rem 40px 30px 8.5rem;
+  }
+
+  .sidebar-menu .link-list li a {
+    font-size: 30px;
+  }
+
+  .sidebar-menu .link-list {
+    gap: 10px;
+    padding-bottom: 20px;
+
+  }
+
+  .sidebar-menu .link-sec {
+    padding: 30px 0;
+  }
+
+  .know-sec h2 {
+    font-size: 55px;
+  }
+
+  .know-left-sticky {
+    padding-top: 130px;
+  }
+
+  .watch-text h2 {
+    font-size: 50px
+  }
+
+  .testi-sec {
+    padding: 7% 0 0%;
+  }
+
+  .testi-sec h2 {
+    font-size: 50px
+  }
+
+  .testi-sec .testi-desc {
+    line-height: 30px;
+  }
+
+  .cta-sec p {
+    line-height: 30px;
+  }
+
+
+  .testi-sec .main-para {
+    font-size: 16px;
+  }
+
+  .testi-sec .center-img {
+    width: 27%;
+  }
+
+  .testi-sec .side {
+    gap: 2rem;
+    justify-content: end;
+  }
+
+  .footer {
+    padding-top: 11%;
+  }
+
+  .cta-sec {
+    padding-bottom: 2%;
+  }
+
+  .testi-sec .side.side-2 {
+    padding-top: 0;
+    padding-left: 96px;
+  }
+
+  .form-sec h2 {
+    font-size: 55px;
+  }
+
+  .form-sec img {
+    margin: 0;
+  }
+
+  .form-sec .img-col {
+    display: flex;
+    align-items: center;
+  }
+
+
+  .product-sec .pro-card .details h5 {
+    font-size: 20px;
+  }
+
+  .product-sec h2 {
+    font-size: 45px;
+  }
+}
+
+/* ============================================================
+   1200px — Regular desktops
+   ============================================================ */
+@media (max-width: 1199px) {
+
+  /* --- Header --- */
+  nav .side-box {
+    padding-left: 20px;
+    gap: 20px;
+  }
+
+  .navbar-expand-lg .navbar-nav {
+    gap: 25px;
+  }
+
+  /* --- Hero --- */
+  .animated-text {
+    font-size: 90px;
+  }
+
+  /* --- Know Section --- */
+  .know-big-h {
+    font-size: 65px;
+  }
+
+  .know-left-sticky {
+    padding-top: 100px;
+  }
+
+
+  .product-sec h2 {
+    font-size: 35px;
+  }
+
+
+
+  /* --- Watch Section --- */
+  .watch-text h2 {
+    font-size: 42px;
+  }
+
+  .watch-text p {
+    font-size: 15px;
+  }
+
+  /* --- Testimonials --- */
+  .testi-sec h2 {
+    font-size: 40px;
+  }
+
+  .testi-sec .main-para {
+    font-size: 15px;
+    line-height: 25px;
+  }
+
+  .testi-sec .testi-desc {
+    font-size: 15px;
+    line-height: 25px;
+  }
+
+  .testi-sec .center-img {
+    width: 25%;
+  }
+
+  .cta-sec h2 {
+    font-size: 30px;
+    margin-bottom: 10px;
+  }
+
+  .cta-sec p {
+    line-height: 22px;
+    font-size: 15px;
+  }
+
+  .footer-desc {
+    font-size: 15px;
+    padding-right: 5%;
+    margin-top: 20px;
+    line-height: 22px;
+  }
+
+  .mid-footer .footer-link {
+    font-size: 15px;
+  }
+
+  .mid-footer ul li {
+    margin-bottom: 5px;
+  }
+
+  .mid-footer .footer-link2 {
+    font-size: 14px;
+  }
+
+  .testi-sec .user-box img {
+    width: 55px;
+  }
+
+  .testi-sec .side.side-2 {
+    padding-left: 50px;
+  }
+
+  .testi-sec .testi-box1 {
+    padding-right: 40px;
+  }
+
+  /* --- Form Section --- */
+  .form-sec h2 {
+    font-size: 46px;
+  }
+
+  .cta-sec .input-box input {
+    font-size: 15px;
+    padding: 10px 13px;
+  }
+
+  .cta-sec .input-box input::placeholder {
+    font-size: 15px;
+  }
+
+  /* .footer {
+    padding-top: 10%;
+  } */
+
+  /* .mid-footer .border-row.two {
+    padding: 3% 0;
+  } */
+
+  .cta-sec .input-box button {
+    font-size: 15px;
+    padding: 7px 10px;
+  }
+
+  /* footer {
+    padding: 2% 0 25px 0;
+  } */
+
+  .cta-sec .input-box {
+    width: 100%;
+    padding-right: 2px;
+  }
+}
+
+/* ============================================================
+   992px — Tablets landscape / small desktops
+   ============================================================ */
+@media (max-width: 992px) {
+
+  /* --- Global --- */
+  .hero-canvas-sec,
+  .know-split-sec,
+  .product-sec,
+  .luxury-main,
+  .creative-sec,
+  .watch-sec,
+  .testi-sec,
+  .form-sec {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  /* --- Header --- */
+  header {
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.4);
+    margin-left: auto;
+  }
+
+  .navbar-toggler-icon {
+    filter: invert(1);
+  }
+
+  .navbar-collapse {
+    background: rgba(0, 0, 0, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 20px 15px;
+    border-radius: 12px;
+    margin-top: 10px;
+  }
+
+  .navbar-collapse .navbar-nav {
+    gap: 5px;
+    flex-direction: column;
+  }
+
+  .navbar-collapse .nav-link {
+    padding: 10px 5px;
+    font-size: 16px;
+  }
+
+  nav .side-box {
+    padding-left: 15px;
+    gap: 15px;
+  }
+
+  .navbar .container {
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+
+  .navbar-brand {
+    margin: 0 auto 0 0;
+  }
+
+  /* --- Hero --- */
+  .animated-text {
+    font-size: 70px;
+  }
+
+  .hero-sec h1 {
+    font-size: 70px;
+    letter-spacing: 30px;
+  }
+
+  /* --- Know Section --- */
+  .know-split-sec {
+    padding-top: 80px;
+    padding-bottom: 60px;
+  }
+
+  .know-left-sticky {
+    position: static;
+    padding-top: 60px;
+  }
+
+  .know-big-h {
+    font-size: 55px;
+  }
+
+  .know-para-text {
+    font-size: 15px;
+  }
+
+  /* --- Product Section --- */
+  .product-sec {
+    padding: 60px 0 40px;
+  }
+
+  .product-sec h2 {
+    font-size: 38px;
+    margin: 30px 0 0;
+  }
+
+  .product-sec .pro-card {
+    margin: 30px 10px 10px;
+    padding: 50px 25px 25px;
+  }
+
+  /* --- Watch Section (already handled in globals.css at 991px) --- */
+  .watch-text {
+    padding-bottom: 0;
+    text-align: center;
+    align-items: center;
+    padding-top: 40px;
+  }
+
+  .watch-img-wrap {
+    margin-bottom: 30px;
+  }
+
+  .watch-text h2 {
+    font-size: 40px;
+  }
+
+  /* --- Testimonials --- */
+  .testi-sec {
+    padding: 60px 0 40px;
+  }
+
+  .testi-sec h2 {
+    font-size: 40px;
+  }
+
+  .testi-sec .side.side-2 {
+    padding-left: 15px;
+    padding-top: 0;
+  }
+
+  .testi-sec .testi-box1 {
+    padding-right: 15px;
+  }
+
+  .testi-sec .center-img {
+    display: none;
+  }
+
+  .testi-sec .side {
+    gap: 2rem;
+  }
+
+  /* --- Form Section --- */
+  .form-sec {
+    padding: 60px 0;
+  }
+
+  .form-sec h2 {
+    font-size: 40px;
+  }
+
+  .form-sec .img-col {
+    display: none;
+  }
+
+  .form-sec button {
+    width: 70% !important;
+  }
+
+  /* --- Footer --- */
+  footer {
+    padding: 40px 0 20px;
+  }
+
+  .footer-desc {
+    padding-right: 5%;
+    font-size: 15px;
+  }
+
+  .mid-footer .footer-link {
+    font-size: 22px;
+  }
+
+  .mid-footer .border-row.two {
+    padding: 3% 0;
+  }
+
+  .inner-footer {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  /* --- Slider Image --- */
+  .slider-image {
+    height: 60vh;
+  }
+
+  .before-after-slider img {
+    height: 60vh;
+  }
+
+  /* --- Creative Video --- */
+  .creative-sec {
+    min-height: 100vh;
+  }
+}
+
+/* ============================================================
+   768px — Tablets portrait
+   ============================================================ */
+@media (max-width: 768px) {
+
+  /* --- Hero --- */
+  .animated-text {
+    font-size: 52px;
+  }
+
+  .hero-sec h1 {
+    font-size: 52px;
+    letter-spacing: 15px;
+  }
+
+  /* --- Know Section --- */
+  .know-big-h {
+    font-size: 44px;
+  }
+
+  .know-para-text {
+    font-size: 14px;
+  }
+
+  .know-ticker-wrap {
+    margin-top: 60px;
+  }
+
+  /* --- Product Section --- */
+  .product-sec h2 {
+    font-size: 32px;
+  }
+
+  .product-sec .pro-card {
+    margin: 20px 5px 5px;
+    padding: 40px 20px 20px;
+  }
+
+  .product-sec .pro-card img {
+    width: 75%;
+  }
+
+  .product-sec .pro-card .details h5 {
+    font-size: 18px;
+  }
+
+  /* --- Watch Section --- */
+  .watch-sec {
+    padding: 70px 0;
+    min-height: auto;
+  }
+
+  .watch-text h2 {
+    font-size: 36px;
+  }
+
+  .watch-text p {
+    font-size: 14px;
+  }
+
+  .watch-text span {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
+  .watch-glow {
+    width: 280px;
+    height: 280px;
+  }
+
+  /* --- Testimonials --- */
+  .testi-sec h2 {
+    font-size: 34px;
+  }
+
+  .testi-sec .main-para {
+    font-size: 14px;
+    padding-right: 0;
+  }
+
+  .testi-sec .testi-desc {
+    font-size: 13px;
+    line-height: 28px;
+  }
+
+  .testi-sec .side {
+    gap: 1.5rem;
+  }
+
+  /* --- Form --- */
+  .form-sec h2 {
+    font-size: 34px;
+  }
+
+  .form-sec p {
+    font-size: 14px;
+  }
+
+  .form-sec button {
+    width: 80% !important;
+  }
+
+  /* --- Footer --- */
+  .mid-footer .footer-link {
+    font-size: 18px;
+  }
+
+  .footer-upper {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* --- Slider Image --- */
+  .slider-image {
+    height: 50vh;
+  }
+
+  .before-after-slider img {
+    height: 50vh;
+  }
+
+  /* --- Img Section panels --- */
+  .is-text {
+    left: 7%;
+    bottom: 11%;
+  }
+
+  .is-num {
+    right: 6%;
+  }
+
+  .is-slat {
+    transition-duration: 0.7s;
+  }
+}
+
+/* ============================================================
+   576px — Mobile landscape / large phones
+   ============================================================ */
+@media (max-width: 576px) {
+
+  /* --- Global Sections --- */
+  .hero-canvas-sec,
+  .know-split-sec,
+  .product-sec,
+  .luxury-main,
+  .creative-sec,
+  .watch-sec,
+  .testi-sec,
+  .form-sec {
+    min-height: auto;
+  }
+
+  /* --- Header --- */
+  nav .side-box {
+    gap: 12px;
+    padding-left: 10px;
+  }
+
+  nav .side-box svg {
+    font-size: 20px;
+  }
+
+  .theme-btn {
+    padding: 5px 14px;
+    font-size: 12px;
+  }
+
+  /* --- Hero --- */
+  .animated-text {
+    font-size: 38px;
+  }
+
+  .hero-sec h1 {
+    font-size: 38px;
+    letter-spacing: 8px;
+  }
+
+  .hero-canvas-sec {
+    height: 100vh;
+  }
+
+  /* --- Know Section --- */
+  .know-split-sec {
+    padding-top: 60px;
+    padding-bottom: 50px;
+  }
+
+  .know-big-h {
+    font-size: 36px;
+  }
+
+  .know-para-text {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .know-btn {
+    padding: 10px 22px;
+    font-size: 13px;
+  }
+
+  /* --- Product Section --- */
+  .product-sec {
+    padding: 50px 0 30px;
+  }
+
+  .product-sec h2 {
+    font-size: 26px;
+    margin: 20px 0 0;
+  }
+
+  .product-sec .pro-card {
+    margin: 15px 5px 5px;
+    padding: 35px 18px 18px;
+    border-radius: 16px;
+  }
+
+  .product-sec .pro-card img {
+    width: 80%;
+  }
+
+  .product-sec .pro-card .details {
+    padding: 18px 14px;
+  }
+
+  .product-sec .pro-card .details h5 {
+    font-size: 16px;
+  }
+
+  .product-sec .pro-card .details h6 {
+    font-size: 13px;
+  }
+
+  .product-sec .pro-card .details svg {
+    height: 42px;
+    width: 42px;
+    padding: 11px;
+  }
+
+  /* --- Video / Luxury Sections --- */
+  .luxury-section,
+  .luxury-section2 {
+    height: 70vh;
+  }
+
+  .luxury-main,
+  .luxury-main2 {
+    min-height: 70vh;
+  }
+
+  /* --- Watch Section --- */
+  .watch-sec {
+    padding: 60px 0 50px;
+  }
+
+  .watch-text h2 {
+    font-size: 30px;
+  }
+
+  .watch-text p {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .watch-text span {
+    font-size: 10px;
+    margin-bottom: 12px;
+  }
+
+  .watch-img {
+    max-width: 320px;
+    width: 85%;
+    margin-bottom: 30px;
+  }
+
+  .watch-glow {
+    width: 220px;
+    height: 220px;
+  }
+
+  .watch-glitch-wrap {
+    margin-top: -20px;
+    margin-bottom: -40px;
+  }
+
+  /* --- Testimonials --- */
+  .testi-sec {
+    padding: 50px 0 30px;
+  }
+
+  .testi-sec h2 {
+    font-size: 28px;
+  }
+
+  .testi-sec .main-para {
+    font-size: 13px;
+    padding-right: 0;
+    line-height: 1.8;
+  }
+
+  .testi-sec .testi-desc {
+    font-size: 12px;
+    line-height: 24px;
+  }
+
+  .testi-sec .name {
+    font-size: 18px;
+  }
+
+  .testi-sec .desig {
+    font-size: 14px;
+  }
+
+  .testi-sec .side {
+    gap: 1.2rem;
+  }
+
+  .testi-sec .colon {
+    width: 30px;
+    height: 30px;
+  }
+
+  /* --- Form --- */
+  .form-sec {
+    padding: 50px 0;
+  }
+
+  .form-sec h2 {
+    font-size: 28px;
+  }
+
+  .form-sec p {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .form-sec .input {
+    padding: 12px 14px;
+    font-size: 13px;
+  }
+
+  .form-sec button {
+    width: 90% !important;
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  /* --- Footer --- */
+  footer {
+    padding: 35px 0 20px;
+  }
+
+  .footer-desc {
+    padding-right: 0;
+    font-size: 14px;
+    margin-top: 15px;
+  }
+
+  .mid-footer .footer-link {
+    font-size: 16px;
+  }
+
+  .mid-footer .footer-link2 {
+    font-size: 14px;
+  }
+
+  .mid-footer .footer-p {
+    font-size: 14px;
+  }
+
+  .mid-footer .border-row.two {
+    padding: 4% 0;
+  }
+
+  .inner-footer {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+
+  .inner-footer p,
+  .inner-footer a {
+    font-size: 11px;
+  }
+
+  /* --- Slider Image --- */
+  .slider-image {
+    height: 45vh;
+  }
+
+  .before-after-slider img {
+    height: 45vh;
+  }
+
+  /* --- Creative Video --- */
+  .video-content h2 {
+    font-size: 36px;
+  }
+
+  .video-content p {
+    font-size: 14px;
+  }
+}
+
+/* ============================================================
+   480px — Small phones
+   ============================================================ */
+@media (max-width: 480px) {
+
+  /* --- Hero --- */
+  .animated-text {
+    font-size: 30px;
+  }
+
+  .hero-sec h1 {
+    font-size: 30px;
+    letter-spacing: 5px;
+  }
+
+  /* --- Know Section --- */
+  .know-big-h {
+    font-size: 30px;
+  }
+
+  .know-split-sec {
+    padding-top: 50px;
+    padding-bottom: 40px;
+  }
+
+  /* --- Watch Section --- */
+  .watch-text h2 {
+    font-size: 26px;
+  }
+
+  .watch-img {
+    max-width: 270px;
+    width: 90%;
+  }
+
+  /* --- Testimonials --- */
+  .testi-sec h2 {
+    font-size: 24px;
+  }
+
+  /* --- Form --- */
+  .form-sec h2 {
+    font-size: 24px;
+  }
+
+  /* --- Product --- */
+  .product-sec h2 {
+    font-size: 22px;
+  }
+
+  /* --- Footer --- */
+  .mid-footer .footer-link {
+    font-size: 14px;
+  }
+
+  /* --- Slider Image --- */
+  .slider-image {
+    height: 40vh;
+  }
+
+  .before-after-slider img {
+    height: 40vh;
+  }
+
+  /* --- Video Box (scroll section) --- */
+  .video-box {
+    width: 260px;
+    height: 260px;
+  }
+}
+
+/* ============================================================
+   Navbar toggler — Mobile open state centering fix
+   ============================================================ */
+@media (max-width: 992px) {
+  .navbar>.container {
+    position: relative;
+    flex-wrap: wrap;
+  }
+
+  .navbar-toggler {
+    order: 3;
+  }
+
+  .navbar-brand {
+    order: 2;
+    margin: 0 auto;
+  }
+
+  .side-box {
+    order: 4;
+    margin-left: auto;
+  }
+
+  .navbar-collapse {
+    order: 5;
+    width: 100%;
+  }
 }

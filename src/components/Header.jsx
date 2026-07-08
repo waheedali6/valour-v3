@@ -7,6 +7,7 @@ import ScrollTrigger from 'gsap/ScrollTrigger'
 import Link from 'next/link'
 import { useDispatch } from 'react-redux'
 import { toggleCartSidebar } from '@/app/features/cart/cSidebarSlice'
+import SidebarMenu from './SidebarMenu'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -14,6 +15,8 @@ const Header = () => {
   const dispatch = useDispatch();
   const headerRef = useRef(null)
   const [scrolled, setScrolled] = useState(false)
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
 
   useEffect(() => {
     const header = headerRef.current
@@ -49,43 +52,29 @@ const Header = () => {
     }
   }, [])
 
+
+
   return (
     <header
       ref={headerRef}
-      className={scrolled ? 'header-scrolled' : ''}
+      className={`${scrolled ? 'header-scrolled' : ''} ${isSidebarOpen ? "sidebar-opened" : ""}`}
     >
       <nav className="navbar navbar-expand-lg">
         <div className="container">
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <Link className="nav-link" href="/about">About</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" href="/our-shop">Our Shop</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" href="/blog">Blog</Link>
-              </li>
-            </ul>
+          <div className="r-head">
+            <div className="menu" onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
+              <p className="burger-btn"><span></span> <span></span></p>
+              <div className="label">Menu</div>
+            </div>
+            <a href="#" className='search-icon'><IoSearchOutline /></a>
           </div>
+
+          <SidebarMenu isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
           <Link className="navbar-brand" href="/">
             <img src="/images/logo.png" alt="" />
           </Link>
           <div className="side-box">
             <a href="#" className='theme-btn'>English</a>
-            <a href="#"><IoSearchOutline /></a>
             <p onClick={() => dispatch(toggleCartSidebar(true))}><IoBagHandleOutline /></p>
           </div>
         </div>

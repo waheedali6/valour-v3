@@ -93,13 +93,14 @@
          border-radius: 15px;
      }
 
-     .section-image.s-img{
-        width: 80%;
+     .section-image.s-img {
+         width: 80%;
      }
-     .section-image.w-img{
-        width: 80%;
-        display: block;
-        margin: 0 auto;
+
+     .section-image.w-img {
+         width: 80%;
+         display: block;
+         margin: 0 auto;
      }
 
      .bullet-list {
@@ -405,5 +406,62 @@
 
          .section-image {
              height: 280px;
+         }
+     }
+
+
+
+
+     @media (max-width: 1599px) {
+         .s-hd {
+             margin-bottom: 20px;
+             font-size: 50px;
+         }
+
+         .authors-hd {
+             margin-bottom: 20px;
+             font-size: 50px;
+         }
+
+         .belief-hd {
+             font-size: 65px;
+             margin-bottom: 20px;
+         }
+
+     }
+
+     @media (max-width: 1399px) {
+         .s-hd {
+             margin-bottom: 20px;
+             font-size: 40px;
+         }
+
+         .section-title {
+             margin-bottom: 20px;
+             font-size: 40px;
+         }
+
+         .s-sec p {
+             font-size: 16px;
+         }
+
+         .section-text {
+             font-size: 16px;
+         }
+
+         .bullet-item {
+             font-size: 16px;
+         }
+
+         .section-label {
+             margin-bottom: 10px;
+             font-size: 16px;
+         }
+
+     }
+
+     @media (max-width: 1199px) {
+         .about-sec {
+             padding: 17% 0 4%;
          }
      }

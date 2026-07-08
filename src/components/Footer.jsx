@@ -4,20 +4,23 @@ import React, { useState } from 'react'
 import { BsInstagram, BsTwitter, BsYoutube } from 'react-icons/bs'
 import { FaFacebook } from 'react-icons/fa6'
 import AppointmentModal from './AppointmentModal'
+import IconBox from './IconBox'
+import CtaSec from './CtaSec'
 
 const Footer = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     return (
         <section className='footer'>
+            <CtaSec />
             <footer>
                 <div className="container">
                     <div className="mid-footer">
                         <div className="row">
-                            <div className="col-md-4">
+                            <div className="col-md-4 col-xl-4">
                                 <Link href="/"><img src="/images/logo.png" alt="Footer Logo" /></Link>
                                 <p className='footer-desc'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, voluptates? Iusto optio temporibus perspiciatis eligendi ipsam error aspernatur velit quos. Iusto optio temporibus perspiciatis eligendi ipsam error aspernatur velit quos.</p>
                             </div>
-                            <div className="col-md-4">
+                            <div className="col-md-3 col-xl-4">
                                 <ul>
                                     <li><Link className='footer-link' href="/">Home</Link></li>
                                     <li><Link className='footer-link' href="/about">About</Link></li>
@@ -27,7 +30,7 @@ const Footer = () => {
                                     <li><Link className='footer-link' href="/product-details">Product Details</Link></li>
                                 </ul>
                             </div>
-                            <div className="col-md-4">
+                            <div className="col-md-5 col-xl-4">
                                 <div className="row border-row">
                                     <div className="col-md-6">
                                         <div className="link-box">
@@ -50,12 +53,7 @@ const Footer = () => {
                                         </div>
                                     </div>
                                     <div className="col-md-6">
-                                        <div className="icon-box">
-                                            <Link href="#"><FaFacebook /></Link>
-                                            <Link href="#"><BsTwitter /></Link>
-                                            <Link href="#"><BsInstagram /></Link>
-                                            <Link href="#"><BsYoutube /></Link>
-                                        </div>
+                                        <IconBox />
                                     </div>
                                 </div>
                                 <div className="row border-row two border-0">

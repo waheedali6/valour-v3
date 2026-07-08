@@ -90,13 +90,7 @@ body {
 }
 
 .ht-filters-inner {
-    background: rgba(10, 10, 10, 0.8);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.10);
-    border-radius: 1rem;
     padding: 1rem;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
 
@@ -112,6 +106,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
     gap: 0.75rem;
     flex: 1;
 }
@@ -395,6 +390,7 @@ overflow: hidden;
 .ht-active-filters {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 0.5rem;
     margin-top: 0.75rem;
     padding-top: 0.75rem;
@@ -765,4 +761,16 @@ overflow: hidden;
 .ht-empty p {
     font-size: 0.875rem;
     color: #4b5563;
+}
+
+
+
+@media (max-width: 1199px) {
+        .ht-card-img {
+          width: 70%;
+    }
+
+    .ht-card-name {
+      font-size: 25px;
+    }
 }

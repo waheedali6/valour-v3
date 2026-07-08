@@ -22,13 +22,13 @@ const ProductSec = () => {
   const perspRef = useRef(null)
 
 
-function createSlug(name) {
-  return name
-    .toLowerCase()
-    .trim()
-    .replace(/[^\w\s-]/g, "")
-    .replace(/\s+/g, "-");
-}
+  function createSlug(name) {
+    return name
+      .toLowerCase()
+      .trim()
+      .replace(/[^\w\s-]/g, "")
+      .replace(/\s+/g, "-");
+  }
 
   useEffect(() => {
     const section = sectionRef.current
@@ -143,23 +143,27 @@ function createSlug(name) {
                 spaceBetween: 10,
               },
               768: {
-                slidesPerView: 2,
+                slidesPerView: 3,
                 spaceBetween: 10,
               },
               1024: {
                 slidesPerView: 3,
+                spaceBetween: 15,  // below 1400 = 20
+              },
+              1200: {
+                slidesPerView: 4,
                 spaceBetween: 20,  // below 1400 = 20
               },
               1400: {
-                slidesPerView: 3,
+                slidesPerView: 4,
                 spaceBetween: 20,  // above 1400 = 40
               },
             }}
           >
-            {products.map((item) => (
+            {products.map((watch, index) => (
               <SwiperSlide>
-                <Link href={item.link} className='cards-link'>
-                  <div className="pro-card">
+                <Link href={watch.link} className='cards-link'>
+                  {/* <div className="pro-card">
                     <img src={item.image} alt="watch" />
                     <div className="details">
                       <div>
@@ -167,6 +171,67 @@ function createSlug(name) {
                         <h5>{item.name}</h5>
                       </div>
                       <FiPlus />
+                    </div>
+                  </div> */}
+                  <div
+                    key={watch.id}
+                    data-id={watch.id}
+                    className={`ht-card`}
+                    style={{ animationDelay: `${index * 80}ms` }}
+                    // onClick={() => handleCart(watch)}
+                    onClick={() => router.push("/product-details")}
+                  >
+                    <div className="ht-card-inner">
+                      <div className="ht-card-glow" />
+
+                      {watch.limited && (
+                        <div className="ht-limited-badge">
+                          <span>Limited</span>
+                        </div>
+                      )}
+
+                      <div className="ht-image-wrap">
+                        <div className="ht-shimmer" />
+                        <img
+                          src={watch.image}
+                          alt={watch.name}
+                          className="ht-card-img"
+                          loading="lazy"
+                        />
+                        <div className="ht-hover-overlay">
+                          <div className="ht-hover-content">
+                            <div className="ht-hover-line">
+                              <div className="line" />
+                              <span>Explore</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="ht-card-info">
+                        <div className="ht-card-header">
+                          <div>
+                            <p className="ht-card-ref">{watch.ref}</p>
+                            <h3 className="ht-card-name">{watch.name}</h3>
+                          </div>
+                          <div className="ht-card-arrow">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M9 5l7 7-7 7"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                        <p className="ht-card-subtitle">{watch.subtitle}</p>
+                        <div className="ht-card-specs">
+                          <span>{watch.material}</span>
+                          <div className="dot" />
+                          <span>{watch.type}</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </Link>
