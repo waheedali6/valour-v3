@@ -162,7 +162,7 @@ const ProductSec = () => {
           >
             {products.map((watch, index) => (
               <SwiperSlide>
-                <Link href={watch.link} className='cards-link'>
+                <Link href="/p-details" className='cards-link'>
                   {/* <div className="pro-card">
                     <img src={item.image} alt="watch" />
                     <div className="details">
@@ -179,7 +179,7 @@ const ProductSec = () => {
                     className={`ht-card`}
                     style={{ animationDelay: `${index * 80}ms` }}
                     // onClick={() => handleCart(watch)}
-                    onClick={() => router.push("/product-details")}
+                    // onClick={() => router.push("/p-details")}
                   >
                     <div className="ht-card-inner">
                       <div className="ht-card-glow" />

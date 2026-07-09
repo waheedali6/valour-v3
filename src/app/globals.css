@@ -36,7 +36,7 @@ body {
 .watch-sec,
 .testi-sec,
 .form-sec {
-  height: 100vh;
+  height: 100%;
 }
 
 
@@ -583,6 +583,10 @@ RESPONSIVE
   background-color: #000;
   padding: 9% 0 3%;
   position: relative;
+  height: 100%;
+}
+
+.testi-sec .container {
   overflow: hidden;
 }
 
@@ -931,17 +935,17 @@ footer a:hover {
 
 
 body {
-  overflow: auto;
+  /* overflow: auto; */
   /* Allows scrolling when content overflows */
-  scrollbar-width: none;
+  /* scrollbar-width: none; */
   /* Hides scrollbar in Firefox */
-  -ms-overflow-style: none;
+  /* -ms-overflow-style: none; */
   /* Hides scrollbar in IE and Edge */
 }
 
 /* Hides scrollbar for Chrome, Safari, and Opera */
 ::-webkit-scrollbar {
-  display: none;
+  /* display: none; */
 }
 
 /* ── FIXED HEADER ── */
@@ -2220,7 +2224,7 @@ SCROLL VIDEO
 .testi-sec,
 .form-sec {
   /* Clip scaled/rounded content cleanly */
-  overflow: hidden;
+  /* overflow: hidden; */
   /* Stacking context isolation */
   isolation: isolate;
   /* Smooth border-radius transition driven by JS */
@@ -2258,13 +2262,14 @@ SCROLL VIDEO
 html,
 body {
   height: 100%;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .snap-section {
-  scroll-snap-align: start;
-  width: 100%;
-  position: relative;
+  /* scroll-snap-align: start; */
+  /* width: 100%; */
+  /* position: relative; */
+   min-height: 100vh;
 }
 
 #main-scroller::-webkit-scrollbar {
@@ -2493,6 +2498,7 @@ body {
   max-width: 1000px;
   max-height: 90vh;
   overflow-y: auto;
+  overflow-x: hidden;
   position: relative;
 }
 

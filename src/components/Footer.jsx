@@ -1,8 +1,6 @@
 "use client"
 import Link from 'next/link'
 import React, { useState } from 'react'
-import { BsInstagram, BsTwitter, BsYoutube } from 'react-icons/bs'
-import { FaFacebook } from 'react-icons/fa6'
 import AppointmentModal from './AppointmentModal'
 import IconBox from './IconBox'
 import CtaSec from './CtaSec'

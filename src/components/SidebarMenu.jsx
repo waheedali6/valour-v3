@@ -1,7 +1,9 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import IconBox from './IconBox';
+import AppointmentModal from './AppointmentModal';
 
 const SidebarMenu = ({ setIsSidebarOpen, isSidebarOpen }) => {
+        const [isModalOpen, setIsModalOpen] = useState(false);
     const ref = useRef();
 
     useEffect(() => {
@@ -39,8 +41,12 @@ const SidebarMenu = ({ setIsSidebarOpen, isSidebarOpen }) => {
                         <div className="col-md-6">
                             <ul>
                                 <li><a href="/servicing">Servicing</a></li>
-                                <li><a href="#">Book an appointment</a></li>
+                                <li><a href="#" onClick={(e) => {
+                                    e.preventDefault()
+                                    setIsModalOpen(!isModalOpen)
+                                }}>Book an appointment</a></li>
                             </ul>
+                           
                         </div>
                     </div>
                 </div>
@@ -64,6 +70,7 @@ const SidebarMenu = ({ setIsSidebarOpen, isSidebarOpen }) => {
                 </div>
                     <IconBox />
             </div>
+             <AppointmentModal isModalOpen={isModalOpen} onClose={() => setIsModalOpen(!isModalOpen)}/>
         </>
     )
 }

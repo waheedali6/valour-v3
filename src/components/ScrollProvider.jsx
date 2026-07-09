@@ -65,21 +65,47 @@ export default function ScrollProvider({ children }) {
       })
     }
 
-    const onWheel = (e) => {
-      e.preventDefault()
+  const onWheel = (e) => {
+  if (isSnapping || wheelLocked) return;
 
-      if (isSnapping || wheelLocked) return
+  const sections = getSections();
+  if (!sections.length) return;
 
-      wheelLocked = true
+  const currentIdx = getCurrentSectionIndex(sections);
+  const currentSection = sections[currentIdx];
 
-      const direction = e.deltaY > 0 ? 1 : -1
-      snapToSection(direction)
+  const sectionTop = currentSection.offsetTop;
+  const sectionBottom =
+    sectionTop + currentSection.scrollHeight - scroller.clientHeight;
 
-      // prevents multi-trigger from fast mouse wheels
-      setTimeout(() => {
-        wheelLocked = false
-      }, 800)
-    }
+  const scrollTop = scroller.scrollTop;
+  const direction = e.deltaY > 0 ? 1 : -1;
+
+  const SNAP_OFFSET = Math.min(120, scroller.clientHeight * 0.15);
+
+const atBottom = scrollTop >= sectionBottom - SNAP_OFFSET;
+  const atTop = scrollTop <= sectionTop + 2;
+
+  // Allow normal scrolling inside oversized sections
+  if (direction > 0 && !atBottom) {
+    return;
+  }
+
+  if (direction < 0 && !atTop) {
+    return;
+  }
+
+  // Only prevent default when we're actually snapping
+  e.preventDefault();
+
+  wheelLocked = true;
+
+  snapToSection(direction);
+
+  setTimeout(() => {
+    wheelLocked = false;
+  }, 800);
+};
 
     scroller.addEventListener('wheel', onWheel, { passive: false })
 

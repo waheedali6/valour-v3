@@ -51,7 +51,7 @@ body {
 /* ///////////Authors/////////// */
 .authors-sec {
     padding: 11% 0 4%;
-    height: 100vh;
+    height: 100%;
     position: relative;
 }
 
@@ -210,5 +210,11 @@ body {
 @media (max-width: 1199px) {
 .about-sec {
     padding: 17% 0 4%;
+}
+
+.about-sec .abt-img {
+    position: absolute;
+    bottom: 0;
+    right: 29px;
 }
 }

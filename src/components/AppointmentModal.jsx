@@ -1,9 +1,11 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { X, Calendar, Clock, MapPin, Mail, Phone, MessageSquare, ChevronDown } from 'lucide-react';
 import "../app/globals.css"
+import { createPortal } from 'react-dom';
 
 const AppointmentModal = ({ isModalOpen, onClose }) => {
+    const [mounted, setMounted] = useState(false);
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -15,6 +17,10 @@ const AppointmentModal = ({ isModalOpen, onClose }) => {
         service: '',
         message: ''
     });
+
+    useEffect(() => {
+    setMounted(true);
+}, []);
 
     const [openDropdown, setOpenDropdown] = useState(null);
 
@@ -32,8 +38,8 @@ const AppointmentModal = ({ isModalOpen, onClose }) => {
     const locations = ['Geneva Flagship', 'Dubai Boutique', 'New York Atelier', 'Virtual Consultation'];
     const services = ['Private Viewing', 'Servicing Consultation', 'Trade Appraisal', 'Bespoke Engraving', 'Collection Guidance'];
 
-
-    return (
+if (!mounted) return null;
+    return createPortal(
         <>
             <div className={`modal-overlay ${isModalOpen && "active"}`} onClick={onClose}>
                 <div className="modal-container" onClick={e => e.stopPropagation()}
@@ -224,7 +230,8 @@ const AppointmentModal = ({ isModalOpen, onClose }) => {
 
                 </div>
             </div>
-        </>
+        </>,
+          document.body
     );
 };
 

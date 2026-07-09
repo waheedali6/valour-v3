@@ -51,7 +51,8 @@
 
      /* Section 2: Warranty */
      .section-warranty {
-         height: 100vh;
+        padding: 6% 0 2%;
+         height: 100%;
          min-height: 600px;
          display: flex;
          align-items: center;
@@ -139,7 +140,8 @@
 
      /* Section 3: Shipping - Reversed */
      .section-shipping {
-         height: 100vh;
+         padding: 6% 0 2%;
+         height: 100%;
          min-height: 600px;
          display: flex;
          align-items: center;
@@ -160,7 +162,8 @@
 
      /* Section 4: Returns */
      .section-returns {
-         height: 100vh;
+         padding: 6% 0 2%;
+         height: 100%;
          min-height: 600px;
          display: flex;
          align-items: center;
@@ -169,7 +172,8 @@
 
      /* Section 5: Belief Banner */
      .section-belief {
-         height: 100vh;
+        padding: 6% 0 2%;
+         height: 100%;
          min-height: 600px;
          position: relative;
          display: flex;
@@ -237,7 +241,8 @@
 
      /* Section 6: Payment */
      .section-payment {
-         height: 100vh;
+        padding: 6% 0 2%;
+         height: 100%;
          min-height: 600px;
          display: flex;
          align-items: center;
@@ -246,7 +251,8 @@
 
      /* Section 7: Contact */
      .section-contact {
-         height: 100vh;
+         padding: 6% 0 2%;
+         height: 100%;
          min-height: 600px;
          display: flex;
          align-items: center;
@@ -409,5 +415,69 @@
 
          .section-image {
              height: 280px;
+         }
+     }
+
+
+
+
+     
+       @media (max-width: 1599px) {
+         .w-hd {
+             margin-bottom: 20px;
+             font-size: 50px;
+         }
+
+         .authors-hd {
+             margin-bottom: 20px;
+             font-size: 50px;
+         }
+
+         .belief-hd {
+             font-size: 65px;
+             margin-bottom: 20px;
+         }
+
+     }
+
+
+
+        @media (max-width: 1399px) {
+         .w-hd {
+             margin-bottom: 20px;
+             font-size: 40px;
+         }
+
+         .w-page .section-title {
+             margin-bottom: 20px;
+             font-size: 40px;
+         }
+
+         .w-sec p {
+             font-size: 16px;
+         }
+
+         .section-text {
+             font-size: 16px;
+         }
+
+         .bullet-item {
+             font-size: 16px;
+         }
+
+         .section-label {
+             margin-bottom: 10px;
+             font-size: 16px;
+         }
+
+         .section-inner {
+            gap: 10px;
+         }
+
+     }
+
+     @media (max-width: 1199px) {
+         .about-sec {
+             padding: 17% 0 4%;
          }
      }

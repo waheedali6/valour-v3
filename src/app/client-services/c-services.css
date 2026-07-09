@@ -238,7 +238,7 @@
        /* Section 3: Contact & FAQ */
        .contact-section {
            padding: 10% 0 0;
-           height: 100vh;
+           height: 100%;
            background: var(--bg-secondary);
            border-top: 1px solid var(--border-color);
        }

@@ -210,3 +210,18 @@ body {
         padding: 70px 0 90px;
     }
 }
+@media (max-width: 1199px) {
+ .card-title {
+    font-size: 18px;
+ }
+
+ .card-excerpt {
+    line-height: 1.6;
+    margin-bottom: 10px;
+ }
+
+ .blog-grid-section .row {
+     --bs-gutter-x: 1rem
+
+ }
+}
