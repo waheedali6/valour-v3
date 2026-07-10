@@ -129,9 +129,9 @@ const headings = [
 ];
 
 const descriptions = [
-   "Silver Brushed",
-   "Classic Black Dial",
-   "Premium Leather Band"
+   "Case",
+   "Dial",
+   "Band"
 ];
 let current = 0;
 
@@ -308,13 +308,13 @@ document.querySelectorAll(".band-option").forEach(item => {
                                             <div className="salect select_1">
                                                 <a href="javascript:void(0)" className="case-option" data-image="/images/customizer/watch-variant-1.png">
                                                     <img src="/images/customizer/watch-variant-1.png" className="img-fluid" alt=""/>
-                                                        <p>Black</p>
+                                                        <p>Silver</p>
                                                 </a>
                                             </div>
                                             <div className="salect select_1">
                                                 <a href="javascript:void(0)" className="case-option" data-image="/images/customizer/watch-variant-2.png">
                                                     <img src="/images/customizer/watch-variant-2.png" className="img-fluid" alt=""/>
-                                                        <p>Gold</p>
+                                                        <p>Black</p>
                                                 </a>
                                             </div>
                                         </div>
@@ -330,13 +330,13 @@ document.querySelectorAll(".band-option").forEach(item => {
                                             <div className="salect select_1">
                                                 <a href="javascript:void(0)" className="dial-option" data-image="/images/customizer/watch-dial-variant-2.png">
                                                     <img src="/images/customizer/watch-dial-variant-2.png" className="img-fluid" alt=""/>
-                                                        <p>Gold</p>
+                                                        <p>Brown</p>
                                                 </a>
                                             </div>
                                             <div className="salect select_1">
                                                 <a href="javascript:void(0)" className="dial-option" data-image="/images/customizer/watch-dial-variant-3.png">
                                                     <img src="/images/customizer/watch-dial-variant-3.png" className="img-fluid" alt=""/>
-                                                        <p>Silver</p>
+                                                        <p>Blue</p>
                                                 </a>
                                             </div>
                                         </div>
@@ -353,13 +353,13 @@ document.querySelectorAll(".band-option").forEach(item => {
                                             <div className="salect select_1">
                                                 <a href="javascript:void(0)" className="band-option" data-image="/images/customizer/watch-strap-variant-2.png">
                                                     <img src="/images/customizer/watch-strap-variant-2.png" className="img-fluid" alt=""/>
-                                                        <p>Gold</p>
+                                                        <p>Brown</p>
                                                 </a>
                                             </div>
                                             <div className="salect select_1">
                                                 <a href="javascript:void(0)" className="band-option" data-image="/images/customizer/watch-strap-variant-3.png">
                                                     <img src="/images/customizer/watch-strap-variant-3.png" className="img-fluid" alt=""/>
-                                                        <p>Silver</p>
+                                                        <p>Blue</p>
                                                 </a>
                                             </div>
                                         </div>

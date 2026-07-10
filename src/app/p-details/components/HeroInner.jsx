@@ -1,5 +1,5 @@
 "use client";
-
+import Link from 'next/link'
 import { useEffect, useRef } from "react";
 
 
@@ -59,6 +59,7 @@ export default function RM7501Hero() {
               <p className="rm-subtitle" data-reveal>
                 {splitWords("Flying Tourbillon Sapphire")}
               </p>
+               <Link href="/cart" className='theme-btn'>Add to Cart</Link>
             </div>
           </div>
 

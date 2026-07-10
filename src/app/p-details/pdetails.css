@@ -16,6 +16,10 @@ body {
     z-index: 6;
 }
 
+.rm-hero .theme-btn {
+    margin-top: 20px;
+}
+
 .rm-hero__bg {
     position: absolute;
     inset: 0;
@@ -482,12 +486,16 @@ body {
         font-size: 15px;
         padding-bottom: 5px;
     }
-.nova-image-col img {
-    width: 90%;
-}
+
+    .nova-image-col img {
+        width: 90%;
+    }
 }
 
 @media (max-width: 1199px) {
+    .d-sec-2 {
+        min-height: 100%;
+    }
     .big-title {
         line-height: 60px;
     }

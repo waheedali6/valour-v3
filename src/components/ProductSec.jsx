@@ -176,7 +176,7 @@ const ProductSec = () => {
                   <div
                     key={watch.id}
                     data-id={watch.id}
-                    className={`ht-card`}
+                    className={`ht-card ${watch.color}`}
                     style={{ animationDelay: `${index * 80}ms` }}
                     // onClick={() => handleCart(watch)}
                     // onClick={() => router.push("/p-details")}
