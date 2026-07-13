@@ -18,6 +18,9 @@ export default function ScrollProvider({ children }) {
     let isSnapping = false
     let wheelLocked = false
 
+    let lastDirection = 0
+    let pendingSnap = false
+
     const getSections = () =>
       Array.from(scroller.querySelectorAll('.snap-section'))
 
@@ -65,52 +68,101 @@ export default function ScrollProvider({ children }) {
       })
     }
 
-  const onWheel = (e) => {
-  if (isSnapping || wheelLocked) return;
+    const onWheel = (e) => {
+      if (isSnapping || wheelLocked) return;
 
-  const sections = getSections();
-  if (!sections.length) return;
+      const sections = getSections();
+      if (!sections.length) return;
 
-  const currentIdx = getCurrentSectionIndex(sections);
-  const currentSection = sections[currentIdx];
+      const currentIdx = getCurrentSectionIndex(sections);
+      const currentSection = sections[currentIdx];
 
-  const sectionTop = currentSection.offsetTop;
-  const sectionBottom =
-    sectionTop + currentSection.scrollHeight - scroller.clientHeight;
+      const sectionTop = currentSection.offsetTop;
+      const sectionBottom =
+        sectionTop + currentSection.scrollHeight - scroller.clientHeight;
 
-  const scrollTop = scroller.scrollTop;
-  const direction = e.deltaY > 0 ? 1 : -1;
+      const scrollTop = scroller.scrollTop;
+      const direction = e.deltaY > 0 ? 1 : -1;
 
-  const SNAP_OFFSET = Math.min(120, scroller.clientHeight * 0.15);
+      lastDirection = direction;
 
-const atBottom = scrollTop >= sectionBottom - SNAP_OFFSET;
-  const atTop = scrollTop <= sectionTop + 2;
+      const SNAP_OFFSET = Math.min(120, scroller.clientHeight * 0.15);
 
-  // Allow normal scrolling inside oversized sections
-  if (direction > 0 && !atBottom) {
-    return;
-  }
+      const atBottom = scrollTop >= sectionBottom - SNAP_OFFSET;
+      const atTop = scrollTop <= sectionTop + 2;
 
-  if (direction < 0 && !atTop) {
-    return;
-  }
+      // Allow normal scrolling inside oversized sections
+      if (direction > 0 && !atBottom) {
+        pendingSnap = true;
+        return;
+      }
 
-  // Only prevent default when we're actually snapping
-  e.preventDefault();
+      if (direction < 0 && !atTop) {
+        pendingSnap = true;
+        return;
+      }
 
-  wheelLocked = true;
+      pendingSnap = false;
 
-  snapToSection(direction);
+      // Only prevent default when we're actually snapping
+      e.preventDefault();
 
-  setTimeout(() => {
-    wheelLocked = false;
-  }, 800);
-};
+      wheelLocked = true;
+
+      snapToSection(direction);
+
+      setTimeout(() => {
+        wheelLocked = false;
+      }, 800);
+    };
 
     scroller.addEventListener('wheel', onWheel, { passive: false })
 
+
+    const onScroll = () => {
+      if (
+        !pendingSnap ||
+        isSnapping ||
+        wheelLocked ||
+        lastDirection === 0
+      )
+        return;
+
+      const sections = getSections();
+      const currentIdx = getCurrentSectionIndex(sections);
+      const currentSection = sections[currentIdx];
+
+      const sectionTop = currentSection.offsetTop;
+      const sectionBottom =
+        sectionTop + currentSection.scrollHeight - scroller.clientHeight;
+
+      const scrollTop = scroller.scrollTop;
+
+      const SNAP_OFFSET = Math.min(120, scroller.clientHeight * 0.15);
+
+      const atBottom = scrollTop >= sectionBottom - SNAP_OFFSET;
+      const atTop = scrollTop <= sectionTop + 2;
+
+      if (
+        (lastDirection > 0 && atBottom) ||
+        (lastDirection < 0 && atTop)
+      ) {
+        pendingSnap = false;
+        wheelLocked = true;
+
+        snapToSection(lastDirection);
+
+        setTimeout(() => {
+          wheelLocked = false;
+        }, 800);
+      }
+    };
+
+    scroller.addEventListener("scroll", onScroll);
+
     return () => {
       scroller.removeEventListener('wheel', onWheel)
+         scroller.removeEventListener("scroll", onScroll);
       ScrollTrigger.defaults({ scroller: window })
       ScrollTrigger.getAll().forEach((t) => t.kill())
     }

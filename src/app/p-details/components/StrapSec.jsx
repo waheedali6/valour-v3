@@ -152,7 +152,7 @@ const StrapSec = () => {
   return (
     <section className='strap-sec' ref={sectionRef}>
       <div className="container">
-        <h2 class="sm-title" data-reveal>
+        <h2 className="sm-title" data-reveal>
           {splitWords("About Strap")}
         </h2>
         <p className="desc"
