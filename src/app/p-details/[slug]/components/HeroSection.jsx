@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react'
 import HeroInner from "./HeroInner"
 
-export default function PremiumParallax() {
+export default function PremiumParallax({product}) {
     const imageRefs = useRef([])
     const ticking = useRef(false)
 
@@ -64,7 +64,7 @@ export default function PremiumParallax() {
                         alt="Luxury watch hero"
                     />
                 </div>
-                <HeroInner />
+                <HeroInner product={product}/>
             </section>
         </main>
     )

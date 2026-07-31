@@ -1,10 +1,13 @@
 "use client";
+import { addToCart, cartSlice } from '@/app/features/cart/cartSlice';
 import Link from 'next/link'
 import { useEffect, useRef } from "react";
+import { useDispatch } from 'react-redux';
 
 
-export default function RM7501Hero() {
-  const sectionRef = useRef(null);
+export default function RM7501Hero({product}) {
+  const sectionRef = useRef(null)
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const node = sectionRef.current;
@@ -52,12 +55,12 @@ export default function RM7501Hero() {
           <div className="col-12 col-md-7 col-lg-6 order-2 order-md-1">
             <div className="rm-hero__text">
               <h1 className="big-title" data-reveal>
-                {splitWords("Nova Red")}
+                {splitWords(product.name)}
               </h1>
               <p className="rm-subtitle" data-reveal>
-                {splitWords("Flying Tourbillon Sapphire")}
+                {splitWords(product.tagline)}
               </p>
-               <Link href="/cart" className='theme-btn'>Add to Cart</Link>
+               <Link href="/cart" className='theme-btn' onClick={() => dispatch(addToCart(product))}>Add to Cart</Link>
             </div>
           </div>
 

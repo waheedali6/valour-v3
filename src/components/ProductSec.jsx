@@ -11,6 +11,16 @@ import 'swiper/css/pagination';
 import Link from 'next/link'
 import { useSelector } from 'react-redux'
 
+const slugify = (text) => {
+    return text
+    .toLowerCase()
+    .trim()
+    .replace(/&/g, "and")
+    .replace(/'/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+}
+
+
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -19,15 +29,6 @@ const ProductSec = () => {
 
   const sectionRef = useRef(null)
   const perspRef = useRef(null)
-
-
-  function createSlug(name) {
-    return name
-      .toLowerCase()
-      .trim()
-      .replace(/[^\w\s-]/g, "")
-      .replace(/\s+/g, "-");
-  }
 
   useEffect(() => {
     const section = sectionRef.current
@@ -158,7 +159,7 @@ const ProductSec = () => {
           >
             {products.map((watch, index) => (
               <SwiperSlide>
-                <Link href="/p-details" className='cards-link'>
+                <Link href={`/p-details/${slugify(watch.name)}`} className='cards-link'>
                   {/* <div className="pro-card">
                     <img src={item.image} alt="watch" />
                     <div className="details">
@@ -175,7 +176,7 @@ const ProductSec = () => {
                     className={`ht-card ${watch.color}`}
                     style={{ animationDelay: `${index * 80}ms` }}
                     // onClick={() => handleCart(watch)}
-                    // onClick={() => router.push("/p-details")}
+                    // onClick={() => router.push(`/p-details/${watch.name}`)}
                   >
                     <div className="ht-card-inner">
                       <div className="ht-card-glow" />

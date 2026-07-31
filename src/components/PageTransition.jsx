@@ -11,7 +11,6 @@ export default function PageTransition() {
     const panels = panelsRef.current.filter(Boolean)
     if (!panels.length) return
 
-    // Entry animation - panels slide up out of view with improved easing
     const tl = gsap.timeline()
     tl.set(panels, { scaleY: 1, transformOrigin: 'top center' })
     tl.to(panels, {
