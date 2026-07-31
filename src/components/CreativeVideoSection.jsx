@@ -4,25 +4,19 @@ import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import CustomEase from 'gsap/CustomEase'
-// ✅ Removed: Lenis import — handled globally in layout.js
 
-// ✅ Register plugins ONCE at module level
 gsap.registerPlugin(ScrollTrigger, CustomEase)
 
-// ✅ Create custom eases ONCE at module level, not in component
 try {
   CustomEase.create('softReveal', '0.5, 0, 0, 1')
   CustomEase.create('smoothBlur', '0.25, 0.1, 0.25, 1')
 } catch (e) {
-  // Already exists, ignore
 }
 
 export default function CreativeVideoSection() {
   const sectionRef = useRef(null)
 
   useEffect(() => {
-    // ✅ No Lenis here — it's managed in layout.js
-    // ✅ CustomEase eases already created at module level
 
     let mounted = true
     let timeoutId

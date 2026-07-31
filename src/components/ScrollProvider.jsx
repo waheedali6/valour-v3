@@ -91,7 +91,6 @@ export default function ScrollProvider({ children }) {
       const atBottom = scrollTop >= sectionBottom - SNAP_OFFSET;
       const atTop = scrollTop <= sectionTop + 2;
 
-      // Allow normal scrolling inside oversized sections
       if (direction > 0 && !atBottom) {
         pendingSnap = true;
         return;
@@ -104,7 +103,6 @@ export default function ScrollProvider({ children }) {
 
       pendingSnap = false;
 
-      // Only prevent default when we're actually snapping
       e.preventDefault();
 
       wheelLocked = true;
@@ -162,7 +160,7 @@ export default function ScrollProvider({ children }) {
 
     return () => {
       scroller.removeEventListener('wheel', onWheel)
-         scroller.removeEventListener("scroll", onScroll);
+      scroller.removeEventListener("scroll", onScroll);
       ScrollTrigger.defaults({ scroller: window })
       ScrollTrigger.getAll().forEach((t) => t.kill())
     }

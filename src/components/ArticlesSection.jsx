@@ -90,7 +90,6 @@ export default function ArticleSection() {
     // ===========================
     // INITIAL STATES
     // ===========================
-    // Banner title chars - staggered from bottom
     bannerTitle.chars?.forEach((char, i) => {
       char.style.display = 'inline-block'
       char.style.opacity = '0'
@@ -98,14 +97,12 @@ export default function ArticleSection() {
       char.style.transformOrigin = 'center bottom'
     })
 
-    // Cards and their elements - fade + blur
     const cards = section.querySelectorAll('.blog-card')
     cards.forEach((card) => {
       card.style.opacity = '0'
       card.style.transform = 'translateY(40px)'
       card.style.filter = 'blur(8px)'
 
-      // Card image
       const cardImg = card.querySelector('.card-img-wrap img')
       if (cardImg) {
         cardImg.style.opacity = '0'
@@ -113,21 +110,18 @@ export default function ArticleSection() {
         cardImg.style.filter = 'blur(12px) brightness(0.7)'
       }
 
-      // Category tag
       const categoryTag = card.querySelector('.category-tag')
       if (categoryTag) {
         categoryTag.style.opacity = '0'
         categoryTag.style.transform = 'translateX(-20px) rotateY(-90deg)'
       }
 
-      // Card title
       const cardTitle = card.querySelector('.card-title')
       if (cardTitle) {
         cardTitle.style.opacity = '0'
         cardTitle.style.transform = 'translateY(20px)'
       }
 
-      // Card excerpt
       const cardExcerpt = card.querySelector('.card-excerpt')
       if (cardExcerpt) {
         cardExcerpt.style.opacity = '0'
@@ -135,7 +129,6 @@ export default function ArticleSection() {
         cardExcerpt.style.filter = 'blur(5px)'
       }
 
-      // Read more link
       const readMoreLink = card.querySelector('.read-more')
       if (readMoreLink) {
         readMoreLink.style.opacity = '0'
@@ -154,7 +147,6 @@ export default function ArticleSection() {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          // Banner title - split reveal from bottom
           bannerTitle.chars?.forEach((char, i) => {
             setTimeout(() => {
               char.style.transition = 'all 0.7s cubic-bezier(0.16, 1, 0.3, 1)'
@@ -163,11 +155,9 @@ export default function ArticleSection() {
             }, i * 35)
           })
 
-          // Cards - staggered with element animations
           cards.forEach((card, cardIdx) => {
             const cardDelay = cardIdx * 100 + 400
 
-            // Card container fade
             setTimeout(() => {
               card.style.transition = 'all 0.9s cubic-bezier(0.16, 1, 0.3, 1)'
               card.style.opacity = '1'
@@ -175,7 +165,6 @@ export default function ArticleSection() {
               card.style.filter = 'blur(0px)'
             }, cardDelay)
 
-            // Card image with hover
             const cardImg = card.querySelector('.card-img-wrap img')
             if (cardImg) {
               setTimeout(() => {
@@ -185,7 +174,6 @@ export default function ArticleSection() {
                 cardImg.style.filter = 'blur(0px) brightness(1)'
               }, cardDelay + 100)
 
-              // Image hover effect
               cardImg.addEventListener('mouseenter', () => {
                 cardImg.style.transition = 'all 0.4s ease-out'
                 cardImg.style.transform = 'scale(1.06) rotateY(3deg)'
@@ -199,7 +187,6 @@ export default function ArticleSection() {
               })
             }
 
-            // Category tag
             const categoryTag = card.querySelector('.category-tag')
             if (categoryTag) {
               setTimeout(() => {
@@ -209,7 +196,6 @@ export default function ArticleSection() {
               }, cardDelay + 200)
             }
 
-            // Card title
             const cardTitle = card.querySelector('.card-title')
             if (cardTitle) {
               setTimeout(() => {
@@ -219,7 +205,6 @@ export default function ArticleSection() {
               }, cardDelay + 300)
             }
 
-            // Card excerpt
             const cardExcerpt = card.querySelector('.card-excerpt')
             if (cardExcerpt) {
               setTimeout(() => {
@@ -230,7 +215,6 @@ export default function ArticleSection() {
               }, cardDelay + 400)
             }
 
-            // Read more link
             const readMoreLink = card.querySelector('.read-more')
             if (readMoreLink) {
               setTimeout(() => {
@@ -239,7 +223,6 @@ export default function ArticleSection() {
                 readMoreLink.style.transform = 'translateY(0)'
               }, cardDelay + 500)
 
-              // Link hover effect
               readMoreLink.addEventListener('mouseenter', () => {
                 readMoreLink.style.transition = 'all 0.3s ease-out'
                 readMoreLink.style.transform = 'translateY(-2px)'
@@ -252,7 +235,6 @@ export default function ArticleSection() {
             }
           })
 
-          // Unobserve after animation completes
           observer.unobserve(section)
         }
       })

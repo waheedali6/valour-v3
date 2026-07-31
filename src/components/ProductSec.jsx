@@ -6,7 +6,6 @@ import ScrollTrigger from 'gsap/ScrollTrigger'
 import { FiPlus } from 'react-icons/fi'
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from 'swiper/modules'
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
 import Link from 'next/link'
@@ -53,7 +52,6 @@ const ProductSec = () => {
       const cardListeners = []
 
 
-      // ── 4. Card hover: image levitate + shine sweep ───────────────
       cards.forEach((card) => {
         const img = card.querySelector('img')
         const shine = card.querySelector('.card-shine')
@@ -80,7 +78,6 @@ const ProductSec = () => {
         cardListeners.push({ card, onEnter, onLeave })
       })
 
-      // ── 5. Heading letter-spacing reveal ──────────────────────────
       const heading = section.querySelector('h2')
       if (heading) {
         gsap.set(heading, { letterSpacing: '0.5em', opacity: 0 })
@@ -125,7 +122,6 @@ const ProductSec = () => {
       <div className="container">
         <h2>Provide You Best Watch Collection</h2>
 
-        {/* perspective wrapper — wraps the row for 3D tilt */}
         <div ref={perspRef} style={{ transformStyle: 'preserve-3d' }}>
           <Swiper
             modules={[Autoplay, Pagination]}

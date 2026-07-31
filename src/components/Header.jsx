@@ -22,11 +22,9 @@ const Header = () => {
     const header = headerRef.current
     if (!header) return
 
-    // Entry animation - improved timing
     gsap.set(header, { y: -80, opacity: 0 })
     gsap.to(header, { y: 0, opacity: 1, duration: 1.35, delay: 0.35, ease: 'power4.out' })
 
-    // Nav links stagger - better spacing
     const navLinks = header.querySelectorAll('.nav-link, .side-box > *')
     gsap.set(navLinks, { y: -20, opacity: 0 })
     gsap.to(navLinks, {
@@ -34,14 +32,12 @@ const Header = () => {
       duration: 0.9, stagger: 0.095, delay: 0.7, ease: 'power3.out',
     })
 
-    // Logo - improved easing
     const logo = header.querySelector('.navbar-brand')
     if (logo) {
       gsap.set(logo, { scale: 0.7, opacity: 0 })
       gsap.to(logo, { scale: 1, opacity: 1, duration: 1.1, delay: 0.6, ease: 'back.out(2)' })
     }
 
-    // Scroll-based style update
     const onScroll = () => {
       setScrolled(window.scrollY > 60)
     }

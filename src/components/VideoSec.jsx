@@ -20,13 +20,10 @@ export default function PremiumParallax() {
             const windowHeight = window.innerHeight
             const sectionHeight = section.offsetHeight
 
-            // Calculate scroll progress (0 to 1)
             const scrollProgress = Math.max(0, Math.min(1, (windowHeight - rect.top) / (windowHeight + sectionHeight)))
-            
-            // Smooth parallax movement - increased for more effect
+
             const move = (scrollProgress - 0.5) * 450
-            
-            // Dynamic scale - zoom in as it comes into view
+
             let scale = 1 + (0.5 - Math.abs(scrollProgress - 0.5)) * 0.45
             scale = Math.max(1, Math.min(scale, 1.25))
 
@@ -42,32 +39,30 @@ export default function PremiumParallax() {
     }
 
     document.getElementById('main-scroller')?.addEventListener('scroll', handleScroll, { passive: true })
-    handleScroll() // Initial call
+    handleScroll()
 
     return () => document.getElementById('main-scroller')?.removeEventListener('scroll', handleScroll)
   }, [])
 
   return (
     <main className="luxury-main">
-        <section className="luxury-section">
-
-          <div className="luxury-image-wrap">
-              <video
-                ref={el => {
-                  if (el && !imageRefs.current.includes(el)) {
-                    imageRefs.current.push(el)
-                  }
-                }}
-                className="luxury-image"
-                src="/videos/sec-video.mp4"
-                autoPlay
-                loop
-                muted
-                playsInline
-              />
-          </div>
-
-        </section>
+      <section className="luxury-section">
+        <div className="luxury-image-wrap">
+          <video
+            ref={el => {
+              if (el && !imageRefs.current.includes(el)) {
+                imageRefs.current.push(el)
+              }
+            }}
+            className="luxury-image"
+            src="/videos/sec-video.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+          />
+        </div>
+      </section>
     </main>
   )
 }

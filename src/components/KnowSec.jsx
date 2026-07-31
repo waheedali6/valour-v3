@@ -33,9 +33,6 @@ export default function KnowSec() {
 
       const triggers = []
 
-    // =========================
-    // SPLIT TEXT
-    // =========================
     const heading = new SplitType('.know-big-h', { types: 'lines,words,chars' })
     const paragraph = new SplitType('.know-para-text', { types: 'chars' })
 
@@ -44,13 +41,10 @@ export default function KnowSec() {
       line.style.display = 'block'
     })
 
-    // =========================
-    // INITIAL STATES
-    // =========================
+
 
     const buttonEl = section.querySelector('.know-btn')
 
-    // Heading chars
     heading.chars?.forEach((char) => {
       Object.assign(char.style, {
         opacity: '0',
@@ -61,7 +55,6 @@ export default function KnowSec() {
       })
     })
 
-    // Paragraph chars
     paragraph.chars?.forEach((char) => {
       Object.assign(char.style, {
         opacity: '0',
@@ -72,7 +65,6 @@ export default function KnowSec() {
       })
     })
 
-    // Button
     if (buttonEl) {
       Object.assign(buttonEl.style, {
         opacity: '0',
@@ -82,29 +74,7 @@ export default function KnowSec() {
       })
     }
 
-    // ── 1. BG parallax ─────────────────────────────────────────────
-// const bgEl = document.createElement('div')
-// bgEl.className = 'know-bg-layer'
-// section.prepend(bgEl)
 
-// const bg = gsap.fromTo(bgEl,
-//   { yPercent: -15 },
-//   {
-//     yPercent: 15,
-//     ease: 'none',
-//     scrollTrigger: {
-//           scroller: '#main-scroller',
-//       trigger: section,
-//       start: 'top bottom',
-//       end: 'bottom top',
-//       scrub: 1.5,
-//       invalidateOnRefresh: true,
-//     },
-//   }
-// )
-// triggers.push(bg.scrollTrigger)
-
-    // ── 3. Sticky left panel — fade in ─────────────────────────────
     const leftItems = section.querySelectorAll('.know-left-item')
     leftItems.forEach((el, i) => {
       gsap.set(el, { opacity: 0, x: -50 })
@@ -116,20 +86,7 @@ export default function KnowSec() {
       triggers.push(a.scrollTrigger)
     })
 
-    // ── 4. Horizontal ticker line scrub ───────────────────────────
-    // const ticker = section.querySelector('.know-ticker-inner')
-    // if (ticker) {
-    //   const a = gsap.to(ticker, {
-    //     x: '-60%', ease: 'none',
-    //     scrollTrigger: {
-    //       scroller: '#main-scroller', trigger: section, start: 'top bottom', end: 'bottom top', scrub: 1,invalidateOnRefresh: true, }
-    //   })
-    //   triggers.push(a.scrollTrigger)
-    // }
-
-    // =========================
-    // TEXT REVEAL
-    // =========================
+    
     let textAnimated = false
 
     const textObserver = new IntersectionObserver(
@@ -138,7 +95,6 @@ export default function KnowSec() {
           if (entry.isIntersecting && !textAnimated) {
             textAnimated = true
 
-            // Heading chars stagger
             heading.chars?.forEach((char, i) => {
               setTimeout(() => {
                 Object.assign(char.style, {
@@ -149,7 +105,6 @@ export default function KnowSec() {
               }, i * 25)
             })
 
-            // Paragraph chars stagger
             paragraph.chars?.forEach((char, i) => {
               setTimeout(() => {
                 Object.assign(char.style, {
@@ -160,7 +115,6 @@ export default function KnowSec() {
               }, 150 + i * 8)
             })
 
-            // Button fade up
             if (buttonEl) {
               setTimeout(() => {
                 Object.assign(buttonEl.style, {
@@ -197,7 +151,6 @@ export default function KnowSec() {
     }
   }, [])
 
-  // const tickerText = Array(6).fill('VALOUR · FINE WATCHMAKING · LUCENT COLLECTION · BOLD FOR EVERYONE · ').join('')
 
   return (
     <section className='know-sec know-split-sec' ref={sectionRef}>
@@ -227,10 +180,6 @@ export default function KnowSec() {
         </div>
       </div>
 
-      {/* Horizontal scrolling ticker */}
-      {/* <div className='know-ticker-wrap'>
-        <div className='know-ticker-inner'>{tickerText}</div>
-      </div> */}
     </section>
   )
 }

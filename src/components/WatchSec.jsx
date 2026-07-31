@@ -13,9 +13,7 @@ const WatchSec = () => {
         const section = sectionRef.current
         if (!section) return
 
-        // =========================
-        // SPLIT TEXT
-        // =========================
+
         const heading = new SplitType('.watch-text h2', { types: 'lines,words,chars' })
         const badge = new SplitType('.watch-text span', { types: 'chars' })
 
@@ -24,30 +22,12 @@ const WatchSec = () => {
             line.style.display = 'block'
         })
 
-        // =========================
-        // INITIAL STATES
-        // =========================
+
         const parallax = section.querySelector('.watch-parallax')
-        // const bgZoom    = section.querySelector('.watch-bg-zoom')
         const paragraph = section.querySelector('.watch-text p')
         const buttonEl2 = section.querySelector('.know-btn')
         const imgEl = section.querySelector('.watch-img')
 
-        // Image
-        // Object.assign(parallax.style, {
-        //     transform:  'translateY(120px) rotate(-10deg) scale(1.2)',
-        //     opacity:    '0',
-        //     transition: 'none',
-        //     willChange: 'transform, opacity',
-        // })
-
-        // BG
-        // Object.assign(bgZoom.style, {
-        //     transform:  'scale(1.15)',
-        //     willChange: 'transform',
-        // })
-
-        // Badge chars
         badge.chars?.forEach((char) => {
             Object.assign(char.style, {
                 opacity: '0',
@@ -58,7 +38,6 @@ const WatchSec = () => {
             })
         })
 
-        // Heading chars
         heading.chars?.forEach((char) => {
             Object.assign(char.style, {
                 opacity: '0',
@@ -69,7 +48,6 @@ const WatchSec = () => {
             })
         })
 
-        // Paragraph
         Object.assign(paragraph.style, {
             opacity: '0',
             transform: 'translateY(30px)',
@@ -78,7 +56,6 @@ const WatchSec = () => {
             willChange: 'transform, opacity',
         })
 
-        // Button
         if (buttonEl2) {
             Object.assign(buttonEl2.style, {
                 opacity: '0',
@@ -96,9 +73,7 @@ const WatchSec = () => {
             })
         }
 
-        // =========================
-        // SCROLL PARALLAX (rAF)
-        // =========================
+
         let ticking = false
 
         const onScroll = () => {
@@ -107,7 +82,6 @@ const WatchSec = () => {
                     const rect = section.getBoundingClientRect()
                     const winH = window.innerHeight
 
-                    // 👇 start animation earlier (adjust 100–300 as needed)
                     const offset = 200
 
                     const progress = Math.max(
@@ -118,11 +92,6 @@ const WatchSec = () => {
                         )
                     )
 
-                    // bg parallax movement (smoother with px instead of %)
-                    //   const bgY = progress * 80 // tweak intensity
-
-                    //   bgZoom.style.transform = `scale(1) translateY(${bgY}px)`
-
                     ticking = false
                 })
 
@@ -132,38 +101,7 @@ const WatchSec = () => {
 
         document.getElementById('main-scroller')?.addEventListener('scroll', onScroll, { passive: true })
 
-        // =========================
-        // IMAGE REVEAL (scroll-scrub via rAF)
-        // =========================
-        // let imgAnimated = false
-
-        // const imgObserver = new IntersectionObserver(
-        //     (entries) => {
-        //         entries.forEach((entry) => {
-        //             if (entry.isIntersecting && !imgAnimated) {
-        //                 imgAnimated = true
-
-        //                 Object.assign(parallax.style, {
-        //                     transition: 'transform 1.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.2s ease',
-        //                     transform:  'translateY(0px) rotate(0deg) scale(1)',
-        //                     opacity:    '1',
-        //                 })
-
-        //                 Object.assign(bgZoom.style, {
-        //                     transition: 'transform 1.6s cubic-bezier(0.16, 1, 0.3, 1)',
-        //                     transform:  'scale(1) translateY(0%)',
-        //                 })
-        //             }
-        //         })
-        //     },
-        //     { threshold: 0.2, rootMargin: '0px 0px -10% 0px' }
-        // )
-
-        // imgObserver.observe(section)
-
-        // =========================
-        // TEXT REVEAL
-        // =========================
+  
         let textAnimated = false
 
         const textObserver = new IntersectionObserver(
@@ -172,7 +110,6 @@ const WatchSec = () => {
                     if (entry.isIntersecting && !textAnimated) {
                         textAnimated = true
 
-                        // Badge chars stagger
                         badge.chars?.forEach((char, i) => {
                             setTimeout(() => {
                                 Object.assign(char.style, {
@@ -183,7 +120,6 @@ const WatchSec = () => {
                             }, i * 40)
                         })
 
-                        // Heading chars stagger
                         heading.chars?.forEach((char, i) => {
                             setTimeout(() => {
                                 Object.assign(char.style, {
@@ -194,7 +130,6 @@ const WatchSec = () => {
                             }, 150 + i * 25)
                         })
 
-                        // Paragraph
                         setTimeout(() => {
                             Object.assign(paragraph.style, {
                                 transition: 'transform 1s cubic-bezier(0.16, 1, 0.3, 1), opacity 1s ease, filter 1s ease',
@@ -205,7 +140,6 @@ const WatchSec = () => {
                         }, 550)
 
 
-                        // Button
                         if (buttonEl2) {
                             setTimeout(() => {
                                 Object.assign(buttonEl2.style, {
@@ -230,9 +164,6 @@ const WatchSec = () => {
 
         textObserver.observe(section)
 
-        // =========================
-        // CLEANUP
-        // =========================
         return () => {
             textObserver.disconnect()
             document.getElementById('main-scroller')?.removeEventListener('scroll', onScroll)

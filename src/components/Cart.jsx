@@ -16,14 +16,12 @@ export default function Cart() {
   const cart = useSelector((state) => state.cart.value)
   const [note, setNote] = useState('');
 
-  // Animation refs
   const sectionRef = useRef(null);
   const contentRef = useRef(null);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    // Initialize AOS
     AOS.init({
       duration: 800,
       easing: 'ease-out-cubic',
@@ -39,7 +37,6 @@ export default function Cart() {
     // ===========================
     const cartTitle = new SplitType('.cart-title', { types: 'words,chars' });
 
-    // Wrap words for title
     const titleWords = section.querySelectorAll('.cart-title .word');
     titleWords.forEach(word => {
       word.style.overflow = 'hidden';
@@ -49,7 +46,6 @@ export default function Cart() {
     // ===========================
     // INITIAL STATES
     // ===========================
-    // Title chars - staggered from bottom
     cartTitle.chars?.forEach((char, i) => {
       char.style.display = 'inline-block';
       char.style.opacity = '0';
@@ -57,7 +53,6 @@ export default function Cart() {
       char.style.transformOrigin = 'center bottom';
     });
 
-    // Content - fade + blur
     if (contentRef.current) {
       contentRef.current.style.opacity = '0';
       contentRef.current.style.transform = 'translateY(30px)';
@@ -75,7 +70,6 @@ export default function Cart() {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          // Title - split reveal from bottom with stagger
           cartTitle.chars?.forEach((char, i) => {
             setTimeout(() => {
               char.style.transition = 'all 0.7s cubic-bezier(0.16, 1, 0.3, 1)';
@@ -84,7 +78,6 @@ export default function Cart() {
             }, i * 35);
           });
 
-          // Content - fade up with blur removal
           if (contentRef.current) {
             setTimeout(() => {
               contentRef.current.style.transition = 'all 0.9s cubic-bezier(0.16, 1, 0.3, 1)';
@@ -94,7 +87,6 @@ export default function Cart() {
             }, 200);
           }
 
-          // Unobserve after animation completes
           observer.unobserve(section);
         }
       });

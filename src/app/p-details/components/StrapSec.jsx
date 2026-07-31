@@ -137,7 +137,6 @@ const StrapSec = () => {
 
   }, []);
 
-  // split a string into word-spans so each word can reveal with its own delay
   const splitWords = (text) =>
     text.split(" ").map((word, i) => (
       <span className="rm-word-mask" key={i}>

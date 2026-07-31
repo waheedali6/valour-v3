@@ -22,7 +22,6 @@ const AuthorsSec = () => {
     const subHeading = new SplitType('.authors-sub', { types: 'chars' })
     const mainHeading = new SplitType('.authors-hd', { types: 'words,chars' })
 
-    // Wrap lines for main heading
     const lines = section.querySelectorAll('.authors-hd .word')
     lines.forEach(line => {
       line.style.overflow = 'hidden'
@@ -32,7 +31,6 @@ const AuthorsSec = () => {
     // ===========================
     // INITIAL STATES
     // ===========================
-    // Sub heading chars - staggered from left
     subHeading.chars?.forEach((char, i) => {
       char.style.display = 'inline-block'
       char.style.opacity = '0'
@@ -40,7 +38,6 @@ const AuthorsSec = () => {
       char.style.transformOrigin = 'left center'
     })
 
-    // Main heading chars - staggered from bottom
     mainHeading.chars?.forEach((char, i) => {
       char.style.display = 'inline-block'
       char.style.opacity = '0'
@@ -48,7 +45,6 @@ const AuthorsSec = () => {
       char.style.transformOrigin = 'center bottom'
     })
 
-    // Paragraphs - fade + blur
     if (para1Ref.current) {
       para1Ref.current.style.opacity = '0'
       para1Ref.current.style.transform = 'translateY(30px)'
@@ -60,7 +56,6 @@ const AuthorsSec = () => {
       para2Ref.current.style.filter = 'blur(8px)'
     }
 
-    // Images - scale, rotate, blur
     if (img1Ref.current) {
       img1Ref.current.style.opacity = '0'
       img1Ref.current.style.transform = 'scale(0.7) rotateY(-15deg) rotateX(10deg) translateZ(0)'
@@ -83,7 +78,6 @@ const AuthorsSec = () => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          // Sub heading - split reveal from left
           subHeading.chars?.forEach((char, i) => {
             setTimeout(() => {
               char.style.transition = 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)'
@@ -92,7 +86,6 @@ const AuthorsSec = () => {
             }, i * 30)
           })
 
-          // Main heading - split reveal from bottom with stagger
           mainHeading.chars?.forEach((char, i) => {
             setTimeout(() => {
               char.style.transition = 'all 0.7s cubic-bezier(0.16, 1, 0.3, 1)'
@@ -101,7 +94,6 @@ const AuthorsSec = () => {
             }, i * 35 + 200)
           })
 
-          // Paragraphs - fade up with blur removal
           if (para1Ref.current) {
             setTimeout(() => {
               para1Ref.current.style.transition = 'all 0.9s cubic-bezier(0.16, 1, 0.3, 1)'
@@ -119,7 +111,6 @@ const AuthorsSec = () => {
             }, 750)
           }
 
-          // Images - premium entrance
           if (img1Ref.current) {
             setTimeout(() => {
               img1Ref.current.style.transition = 'all 1.1s cubic-bezier(0.34, 1.56, 0.64, 1)'
@@ -140,7 +131,6 @@ const AuthorsSec = () => {
 
           }
 
-          // Unobserve after animation completes
           observer.unobserve(section)
         }
       })

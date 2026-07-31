@@ -3,27 +3,24 @@
 import { useEffect, useRef } from 'react'
 import { FaStar } from 'react-icons/fa6'
 
-// =========================
-// SHARED ANIMATION CONFIG
-// =========================
+
 const EASE_SMOOTH  = 'cubic-bezier(0.16, 1, 0.3, 1)'
 const EASE_BOUNCE  = 'cubic-bezier(0.34, 1.56, 0.64, 1)'
 
-// All delays relative to these base offsets
 const T = {
-  image:   0,      // center image fires first
-  boxes:   100,    // boxes start shortly after
-  boxStep: 150,    // stagger between boxes
-  stars:   200,    // stars after boxes appear
+  image:   0,     
+  boxes:   100,   
+  boxStep: 150,    
+  stars:   200,   
   starStep: 50,
-  heading: 100,    // heading words
+  heading: 100,  
   wordStep: 50,
-  para:    300,    // paragraph after heading
-  descs:   400,    // testi descriptions
+  para:    300,   
+  descs:   400,   
   descStep: 80,
-  names:   500,    // names
+  names:   500,    
   nameStep: 80,
-  desigs:  580,    // designations
+  desigs:  580,   
   desigStep: 80,
 }
 
@@ -38,9 +35,7 @@ const TestimonialSec = () => {
     const set = (el, styles) => Object.assign(el.style, styles)
     const animateIn = (el, styles, delay = 0) => setTimeout(() => Object.assign(el.style, styles), delay)
 
-    // =========================
-    // INITIAL STATES
-    // =========================
+
     const centerImg = centerImgRef.current
     if (centerImg) {
       set(centerImg, {
@@ -51,7 +46,6 @@ const TestimonialSec = () => {
       })
     }
 
-    // Heading word split
     const mainHeading = section.querySelector('.side-1 h2')
     let wordSpans = []
     if (mainHeading) {
@@ -89,9 +83,7 @@ const TestimonialSec = () => {
     const desigs = [...section.querySelectorAll('.desig')]
     desigs.forEach(d => set(d, { transform: 'translateY(6px)', opacity: '0', transition: 'none', willChange: 'transform, opacity' }))
 
-    // =========================
-    // INTERSECTION OBSERVER
-    // =========================
+
     let animated = false
 
     const observer = new IntersectionObserver(
@@ -100,7 +92,6 @@ const TestimonialSec = () => {
           if (!entry.isIntersecting || animated) return
           animated = true
 
-          // Center image — fires at T=0
           if (centerImg) {
             animateIn(centerImg, {
               transition: `transform 1.6s ${EASE_BOUNCE}, opacity 1.2s ease`,
@@ -109,7 +100,6 @@ const TestimonialSec = () => {
             }, T.image)
           }
 
-          // Heading words — T=100, step 50ms
           wordSpans.forEach((w, i) => {
             animateIn(w, {
               transition: `transform 0.7s ${EASE_SMOOTH}, opacity 0.7s ease`,
@@ -118,7 +108,6 @@ const TestimonialSec = () => {
             }, T.heading + i * T.wordStep)
           })
 
-          // Para — T=300
           if (mainPara) {
             animateIn(mainPara, {
               transition: `transform 0.9s ${EASE_SMOOTH}, opacity 0.9s ease, filter 0.9s ease`,
@@ -128,7 +117,6 @@ const TestimonialSec = () => {
             }, T.para)
           }
 
-          // Boxes — T=100, step 150ms (tight stagger)
           boxes.forEach((box, i) => {
             animateIn(box, {
               transition: `transform 1s ${EASE_SMOOTH}, opacity 1s ease`,
@@ -137,7 +125,6 @@ const TestimonialSec = () => {
             }, T.boxes + i * T.boxStep)
           })
 
-          // Stars — T=200, step 50ms
           stars.forEach((star, i) => {
             animateIn(star, {
               transition: `transform 0.45s ${EASE_BOUNCE}, opacity 0.45s ease`,
@@ -146,7 +133,6 @@ const TestimonialSec = () => {
             }, T.stars + i * T.starStep)
           })
 
-          // Descs — T=400, step 80ms
           descs.forEach((d, i) => {
             animateIn(d, {
               transition: `transform 0.7s ${EASE_SMOOTH}, opacity 0.7s ease`,
@@ -155,7 +141,6 @@ const TestimonialSec = () => {
             }, T.descs + i * T.descStep)
           })
 
-          // Names — T=500, step 80ms
           names.forEach((n, i) => {
             animateIn(n, {
               transition: `transform 0.6s ${EASE_SMOOTH}, opacity 0.6s ease`,
@@ -164,7 +149,6 @@ const TestimonialSec = () => {
             }, T.names + i * T.nameStep)
           })
 
-          // Desigs — T=580, step 80ms
           desigs.forEach((d, i) => {
             animateIn(d, {
               transition: `transform 0.6s ${EASE_SMOOTH}, opacity 0.6s ease`,
@@ -179,9 +163,7 @@ const TestimonialSec = () => {
 
     observer.observe(section)
 
-    // =========================
-    // HOVER EFFECTS
-    // =========================
+
     boxes.forEach((box) => {
       box.addEventListener('mouseenter', () => {
         box.style.transition = `transform 0.4s ${EASE_SMOOTH}`

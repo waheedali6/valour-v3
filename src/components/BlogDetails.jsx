@@ -23,7 +23,6 @@ const BlogDetails = () => {
   useEffect(() => {
     if (typeof window === 'undefined') return
 
-    // Initialize AOS
     AOS.init({
       duration: 800,
       easing: 'ease-out-cubic',
@@ -31,13 +30,10 @@ const BlogDetails = () => {
       mirror: false,
     })
 
-    // ===========================
-    // SPLIT TEXT SETUP
-    // ===========================
+
     const titleSplit = new SplitType('.blog-hero-title', { types: 'words,chars' })
     const subtitleSplit = new SplitType('.blog-hero-subtitle', { types: 'chars' })
 
-    // Wrap title words for line breaks
     const titleWords = document.querySelectorAll('.blog-hero-title .word')
     titleWords.forEach(word => {
       word.style.overflow = 'hidden'
@@ -47,7 +43,6 @@ const BlogDetails = () => {
     // ===========================
     // INITIAL STATES
     // ===========================
-    // Title chars - staggered from bottom
     titleSplit.chars?.forEach((char) => {
       char.style.display = 'inline-block'
       char.style.opacity = '0'
@@ -55,7 +50,6 @@ const BlogDetails = () => {
       char.style.transformOrigin = 'center bottom'
     })
 
-    // Subtitle chars - staggered from left
     subtitleSplit.chars?.forEach((char) => {
       char.style.display = 'inline-block'
       char.style.opacity = '0'
@@ -63,21 +57,18 @@ const BlogDetails = () => {
       char.style.transformOrigin = 'left center'
     })
 
-    // Hero image - scale, blur
     if (heroImageRef.current) {
       heroImageRef.current.style.opacity = '0'
       heroImageRef.current.style.transform = 'scale(0.8) rotateY(-10deg)'
       heroImageRef.current.style.filter = 'blur(12px) brightness(0.8)'
     }
 
-    // Author section - fade + translateY
     if (authorRef.current) {
       authorRef.current.style.opacity = '0'
       authorRef.current.style.transform = 'translateY(30px)'
       authorRef.current.style.filter = 'blur(8px)'
     }
 
-    // Article body paragraphs and headings
     const paragraphs = document.querySelectorAll('.article-paragraph, .article-heading, .article-quote')
     paragraphs.forEach((p) => {
       p.style.opacity = '0'
@@ -85,7 +76,6 @@ const BlogDetails = () => {
       p.style.filter = 'blur(8px)'
     })
 
-    // Article images
     const images = document.querySelectorAll('.article-image')
     images.forEach((img) => {
       img.style.opacity = '0'
@@ -93,7 +83,6 @@ const BlogDetails = () => {
       img.style.filter = 'blur(12px)'
     })
 
-    // Latest section title
     const latestTitle = document.querySelector('.latest-title')
     if (latestTitle) {
       const titleSplitLatest = new SplitType(latestTitle, { types: 'words,chars' })
@@ -115,7 +104,6 @@ const BlogDetails = () => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          // Title - split reveal from bottom
           titleSplit.chars?.forEach((char, i) => {
             setTimeout(() => {
               char.style.transition = 'all 0.7s cubic-bezier(0.16, 1, 0.3, 1)'
@@ -124,7 +112,6 @@ const BlogDetails = () => {
             }, i * 35)
           })
 
-          // Subtitle - split reveal from left
           subtitleSplit.chars?.forEach((char, i) => {
             setTimeout(() => {
               char.style.transition = 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)'
@@ -133,7 +120,6 @@ const BlogDetails = () => {
             }, i * 30 + 400)
           })
 
-          // Hero image - scale + blur reveal
           if (heroImageRef.current) {
             setTimeout(() => {
               heroImageRef.current.style.transition = 'all 0.9s cubic-bezier(0.16, 1, 0.3, 1)'
@@ -146,13 +132,11 @@ const BlogDetails = () => {
       })
     }, observerOptions)
 
-    // Hero section observer
     const heroSection = document.querySelector('.blog-detail-section')
     if (heroSection) {
       observer.observe(heroSection)
     }
 
-    // Observe article body elements
     const articleSection = document.querySelector('.article-body')
     if (articleSection) {
       const bodyObserver = new IntersectionObserver((entries) => {
@@ -175,7 +159,6 @@ const BlogDetails = () => {
       bodyObserver.observe(articleSection)
     }
 
-    // Observe author section
     if (authorRef.current) {
       const authorObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
@@ -192,7 +175,6 @@ const BlogDetails = () => {
       authorObserver.observe(authorRef.current)
     }
 
-    // Observe latest section title
     const latestTitleElement = document.querySelector('.latest-title')
     if (latestTitleElement) {
       const latestObserver = new IntersectionObserver((entries) => {

@@ -16,7 +16,6 @@ const Customizer = () => {
     useEffect(() => {
         if (typeof window === 'undefined') return
 
-        // Initialize AOS
         AOS.init({
             duration: 800,
             easing: 'ease-out-cubic',
@@ -27,15 +26,11 @@ const Customizer = () => {
         const section = sectionRef.current
         if (!section) return
 
-        // ===========================
-        // SPLIT TEXT SETUP
-        // ===========================
         const headingSplit = new SplitType('.customizer-heading', { types: 'chars' })
 
         // ===========================
         // INITIAL STATES
         // ===========================
-        // Heading chars - staggered from bottom
         headingSplit.chars?.forEach((char) => {
             char.style.display = 'inline-block'
             char.style.opacity = '0'
@@ -43,23 +38,18 @@ const Customizer = () => {
             char.style.transformOrigin = 'center bottom'
         })
 
-        // Image container - scale, rotate, blur
         if (imgContainerRef.current) {
             imgContainerRef.current.style.opacity = '0'
             imgContainerRef.current.style.transform = 'scale(0.8) rotateY(-15deg) translateZ(0)'
             imgContainerRef.current.style.filter = 'blur(12px)'
         }
 
-        // Tab main - fade up
         if (tabMainRef.current) {
             tabMainRef.current.style.opacity = '0'
             tabMainRef.current.style.transform = 'translateY(40px)'
             tabMainRef.current.style.filter = 'blur(8px)'
         }
 
-        // ===========================
-        // INTERSECTION OBSERVER
-        // ===========================
         const observerOptions = {
             threshold: 0.2,
             rootMargin: '0px 0px -80px 0px',
@@ -68,7 +58,6 @@ const Customizer = () => {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                    // Heading - split reveal from bottom with stagger
                     headingSplit.chars?.forEach((char, i) => {
                         setTimeout(() => {
                             char.style.transition = 'all 0.7s cubic-bezier(0.16, 1, 0.3, 1)'
@@ -77,7 +66,6 @@ const Customizer = () => {
                         }, i * 35)
                     })
 
-                    // Image container - premium entrance
                     if (imgContainerRef.current) {
                         setTimeout(() => {
                             imgContainerRef.current.style.transition = 'all 1s cubic-bezier(0.34, 1.56, 0.64, 1)'
@@ -87,7 +75,6 @@ const Customizer = () => {
                         }, 200)
                     }
 
-                    // Tab main - fade up with blur removal
                     if (tabMainRef.current) {
                         setTimeout(() => {
                             tabMainRef.current.style.transition = 'all 0.9s cubic-bezier(0.16, 1, 0.3, 1)'
@@ -97,7 +84,6 @@ const Customizer = () => {
                         }, 400)
                     }
 
-                    // Unobserve after animation completes
                     observer.unobserve(section)
                 }
             })
@@ -112,7 +98,6 @@ const Customizer = () => {
         }
     }, [])
 
-    // Initialize tab and customizer functionality after animations
     useEffect(() => {
 const tabs = document.querySelectorAll(".tab-pane");
 const navLinks = document.querySelectorAll("#stepTabs .nav-link");
@@ -139,12 +124,10 @@ function updateUI(index = current) {
 
    current = index;
 
-   // Fade out current tab
    tabs[current].classList.remove("show");
    tabs[current].style.opacity = '0';
    tabs[current].style.transform = 'translateX(20px)';
 
-   // Wait for fade out before switching content
    setTimeout(() => {
       tabs.forEach(tab => tab.classList.remove("show", "active"));
       navLinks.forEach(link => link.classList.remove("active"));
@@ -160,18 +143,15 @@ function updateUI(index = current) {
       heading.textContent = headings[current];
       description.textContent = descriptions[current];
 
-      // Fade in new tab
       tabs[current].style.opacity = '1';
       tabs[current].style.transform = 'translateX(0)';
    }, 150);
 }
-// Click Tabs
 navLinks.forEach((tab, index) => {
    tab.addEventListener("click", () => {
       updateUI(index);
    });
 });
-// Next
 next.onclick = () => {
    if (current < tabs.length - 1) {
       current++;
@@ -179,23 +159,19 @@ next.onclick = () => {
    }
 };
 
-// Previous
 prev.onclick = () => {
    if (current > 0) {
       current--;
       updateUI();
    }
 };
-// Slider
 range.addEventListener("input", function () {
    updateUI(Number(this.value));
 });
 
-// Initialize
 updateUI(0);
 
 
-// Images
 const imgCase = document.getElementById("imgCase");
 const imgDial = document.getElementById("imgDial");
 const imgStrap = document.getElementById("imgStrap");

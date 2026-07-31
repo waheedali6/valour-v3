@@ -5,7 +5,6 @@ import { Fancybox } from '@fancyapps/ui';
 import SplitType from 'split-type';
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
-// Import Swiper styles
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import 'swiper/css';
@@ -18,7 +17,6 @@ const ProductDetails = () => {
     const [selectedEdition, setSelectedEdition] = useState('17/100');
     const allProducts = useSelector((state) => state.product.value)
 
-    // Animation refs
     const sectionRef = useRef(null);
     const titleRef = useRef(null);
     const taglineRef = useRef(null);
@@ -30,7 +28,6 @@ const ProductDetails = () => {
     const specsTableRef = useRef(null);
     const sliderRef = useRef(null);
 
-    // Product data
     const product = {
         name: 'Sunseeker Yellow',
         subtitle: 'P-01 • Automatic Collection',
@@ -91,22 +88,15 @@ const ProductDetails = () => {
         const section = sectionRef.current;
         if (!section) return;
 
-        // ===========================
-        // SPLIT TEXT SETUP
-        // ===========================
         const productTitle = new SplitType('.product-title', { types: 'words,chars' });
 
-        // Wrap words for title
         const titleWords = section.querySelectorAll('.product-title .word');
         titleWords.forEach(word => {
             word.style.overflow = 'hidden';
             word.style.display = 'inline-block';
         });
 
-        // ===========================
-        // INITIAL STATES
-        // ===========================
-        // Title chars - staggered from bottom
+
         productTitle.chars?.forEach((char, i) => {
             char.style.display = 'inline-block';
             char.style.opacity = '0';
@@ -114,61 +104,50 @@ const ProductDetails = () => {
             char.style.transformOrigin = 'center bottom';
         });
 
-        // Tagline - fade + blur
         if (taglineRef.current) {
             taglineRef.current.style.opacity = '0';
             taglineRef.current.style.transform = 'translateY(30px)';
             taglineRef.current.style.filter = 'blur(8px)';
         }
 
-        // Description - fade + blur
         if (descriptionRef.current) {
             descriptionRef.current.style.opacity = '0';
             descriptionRef.current.style.transform = 'translateY(30px)';
             descriptionRef.current.style.filter = 'blur(8px)';
         }
 
-        // Main Image - scale, rotate, blur
         if (mainImageRef.current) {
             mainImageRef.current.style.opacity = '0';
             mainImageRef.current.style.transform = 'scale(0.7) rotateY(-15deg) rotateX(10deg) translateZ(0)';
             mainImageRef.current.style.filter = 'blur(12px) brightness(0.8)';
         }
 
-        // Edition section - fade + blur
         if (editionSectionRef.current) {
             editionSectionRef.current.style.opacity = '0';
             editionSectionRef.current.style.transform = 'translateY(20px)';
             editionSectionRef.current.style.filter = 'blur(6px)';
         }
 
-        // Button - fade + scale
         if (buttonRef.current) {
             buttonRef.current.style.opacity = '0';
             buttonRef.current.style.transform = 'scale(0.95) translateY(20px)';
         }
 
-        // Description section - fade
         if (descriptionSectionRef.current) {
             descriptionSectionRef.current.style.opacity = '0';
             descriptionSectionRef.current.style.transform = 'translateY(40px)';
         }
 
-        // Specs table - scale + fade
         if (specsTableRef.current) {
             specsTableRef.current.style.opacity = '0';
             specsTableRef.current.style.transform = 'scale(0.95) translateY(30px)';
         }
 
-        // Slider - fade + translateY
         if (sliderRef.current) {
             sliderRef.current.style.opacity = '0';
             sliderRef.current.style.transform = 'translateY(40px)';
         }
 
-        // ===========================
-        // INTERSECTION OBSERVER
-        // ===========================
         const observerOptions = {
             threshold: 0.15,
             rootMargin: '0px 0px -50px 0px',
@@ -177,7 +156,6 @@ const ProductDetails = () => {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                    // Title - split reveal from bottom with stagger
                     productTitle.chars?.forEach((char, i) => {
                         setTimeout(() => {
                             char.style.transition = 'all 0.7s cubic-bezier(0.16, 1, 0.3, 1)';
@@ -186,7 +164,6 @@ const ProductDetails = () => {
                         }, i * 35);
                     });
 
-                    // Tagline - fade up with blur removal
                     if (taglineRef.current) {
                         setTimeout(() => {
                             taglineRef.current.style.transition = 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
@@ -196,7 +173,6 @@ const ProductDetails = () => {
                         }, 150);
                     }
 
-                    // Description - fade up with blur removal
                     if (descriptionRef.current) {
                         setTimeout(() => {
                             descriptionRef.current.style.transition = 'all 0.9s cubic-bezier(0.16, 1, 0.3, 1)';
@@ -206,7 +182,6 @@ const ProductDetails = () => {
                         }, 250);
                     }
 
-                    // Edition section - fade up with blur removal
                     if (editionSectionRef.current) {
                         setTimeout(() => {
                             editionSectionRef.current.style.transition = 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
@@ -216,7 +191,6 @@ const ProductDetails = () => {
                         }, 350);
                     }
 
-                    // Button - scale and fade up
                     if (buttonRef.current) {
                         setTimeout(() => {
                             buttonRef.current.style.transition = 'all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)';
@@ -225,7 +199,6 @@ const ProductDetails = () => {
                         }, 450);
                     }
 
-                    // Main Image - premium entrance
                     if (mainImageRef.current) {
                         setTimeout(() => {
                             mainImageRef.current.style.transition = 'all 1.1s cubic-bezier(0.34, 1.56, 0.64, 1)';
@@ -235,7 +208,6 @@ const ProductDetails = () => {
                         }, 100);
                     }
 
-                    // Unobserve after animation completes
                     observer.unobserve(section);
                 }
             });
@@ -243,11 +215,9 @@ const ProductDetails = () => {
 
         observer.observe(section);
 
-        // Second observer for description section
         const descriptionObserver = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                    // Description section content
                     if (descriptionSectionRef.current) {
                         setTimeout(() => {
                             descriptionSectionRef.current.style.transition = 'all 0.9s cubic-bezier(0.16, 1, 0.3, 1)';
@@ -256,7 +226,6 @@ const ProductDetails = () => {
                         }, 100);
                     }
 
-                    // Specs table
                     if (specsTableRef.current) {
                         setTimeout(() => {
                             specsTableRef.current.style.transition = 'all 1s cubic-bezier(0.34, 1.56, 0.64, 1)';
@@ -274,7 +243,6 @@ const ProductDetails = () => {
             descriptionObserver.observe(descriptionSectionRef.current);
         }
 
-        // Third observer for slider
         const sliderObserver = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
@@ -295,7 +263,6 @@ const ProductDetails = () => {
             sliderObserver.observe(sliderRef.current);
         }
 
-        // Cleanup
         return () => {
             observer.disconnect();
             descriptionObserver.disconnect();
@@ -323,7 +290,6 @@ const ProductDetails = () => {
 
     useEffect(() => {
         Fancybox.bind("[data-fancybox]", {
-            // options
         });
 
         return () => {

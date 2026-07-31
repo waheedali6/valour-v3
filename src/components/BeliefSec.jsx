@@ -21,7 +21,6 @@ const BeliefSec = () => {
     const subHeading = new SplitType('.belief-sub', { types: 'chars' })
     const mainHeading = new SplitType('.belief-hd', { types: 'words,chars' })
 
-    // Wrap lines for main heading
     const lines = section.querySelectorAll('.belief-hd .word')
     lines.forEach(line => {
       line.style.overflow = 'hidden'
@@ -31,7 +30,6 @@ const BeliefSec = () => {
     // ===========================
     // INITIAL STATES
     // ===========================
-    // Sub heading chars - staggered from left
     subHeading.chars?.forEach((char, i) => {
       char.style.display = 'inline-block'
       char.style.opacity = '0'
@@ -39,7 +37,6 @@ const BeliefSec = () => {
       char.style.transformOrigin = 'left center'
     })
 
-    // Main heading chars - staggered from bottom
     mainHeading.chars?.forEach((char, i) => {
       char.style.display = 'inline-block'
       char.style.opacity = '0'
@@ -47,14 +44,12 @@ const BeliefSec = () => {
       char.style.transformOrigin = 'center bottom'
     })
 
-    // Paragraph - fade + blur
     if (paraRef.current) {
       paraRef.current.style.opacity = '0'
       paraRef.current.style.transform = 'translateY(30px)'
       paraRef.current.style.filter = 'blur(8px)'
     }
 
-    // Button - fade + blur
     if (btnRef.current) {
       btnRef.current.style.opacity = '0'
       btnRef.current.style.transform = 'translateY(30px)'
@@ -72,7 +67,6 @@ const BeliefSec = () => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          // Sub heading - split reveal from left
           subHeading.chars?.forEach((char, i) => {
             setTimeout(() => {
               char.style.transition = 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)'
@@ -81,7 +75,6 @@ const BeliefSec = () => {
             }, i * 30)
           })
 
-          // Main heading - split reveal from bottom with stagger
           mainHeading.chars?.forEach((char, i) => {
             setTimeout(() => {
               char.style.transition = 'all 0.7s cubic-bezier(0.16, 1, 0.3, 1)'
@@ -90,7 +83,6 @@ const BeliefSec = () => {
             }, i * 35 + 200)
           })
 
-          // Paragraph - fade up with blur removal
           if (paraRef.current) {
             setTimeout(() => {
               paraRef.current.style.transition = 'all 0.9s cubic-bezier(0.16, 1, 0.3, 1)'
@@ -100,7 +92,6 @@ const BeliefSec = () => {
             }, 600)
           }
 
-          // Button - fade up with blur removal
           if (btnRef.current) {
             setTimeout(() => {
               btnRef.current.style.transition = 'all 0.9s cubic-bezier(0.16, 1, 0.3, 1)'
@@ -109,7 +100,6 @@ const BeliefSec = () => {
               btnRef.current.style.filter = 'blur(0px)'
             }, 750)
 
-            // Hover effect
             btnRef.current.addEventListener('mouseenter', () => {
               btnRef.current.style.transition = 'all 0.4s ease-out'
               btnRef.current.style.transform = 'translateY(-3px) scale(1.05)'
@@ -123,7 +113,6 @@ const BeliefSec = () => {
             })
           }
 
-          // Unobserve after animation completes
           observer.unobserve(section)
         }
       })

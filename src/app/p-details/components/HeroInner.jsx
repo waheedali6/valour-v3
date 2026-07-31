@@ -18,7 +18,6 @@ export default function RM7501Hero() {
           if (entry.isIntersecting) {
             entry.target.classList.add("is-visible");
           } else {
-            // remove so it re-plays every time it scrolls back into view
             entry.target.classList.remove("is-visible");
           }
         });
@@ -31,7 +30,6 @@ export default function RM7501Hero() {
     return () => observer.disconnect();
   }, []);
 
-  // split a string into word-spans so each word can reveal with its own delay
   const splitWords = (text) =>
     text.split(" ").map((word, i) => (
       <span className="rm-word-mask" key={i}>

@@ -2197,16 +2197,6 @@ SCROLL VIDEO
 /* ════════════════════════════════════════════
    PREMIUM STACK SCROLL — sticky section layering
    ════════════════════════════════════════════ */
-
-/*
- * Base layer rules for all stackable sections.
- *
- * position:sticky + top:0 are set via JS (StackScroll.jsx) so
- * ScrollTrigger can own the lifecycle. The CSS here handles:
- *   – overflow clipping so scale doesn't bleed outside bounds
- *   – GPU compositing to keep animations on the compositor thread
- *   – isolation so inner z-index contexts don't escape
- */
 .hero-canvas-sec,
 .know-split-sec,
 .product-sec,
@@ -2824,8 +2814,6 @@ body {
 
 /* ============================================================
    VALOUR — RESPONSIVE STYLES
-   Only add responsive overrides here. No layout/structure changes.
-   Breakpoints: 1400px | 1200px | 992px | 768px | 576px | 480px
    ============================================================ */
 
 @media (min-width: 1600px) {
@@ -3230,7 +3218,6 @@ body {
     padding: 50px 25px 25px;
   }
 
-  /* --- Watch Section (already handled in globals.css at 991px) --- */
   .watch-text {
     padding-bottom: 0;
     text-align: center;

@@ -6,17 +6,7 @@ import ScrollTrigger from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
-/**
- * StackScroll — Premium cinematic section stacking
- *
- * Technique:
- *  - Each section gets position:sticky so it pins while the next slides over it
- *  - Outgoing section: subtle scale-down + slight brightness dimming (GPU only)
- *  - Incoming section: slides up from a small translateY offset → none
- *  - Only transform + opacity + filter animated → zero layout cost
- *  - scrub:true gives perfect 1:1 scroll tracking with no spring lag
- *  - will-change:transform hints GPU rasterization layer per section
- */
+
 export default function StackScroll() {
   useEffect(() => {
     // ── Ordered selectors matching page layout ──────────────────────────

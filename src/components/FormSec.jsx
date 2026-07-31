@@ -19,9 +19,6 @@ export default function FormSec() {
     const timeouts = []
     const observers = []
 
-    // ─────────────────────────────────────────────────────────────
-    // Helpers
-    // ─────────────────────────────────────────────────────────────
 
     const easeOutExpo = 'cubic-bezier(0.16, 1, 0.3, 1)'
     const easeOut = 'cubic-bezier(0.22, 1, 0.36, 1)'
@@ -66,9 +63,6 @@ export default function FormSec() {
       observers.push(observer)
     }
 
-    // ─────────────────────────────────────────────────────────────
-    // Image Column Reveal
-    // ─────────────────────────────────────────────────────────────
 
     const imgCol = imgColRef.current
 
@@ -91,13 +85,9 @@ export default function FormSec() {
       })
     }
 
-    // ─────────────────────────────────────────────────────────────
-    // Form Box Reveal
-    // ─────────────────────────────────────────────────────────────
     const formBox = formBoxRef.current
 
     if (formBox) {
-      // Start further right
       formBox.style.opacity = '0'
       formBox.style.transform = 'translate3d(300px,0,0)'
 
@@ -109,7 +99,6 @@ export default function FormSec() {
             transform: 'translate3d(0px,0,0)',
           },
           {
-            // Slower smoother animation
             duration: 2200,
             easing: easeOutExpo,
           }
@@ -117,9 +106,6 @@ export default function FormSec() {
       })
     }
 
-    // ─────────────────────────────────────────────────────────────
-    // Heading Word Reveal
-    // ─────────────────────────────────────────────────────────────
 
     const h2 = section.querySelector('.form-heading')
 
@@ -158,9 +144,6 @@ export default function FormSec() {
       })
     }
 
-    // ─────────────────────────────────────────────────────────────
-    // Paragraph Reveal
-    // ─────────────────────────────────────────────────────────────
 
     const para = formBox?.querySelector('p')
 
@@ -183,9 +166,6 @@ export default function FormSec() {
       })
     }
 
-    // ─────────────────────────────────────────────────────────────
-    // Inputs Reveal Stagger
-    // ─────────────────────────────────────────────────────────────
 
     const inputs = section.querySelectorAll('.input')
 
@@ -210,9 +190,6 @@ export default function FormSec() {
       })
     })
 
-    // ─────────────────────────────────────────────────────────────
-    // Spotlight Follow
-    // ─────────────────────────────────────────────────────────────
 
     const spotlight = spotlightRef.current
 
@@ -259,9 +236,6 @@ export default function FormSec() {
       )
     }
 
-    // ─────────────────────────────────────────────────────────────
-    // Form Interactions
-    // ─────────────────────────────────────────────────────────────
 
     const textInputs = section.querySelectorAll(
       'input.input, textarea.input, select.input'
@@ -344,9 +318,7 @@ export default function FormSec() {
       )
     })
 
-    // ─────────────────────────────────────────────────────────────
-    // Submit Button
-    // ─────────────────────────────────────────────────────────────
+
 
     const btn = section.querySelector('button[type=submit]')
 
@@ -469,9 +441,6 @@ export default function FormSec() {
       )
     }
 
-    // ─────────────────────────────────────────────────────────────
-    // SVG Border Draw
-    // ─────────────────────────────────────────────────────────────
 
     const rect = svg.querySelector('.neon-rect')
 

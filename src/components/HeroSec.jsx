@@ -18,15 +18,14 @@ function lerpPaths(a, b, t) {
 }
 
 const TEXT = 'VALOUR'
-const CHAR_DELAY = 360   // ms between each character appearing
-const CHAR_FADE = 500    // ms each character takes to fade in
+const CHAR_DELAY = 360  
+const CHAR_FADE = 500  
 
 export default function HeroSec() {
   const canvasRef = useRef(null)
   const sectionRef = useRef(null)
   const blobRef = useRef(null)
 
-  // ── Canvas ───────────────────────────────────────────────────────────
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
@@ -37,7 +36,6 @@ export default function HeroSec() {
     let running = true
     const startTime = performance.now()
 
-    // Per-character alpha targets
     const charAlpha = new Array(TEXT.length).fill(0)
 
     const resizeCanvas = () => {
@@ -66,23 +64,18 @@ export default function HeroSec() {
       ctx.textAlign = 'left'
       ctx.textBaseline = 'middle'
 
-      // Measure total text width to center the whole word
       const totalWidth = ctx.measureText(TEXT).width
       let startX = cx - totalWidth / 2
 
-      // Update per-character alpha
       TEXT.split('').forEach((_, i) => {
         const charStart = i * CHAR_DELAY
         const charElapsed = elapsed - charStart
         charAlpha[i] = Math.min(Math.max(charElapsed / CHAR_FADE, 0), 1)
-        // ease out quad
         charAlpha[i] = 1 - Math.pow(1 - charAlpha[i], 2)
       })
 
-      // All characters revealed?
       const allRevealed = charAlpha[TEXT.length - 1] >= 1
 
-      // Draw each character
       let x = startX
       TEXT.split('').forEach((char, i) => {
         const alpha = charAlpha[i]
@@ -91,7 +84,6 @@ export default function HeroSec() {
           return
         }
 
-        // Slight drop-in: characters slide down into position
         const offsetY = (1 - alpha) * 18
 
         ctx.fillStyle = `rgba(255,255,255,${alpha})`
@@ -100,7 +92,6 @@ export default function HeroSec() {
         x += ctx.measureText(char).width
       })
 
-      // Shimmer — only after all characters are visible
       if (allRevealed) {
         const sweepX = cx + Math.sin(time * 0.001) * (W * 0.5)
         ctx.save()
@@ -114,7 +105,6 @@ export default function HeroSec() {
         ctx.restore()
       }
 
-      // Seconds hand — starts after last char begins appearing
       const handStart = (TEXT.length - 1) * CHAR_DELAY
       const handElapsed = Math.max(elapsed - handStart, 0)
       const handProgress = Math.min(handElapsed / 800, 1)
@@ -138,7 +128,6 @@ export default function HeroSec() {
     }
   }, [])
 
-  // ── Scroll animations ────────────────────────────────────────────────
   useEffect(() => {
     const section = sectionRef.current
     if (!section) return
@@ -150,7 +139,6 @@ export default function HeroSec() {
     const setupScroll = () => {
       if (!mounted) return
 
-      // Re-check ref on every retry — component may have unmounted
       const el = sectionRef.current
       if (!el) return
 
@@ -160,9 +148,7 @@ export default function HeroSec() {
         return
       }
 
-      // Avoid passing el as gsap.context scope — causes _gsap read errors
-      // before GSAP has internally initialised that element.
-      // Use a plain gsap.to() instead.
+
       const anim = gsap.to(el, {
         backgroundSize: '118%',
         ease: 'none',

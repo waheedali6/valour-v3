@@ -40,7 +40,6 @@ const AboutSec = () => {
     // ===========================
     // INITIAL STATES
     // ===========================
-    // Sub heading chars - staggered from left
     subHeading.chars?.forEach((char, i) => {
       char.style.display = 'inline-block'
       char.style.opacity = '0'
@@ -48,7 +47,6 @@ const AboutSec = () => {
       char.style.transformOrigin = 'left center'
     })
 
-    // Main heading chars - staggered from bottom
     mainHeading.chars?.forEach((char, i) => {
       char.style.display = 'inline-block'
       char.style.opacity = '0'
@@ -56,23 +54,18 @@ const AboutSec = () => {
       char.style.transformOrigin = 'center bottom'
     })
 
-    // Paragraph - fade + blur
     if (paraRef.current) {
       paraRef.current.style.opacity = '0'
       paraRef.current.style.transform = 'translateY(30px)'
       paraRef.current.style.filter = 'blur(8px)'
     }
 
-    // Image - scale, rotate, blur
     if (imgRef.current) {
       imgRef.current.style.opacity = '0'
       imgRef.current.style.transform = 'scale(0.7) rotateY(-15deg) rotateX(10deg) translateZ(0)'
       imgRef.current.style.filter = 'blur(12px) brightness(0.8)'
     }
 
-    // ===========================
-    // INTERSECTION OBSERVER
-    // ===========================
     const observerOptions = {
       threshold: 0.15,
       rootMargin: '0px 0px -50px 0px',
@@ -81,7 +74,6 @@ const AboutSec = () => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          // Sub heading - split reveal from left
           subHeading.chars?.forEach((char, i) => {
             setTimeout(() => {
               char.style.transition = 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)'
@@ -90,7 +82,6 @@ const AboutSec = () => {
             }, i * 30)
           })
 
-          // Main heading - split reveal from bottom with stagger
           mainHeading.chars?.forEach((char, i) => {
             setTimeout(() => {
               char.style.transition = 'all 0.7s cubic-bezier(0.16, 1, 0.3, 1)'
@@ -99,7 +90,6 @@ const AboutSec = () => {
             }, i * 35 + 200)
           })
 
-          // Paragraph - fade up with blur removal
           if (paraRef.current) {
             setTimeout(() => {
               paraRef.current.style.transition = 'all 0.9s cubic-bezier(0.16, 1, 0.3, 1)'
@@ -109,7 +99,6 @@ const AboutSec = () => {
             }, 600)
           }
 
-          // Image - premium entrance with parallax simulation
           if (imgRef.current) {
             setTimeout(() => {
               imgRef.current.style.transition = 'all 1.1s cubic-bezier(0.34, 1.56, 0.64, 1)'

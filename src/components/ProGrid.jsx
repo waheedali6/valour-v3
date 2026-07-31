@@ -12,114 +12,6 @@ import { useRouter } from "next/navigation";
 
 
 
-// ─── Watch Data ─────────────────────────────────────────────────────────────
-const watches = [
-  {
-    id: 1,
-    ref: "LUC-01",
-    name: "Sunseeker Yellow",
-    subtitle: "Lucent Collection",
-    collection: "lucent",
-    range: "automatic",
-    type: "automatic",
-    material: "titanium",
-    color: "yellow",
-    image: "/images/watch-1.png",
-    accent: "#FACC15",
-    limited: false,
-    price: 499,
-    edition: null,
-    quantity: 1,
-  },
-  {
-    id: 2,
-    ref: "LUC-02",
-    name: "Nova Red",
-    subtitle: "Lucent Collection",
-    collection: "lucent",
-    range: "automatic",
-    type: "automatic",
-    material: "titanium",
-    color: "red",
-    image: "/images/watch-4.png",
-    accent: "#EF4444",
-    limited: false,
-    price: 499,
-    edition: null,
-    quantity: 1,
-  },
-  {
-    id: 3,
-    ref: "LUC-03",
-    name: "Frost Silver",
-    subtitle: "Lucent Collection",
-    collection: "lucent",
-    range: "automatic",
-    type: "automatic",
-    material: "titanium",
-    color: "silver",
-    image: "/images/watch-5.png",
-    accent: "#D1D5DB",
-    limited: false,
-    price: 499,
-    edition: null,
-    quantity: 1,
-  },
-  {
-    id: 4,
-    ref: "LUC-04",
-    name: "Eclipse Black",
-    subtitle: "Lucent Collection",
-    collection: "lucent",
-    range: "automatic",
-    type: "automatic",
-    material: "titanium",
-    color: "black",
-    image: "/images/watch-6.png",
-    accent: "#111827",
-    limited: false,
-    price: 499,
-    edition: null,
-    quantity: 1,
-  },
-  {
-    id: 5,
-    ref: "LUC-05",
-    name: "Aurora Mint",
-    subtitle: "Lucent Collection",
-    collection: "lucent",
-    range: "automatic",
-    type: "automatic",
-    material: "titanium",
-    color: "mint",
-    image: "/images/watch-3.png",
-    accent: "#10B981",
-    limited: false,
-    price: 499,
-    edition: null,
-    quantity: 1,
-  },
-  {
-    id: 6,
-    ref: "LUC-06",
-    name: "Astral Blue",
-    subtitle: "Lucent Collection",
-    collection: "lucent",
-    range: "automatic",
-    type: "automatic",
-    material: "titanium",
-    color: "blue",
-    image: "/images/watch-2.png",
-    accent: "#3B82F6",
-    limited: false,
-    price: 499,
-    edition: null,
-    quantity: 1,
-  },
-];
-
-
-
 // ─── Filter Options ─────────────────────────────────────────────────────────
 const filterOptions = {
   collection: [
@@ -161,15 +53,11 @@ export default function HorizonTimepieces() {
     const section = sectionRef.current
     if (!section) return
 
-    // ===========================
-    // SPLIT TEXT SETUP (BANNER)
-    // ===========================
     const bannerTitle = new SplitType('.ht-header h1', { types: 'chars' })
 
     // ===========================
     // INITIAL STATES
     // ===========================
-    // Banner title chars - staggered from bottom
     bannerTitle.chars?.forEach((char, i) => {
       char.style.display = 'inline-block'
       char.style.opacity = '0'
@@ -178,9 +66,6 @@ export default function HorizonTimepieces() {
     })
 
 
-    // ===========================
-    // INTERSECTION OBSERVER
-    // ===========================
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px',
@@ -189,7 +74,6 @@ export default function HorizonTimepieces() {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          // Banner title - split reveal from bottom
           bannerTitle.chars?.forEach((char, i) => {
             setTimeout(() => {
               char.style.transition = 'all 0.7s cubic-bezier(0.16, 1, 0.3, 1)'
@@ -198,7 +82,6 @@ export default function HorizonTimepieces() {
             }, i * 35)
           })
 
-          // Unobserve after animation completes
           observer.unobserve(section)
         }
       })
@@ -224,11 +107,9 @@ export default function HorizonTimepieces() {
   const cardRefs = useRef([]);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
-  // -----Filter Toggle-------------------------
   const toggleFilters = () => {
     setIsFilterOpen(!isFilterOpen);
   }
-  // ─── Filter Logic ───────────────────────────────────────────────────────
   const filteredWatches = products.filter((watch) => {
     return (
       (activeFilters.collection === "all" || watch.collection === activeFilters.collection) &&
@@ -238,7 +119,6 @@ export default function HorizonTimepieces() {
     );
   });
 
-  // -------AOS init----------------
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -247,7 +127,6 @@ export default function HorizonTimepieces() {
     });
   }, []);
 
-  // ─── Intersection Observer for entrance animations ────────────────────────
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -269,10 +148,8 @@ export default function HorizonTimepieces() {
     return () => observer.disconnect();
   }, [filteredWatches.length, isListView]);
 
-  // ─── Close dropdowns on outside click ───────────────────────────────────
   useEffect(() => {
     const handleClickOutside = (e) => {
-      // Only close if clicking outside filter area
       if (!e.target.closest('.ht-filters-left')) {
         setOpenDropdown(null);
       }
